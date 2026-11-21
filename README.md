@@ -1,39 +1,41 @@
 # Math Input
 
-Math Input 是一个离线 Windows 数学公式输入器。在支持 Markdown 的编辑器里按 **Ctrl + Alt + M** 呼出窗口，用命令补全和可编辑模板写公式，再把 LaTeX 或 Markdown 插回原输入框。
+[简体中文](README.zh-CN.md)
 
-## 快速开始
+Math Input is an offline formula editor for Windows. Press **Ctrl + Alt + M** in your target application, compose a formula, and send it back as LaTeX or Markdown.
 
-1. 按下 **Ctrl + Alt + M**，输入 `frac` 后按 **Enter** 插入分式。
-2. 输入分子，按 **Tab** 切换到分母。按 **Enter** 完成模板，再按 **Enter** 提交公式。
-3. 如果是直接打开程序，可以点「仅复制」。在设置里可以调整快捷键、输出格式和自动粘贴。
+## Download
 
-## 写公式
+Get the Windows x64 installer or portable ZIP from [GitHub Releases](https://github.com/iteveryxy/MathInput/releases). To use the portable build, extract the ZIP and run `MathInput.exe`. Both builds require the Microsoft Edge WebView2 Runtime. The interface is in Simplified Chinese.
 
-- **模板补全**支持命令、拼音和自定义别名。输入 `sqrt`、`sum`、`lim` 等命令，或按 **Ctrl + Space** 打开命令列表。
-- **矩阵**可通过工具栏或 **Alt + M** 插入。分别填写行数和列数，支持矩形矩阵、向量和方阵行列式，最多逐格编辑 400 个单元格。
-- **公式包**可以从「设置 → 公式包」启用、导入和导出，也可以把当前公式保存为模板。随附 366 条本科公式和记号。
+## Quick start
 
-| 公式包 | 内容 | 文件 |
+1. Place the cursor in your target editor and press **Ctrl + Alt + M**.
+2. Type `frac` and press **Enter**. Fill in the numerator, press **Tab**, and fill in the denominator.
+3. Press **Enter** to finish the template, then **Enter** again to submit. If you opened the app directly, use **Copy only** to copy the result.
+
+Use **Ctrl + Space** to browse templates. Commands such as `sqrt`, `sum`, and `lim` also support Pinyin and custom aliases. Use **Alt + M** to insert a matrix by entering its rows and columns. You can edit up to 400 cells in a single matrix.
+
+## Formula packs
+
+Enable the packs you want under **Settings → Formula packs**. You can import and export JSON packs or save the current formula as a template. If you are upgrading an existing library, use **Add bundled university packs** to add the new packs before enabling them.
+
+| Pack | Contents | JSON |
 | --- | --- | --- |
-| 高等数学 | 极限、微分、积分、级数和常微分方程 | [121 条模板](src/packs/university/advanced-math.mathpack.json) |
-| 本科线性代数 | 行列式、向量空间、特征值、矩阵分解和二次型 | [117 条模板](src/packs/university/university-linear-algebra.mathpack.json) |
-| 通用数学记号 | 希腊字母、数集、集合运算、量词和区间 | [128 条模板](src/packs/university/math-notation.mathpack.json) |
+| Calculus | Limits, derivatives, integrals, series, and ordinary differential equations | [121 templates](src/packs/university/advanced-math.mathpack.json) |
+| Linear algebra | Determinants, vector spaces, eigenvalues, matrix decompositions, and quadratic forms | [117 templates](src/packs/university/university-linear-algebra.mathpack.json) |
+| Mathematical notation | Greek letters, number sets, set operations, quantifiers, and intervals | [128 templates](src/packs/university/math-notation.mathpack.json) |
 
-三个本科包默认关闭。已有公式库可用「添加随附本科公式包」补齐，再勾选所需的包。
+## Build and test
 
-## 从源码构建
-
-桌面版使用 Tauri 2、TypeScript 和 MathLive。构建需要 Node.js 22.12+、Rust MSVC 1.90+、Visual Studio C++ 桌面生成工具和 Windows SDK。运行生成的程序需要 WebView2 Runtime。
+The desktop app uses Tauri 2, TypeScript, and MathLive. Building on Windows requires Node.js 22.12+, Rust MSVC 1.90+, the Visual Studio C++ build tools, and the Windows SDK.
 
 ```powershell
 npm ci
 npm run desktop:build
 ```
 
-生成的 EXE 位于 `src-tauri/target/release/math-input.exe`。只预览公式编辑器可运行 `npm run dev`，再访问 [本地预览](http://127.0.0.1:1420)。完整环境和打包步骤见 [Windows 构建指南](docs/BUILD_WINDOWS.md)。
-
-## 测试
+The executable is written to `src-tauri/target/release/math-input.exe`. Run `npm run dev` to preview the editor in your browser.
 
 ```powershell
 npm run test
@@ -41,15 +43,14 @@ npm run test:ui
 cargo test --manifest-path src-tauri/Cargo.toml --lib
 ```
 
-UI 套件在 Edge 中验证公式编辑、模板补全和导出。桌面快捷键与剪贴板的验证范围见 [测试报告](docs/TEST_REPORT.md)。
+## Documentation
 
-## 文档
+The following guides are written in Simplified Chinese.
 
-- [使用手册与快捷键](docs/USER_GUIDE.md)
-- [公式包编写教程](docs/FORMULA_PACK_TUTORIAL.md)与[格式规范](docs/FORMULA_PACK_SPEC.md)
-- [程序架构](docs/ARCHITECTURE.md)
-- [维护者 GitHub 发布指南](docs/PUBLISH_GITHUB.md)
+- [User guide and shortcuts](docs/USER_GUIDE.md)
+- [Formula pack tutorial](docs/FORMULA_PACK_TUTORIAL.md) and [format specification](docs/FORMULA_PACK_SPEC.md)
+- [Windows build guide](docs/BUILD_WINDOWS.md) and [GitHub release guide](docs/PUBLISH_GITHUB.md)
 
-## 许可证
+## License
 
-项目源码的授权条款待维护者确定。第三方组件及其许可证见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。
+Math Input's source and project documentation are distributed under the [MIT License](LICENSE). Bundled dependencies retain their respective licenses. See [third-party notices](THIRD_PARTY_NOTICES.md).

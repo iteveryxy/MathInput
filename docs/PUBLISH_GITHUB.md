@@ -47,6 +47,23 @@ gh auth status --hostname github.com
 
 - **Git 要求登录**。运行 `gh auth setup-git --hostname github.com` 配置凭据助手，然后重试。[GitHub CLI 身份验证说明](https://docs.github.com/en/github-cli/github-cli/authenticating-with-github-cli)
 - **远端分支已有独立提交**。Git 会拒绝覆盖。首次上传到手动创建的仓库时应选空仓库，已有工作历史则先在本机合并。推送失败后，本地提交可继续用于重试。
-- **项目许可证**。如果要以开源项目发布，应先确定授权条款并添加自己的 `LICENSE` 文件。[GitHub 许可证说明](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/licensing-a-repository)
 
-脚本上传源码、文档和配置。Windows EXE 和 ZIP 属于独立的发布附件，如需提供下载，可另在 GitHub Releases 上传本次构建产物。
+## 发布 Windows 下载
+
+在准备发布的提交上执行以下命令。打包脚本会构建 x64 NSIS 安装程序和便携 ZIP，在 `release/github/v<版本>/` 生成两个附件与 SHA-256 校验文件。两个包都包含项目许可证和第三方版权说明。
+
+```powershell
+npm ci
+.\scripts\package-github-release.ps1
+```
+
+发布源码后，为同一提交打版本标签。以下以首次发布 `v0.3.0` 为例。确认版本和文件名与本次构建一致。
+
+```powershell
+git tag -a v0.3.0 -m 'Math Input v0.3.0'
+git push origin refs/tags/v0.3.0
+gh release create v0.3.0 --verify-tag --title 'Math Input v0.3.0' --generate-notes `
+  ./release/github/v0.3.0/MathInput-0.3.0-win64-setup.exe `
+  ./release/github/v0.3.0/MathInput-0.3.0-win64-portable.zip `
+  ./release/github/v0.3.0/SHA256SUMS.txt
+```

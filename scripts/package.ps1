@@ -19,10 +19,12 @@ try {
     if (-not (Test-Path -LiteralPath $taskVersionedExe) -or (Get-FileHash -LiteralPath $taskSource -Algorithm SHA256).Hash -ne (Get-FileHash -LiteralPath $taskVersionedExe -Algorithm SHA256).Hash) {
         Copy-Item -LiteralPath $taskSource -Destination $taskVersionedExe -Force
     }
-    Copy-Item -LiteralPath (Join-Path $taskRoot 'README.md') -Destination $taskRelease
-    $taskPackagedReadme = Join-Path $taskRelease 'README.md'
-    $taskReadmeText = [System.IO.File]::ReadAllText($taskPackagedReadme).Replace('src/packs/examples/', 'formula-packs/').Replace('src/packs/university/', 'formula-packs/')
-    [System.IO.File]::WriteAllText($taskPackagedReadme, $taskReadmeText, (New-Object System.Text.UTF8Encoding($false)))
+    Copy-Item -LiteralPath (Join-Path $taskRoot 'LICENSE') -Destination $taskRelease
+    foreach ($taskReadmeName in @('README.md', 'README.zh-CN.md')) {
+        $taskPackagedReadme = Join-Path $taskRelease $taskReadmeName
+        $taskReadmeText = [System.IO.File]::ReadAllText((Join-Path $taskRoot $taskReadmeName)).Replace('src/packs/examples/', 'formula-packs/').Replace('src/packs/university/', 'formula-packs/')
+        [System.IO.File]::WriteAllText($taskPackagedReadme, $taskReadmeText, (New-Object System.Text.UTF8Encoding($false)))
+    }
     Copy-Item -LiteralPath (Join-Path $taskRoot 'THIRD_PARTY_NOTICES.md') -Destination $taskRelease
     Copy-Item -LiteralPath (Join-Path $taskRoot 'docs') -Destination $taskRelease -Recurse -Force
     $taskPackFolder = Join-Path $taskRelease 'formula-packs'
@@ -46,7 +48,7 @@ try {
     if (Test-Path -LiteralPath $taskV03DesktopEvidence) { Copy-Item -LiteralPath $taskV03DesktopEvidence -Destination $taskEvidence -Recurse -Force }
     $taskHash = Get-FileHash -LiteralPath (Join-Path $taskRelease 'MathInput.exe') -Algorithm SHA256
     $taskHash.Hash.ToLowerInvariant() + '  MathInput.exe' | Set-Content -LiteralPath (Join-Path $taskRelease 'SHA256SUMS.txt') -Encoding ascii
-    $taskArchiveInputs = @('MathInput.exe', 'README.md', 'THIRD_PARTY_NOTICES.md', 'docs', 'licenses', 'reports', 'formula-packs', 'SHA256SUMS.txt') | ForEach-Object { Join-Path $taskRelease $_ }
+    $taskArchiveInputs = @('MathInput.exe', 'README.md', 'README.zh-CN.md', 'LICENSE', 'THIRD_PARTY_NOTICES.md', 'docs', 'licenses', 'reports', 'formula-packs', 'SHA256SUMS.txt') | ForEach-Object { Join-Path $taskRelease $_ }
     Compress-Archive -LiteralPath $taskArchiveInputs -DestinationPath (Join-Path $taskReleaseRoot ('MathInput-' + $taskVersion + '-win64.zip')) -Force
     # The versioned directory and archive are authoritative. A running older
     # process may hold the convenience EXE open; preserve it in that case.
@@ -54,7 +56,7 @@ try {
     try {
         Copy-Item -LiteralPath (Join-Path $taskRelease 'MathInput.exe') -Destination (Join-Path $taskReleaseRoot 'MathInput.exe') -Force
         Copy-Item -LiteralPath (Join-Path $taskRelease 'SHA256SUMS.txt') -Destination $taskReleaseRoot -Force
-        foreach ($taskConvenienceItem in @('README.md', 'THIRD_PARTY_NOTICES.md', 'docs', 'licenses', 'reports', 'formula-packs')) {
+        foreach ($taskConvenienceItem in @('README.md', 'README.zh-CN.md', 'LICENSE', 'THIRD_PARTY_NOTICES.md', 'docs', 'licenses', 'reports', 'formula-packs')) {
             Copy-Item -LiteralPath (Join-Path $taskRelease $taskConvenienceItem) -Destination $taskReleaseRoot -Recurse -Force
         }
         $taskConvenienceUpdated = $true

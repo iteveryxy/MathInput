@@ -3,6 +3,7 @@ name = "math-input"
 version = "0.3.0"
 description = "Offline structured mathematics input for Windows"
 authors = ["Math Input contributors"]
+license = "MIT"
 edition = "2021"
 rust-version = "1.90"
 default-run = "math-input"
