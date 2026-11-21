@@ -1,4 +1,5 @@
 import type { MathfieldElement } from 'mathlive';
+import { joinLatex } from './TexTokens';
 
 /** Strip editing metadata by reading TeX groups, including arbitrarily nested prompts.
  * We preserve all other commands and braces verbatim. This is deliberately not a
@@ -12,7 +13,7 @@ export function stripPrompts(latex: string): string {
       const char = latex[i];
       if (char === '}' && untilBrace) { i++; return result; }
       if (char === '{') { i++; result += `{${read(true)}}`; continue; }
-      if (char !== '\\') { result += char; i++; continue; }
+      if (char !== '\\') { result = joinLatex(result,char); i++; continue; }
       const start = i++;
       if (/[a-zA-Z]/.test(latex[i] ?? '')) while (/[a-zA-Z]/.test(latex[i] ?? '')) i++;
       else if (i < latex.length) i++;
@@ -27,7 +28,7 @@ export function stripPrompts(latex: string): string {
       while (/\s/.test(latex[i] ?? '') && i < latex.length) i++;
       if (latex[i] !== '{') throw new Error('占位参数缺少内容组');
       i++;
-      result += read(true);
+      result = joinLatex(result,read(true));
     }
     if (untilBrace) throw new Error('公式括号不完整');
     return result;

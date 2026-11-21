@@ -1,5 +1,15 @@
 # Phase 0：MathLive 技术验证
 
+## v0.3 Formula Packs 实测补充
+
+外部 JSON 可直接交给原 SnippetRegistry/PlaceholderManager。2×2、3×3 pmatrix、vmatrix 行列式、array 分块以及 cases 方程组的独立 Prompt 和声明顺序 Tab 已由真实浏览器验证；全部 27 条示例另逐条检查公开 errors、完整默认值选择与替换、Prompt 清理及导出。
+
+初始 Phase 0 只验证编辑/导航，未拦截 hline 解析错误；强化 errors 断言后确认当前版本报告 unknown-command。因此交付改为竖向分隔，另有负向测试明确记录 hline 不支持，没有把“能显示并编辑”当作全部语法受支持的证明。
+
+新增发现：控制词与 Prompt 相邻时，去掉 Prompt 不能机械拼接字符串，lVert 与字母 A 会形成错误命令。joinLatex 现用于槽位默认值展开及 Prompt 解除，保留必要的 TeX 分隔，范数包裹和双向控制词边界均有测试。
+
+独立测试区复用 MathEditor，使用公开 mount 事件后设置菜单和插入模板。模板运行不依赖内部 Model/Atom/Shadow DOM。原生文件对话框使用 tauri-plugin-dialog 的 Rust API，文件读写由受限命令完成，不启用前端通用 FS 权限。
+
 验证环境为本项目实际安装的 **MathLive 0.110.0**，类型定义位于 `node_modules/mathlive/types/`。不能把在线文档里的示例直接等同于当前版本行为；本项目使用真实 MathLive 浏览器实例验证并保留探测报告。
 
 | 能力 | 采用的公开 API | 证据 |

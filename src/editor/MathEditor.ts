@@ -57,6 +57,12 @@ export class MathEditor {
   }
 
   focus(): void { this.field.focus(); }
+  registryChanged():void {
+    if(this.completion.state.open) {
+      if(this.completion.state.query)this.refreshCompletion();else this.completion.filter('',true);
+    }
+    this.callbacks.change();
+  }
   get latex(): string { return exportLatex(this.field); }
   setLatex(latex: string): void {
     this.selections.reset();
@@ -121,11 +127,13 @@ export class MathEditor {
       let range: Range = this.queryRange ? [...this.queryRange] : [...this.field.selection.ranges[0]];
       let wrapped: string | undefined;
       if (wrap && snippet.wrapTarget) {
-        if (this.selectedBeforeQuery !== undefined) wrapped = this.selectedBeforeQuery;
-        else if (!this.queryRange && !this.field.selectionIsCollapsed) wrapped = this.field.getValue(this.field.selection, 'latex');
+        if (snippet.preferSelection !== false && this.selectedBeforeQuery !== undefined) wrapped = this.selectedBeforeQuery;
+        else if (snippet.preferSelection !== false && !this.queryRange && !this.field.selectionIsCollapsed) wrapped = this.field.getValue(this.field.selection, 'latex');
         else {
-          const left = new MathNodeNavigator(MathStructureAdapter.from(this.field)).leftTerm(range[0]);
-          if (left) { wrapped = this.field.getValue(left, 'latex'); range = [left[0], range[1]]; }
+          const end=!this.queryRange&&!this.field.selectionIsCollapsed?range[1]:range[0];
+          const left = new MathNodeNavigator(MathStructureAdapter.from(this.field)).leftTerm(end);
+          if (left) { wrapped = this.field.getValue(left, 'latex'); range = this.queryRange?[left[0],range[1]]:left; }
+          else if(snippet.preferSelection===false&&!this.queryRange)range=[range[1],range[1]];
         }
       }
       this.field.selection = { ranges: [range] };

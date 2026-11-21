@@ -33,4 +33,10 @@ const example: Snippet = {
 3. 添加真实 UI 测试，验证默认值整体覆盖、Tab 顺序、Enter 提前结束、嵌套和导出。
 4. 如模板引入新数学容器，为公开结构投影添加对应回归用例。
 
-设置页中的用户自定义目前只支持**别名**，保存在本机；任意新模板通过源码声明扩展。第一版没有执行用户脚本、远程模板或网络同步功能。
+v0.3 可在设置的“公式包”中通过 GUI 创建、修改、复制、删除模板及参数，不需要修改源码。公开数据格式、上限、冲突规则和安全限制见 [FORMULA_PACK_SPEC.md](FORMULA_PACK_SPEC.md)。`src/packs/examples/linear-algebra.mathpack.json` 是可独立导入和导出的 27 条线性代数示例包。
+
+每个槽位与参数一一对应，不支持同名参数多处同步绑定。参数 ID 重命名会同步改写槽位，调整数组顺序只改变 Tab 导航顺序。`preferSelection` 默认 true；false 优先包裹当前层级左侧项。智能包裹外壳由模板声明分组，转置与逆矩阵模板显式保留括号以保护运算优先级。
+
+“测试公式”使用独立 MathEditor 和原 PlaceholderManager，支持真实默认值覆盖、Tab、Enter、嵌套及包裹，正式草稿不会被覆盖。MathLive 的 menuItems 设置和初次模板插入在公开 mount 事件后执行。
+
+模板来自包时仍走原注册器，运行时身份为 pack-id:snippet-id；内置保留旧 ID。关闭包仅移除新补全来源，旧会话保存原声明。不要用卸载包的方式清理当前编辑器 Prompt，也不要通过修改 LaTeX 伪造选区。

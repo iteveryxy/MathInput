@@ -6,6 +6,11 @@ import { DesktopBridge } from '../platform/DesktopBridge';
 import { DRAFT_KEY, RESULT_KEY, loadSettings, saveSettings, type Settings } from '../platform/Settings';
 import { formatMath, type OutputMode } from '../output/MarkdownFormatter';
 import { revealCaret } from '../editor/CaretAnchor';
+import { FormulaPackService } from '../packs/FormulaPackService';
+import { FormulaPackManager } from './FormulaPackManager';
+import { candidateId, snippetKey } from '../packs/types';
+import { checkPackMath } from '../packs/MathPreview';
+import { MatrixDialog } from './MatrixDialog';
 
 export class EditorWindow {
   readonly editor: MathEditor;
@@ -13,9 +18,12 @@ export class EditorWindow {
   private readonly popup: CompletionPopup;
   private readonly tooltip = new ParameterTooltip();
   private readonly settingsPanel: SettingsPanel;
+  private readonly matrixDialog: MatrixDialog;
   private settings = loadSettings();
   private busy = false;
   private fitTimer?: ReturnType<typeof setTimeout>;
+  readonly packs=new FormulaPackService(undefined,checkPackMath);
+  private readonly packManager:FormulaPackManager;
 
   constructor(private readonly root: HTMLDivElement) {
     document.body.classList.toggle('desktop', this.bridge.desktop);
@@ -27,7 +35,7 @@ export class EditorWindow {
         <div class="window-actions"><span class="shortcut-badge" id="shortcut-badge">Ctrl Alt M</span><button id="help-button" class="icon-button" aria-label="快捷键帮助" title="快捷键帮助">?</button><button id="settings-button" class="icon-button" aria-label="设置" title="设置">⚙</button><button id="close-button" class="icon-button" aria-label="取消输入" title="Esc 取消">×</button></div>
       </header>
       <main class="editor-main">
-        <div class="editor-label"><label for="math-editor">数学表达式</label><button id="commands-button" class="text-button">命令 <kbd>Ctrl Space</kbd></button></div>
+        <div class="editor-label"><label for="math-editor">数学表达式</label><button id="matrix-button" class="text-button" title="Alt + M" aria-haspopup="dialog">矩阵</button><button id="commands-button" class="text-button">命令 <kbd>Ctrl Space</kbd></button></div>
         <div id="editor-container" class="editor-container"><div id="empty-hint" class="empty-hint"><span>从一个公式开始</span><small>输入 sqrt、frac、sum，或直接书写数学表达式</small></div></div>
         <div id="parameter-container"></div>
         <div class="output-line"><div class="output-label">输出</div><code id="output-preview" aria-label="生成的公式"></code><select id="output-mode" aria-label="输出格式"><option value="inline">$…$ 行内</option><option value="block">$$…$$ 块级</option><option value="latex">LaTeX</option></select></div>
@@ -41,12 +49,19 @@ export class EditorWindow {
 
     this.editor = new MathEditor({ change: () => this.render(), submit: () => { void this.submit(false); }, cancel: () => { void this.cancel(); }, error: (message) => this.status(message, true) });
     this.root.querySelector('#editor-container')!.append(this.editor.field);
+    this.matrixDialog = new MatrixDialog(this.editor);
+    this.root.append(this.matrixDialog.element);
     this.editor.field.menuItems = [];
     this.popup = new CompletionPopup((snippet, wrap) => this.editor.accept(snippet, wrap), this.editor.field);
-    this.settingsPanel = new SettingsPanel(async (settings) => this.save(settings), this.editor.registry.all().map((s) => s.id), settings => this.applyAppearance(settings));
+    this.settingsPanel = new SettingsPanel(async (settings) => this.save(settings), ()=>this.packs.snippets(true).map(snippetKey), settings => this.applyAppearance(settings));
     this.root.querySelector('#parameter-container')!.append(this.tooltip.element);
     this.root.querySelector('#settings-container')!.append(this.settingsPanel.element);
     this.settingsPanel.element.addEventListener('settings-saved', () => requestAnimationFrame(() => this.editor.focus()));
+    this.packManager=new FormulaPackManager(this.packs,()=>this.settings.aliases,()=>this.editor.focus());
+    this.root.append(this.packManager.element);
+    this.settingsPanel.element.addEventListener('open-formula-packs',()=>{this.editor.closeCompletion();void this.packManager.open();});
+    this.packs.changed.add(()=>{this.editor.registry.replace(this.packs.snippets());this.editor.registryChanged();if(this.packs.error)this.status(this.packs.error,true);});
+    void this.packs.initialize();
     this.editor.completion.aliases = this.settings.aliases;
     this.bind();
     try {
@@ -62,6 +77,14 @@ export class EditorWindow {
   private bind(): void {
     const on = (id: string, callback: () => void) => this.root.querySelector(id)!.addEventListener('click', callback);
     on('#commands-button', () => this.editor.showCommands());
+    this.root.querySelector('#matrix-button')!.addEventListener('pointerdown', event => event.preventDefault());
+    on('#matrix-button', () => this.matrixDialog.open());
+    this.editor.field.addEventListener('keydown', event => {
+      if (event.altKey && !event.ctrlKey && !event.metaKey && !event.shiftKey && !event.isComposing && event.code === 'KeyM') {
+        event.preventDefault();
+        this.matrixDialog.open();
+      }
+    }, true);
     on('#close-button', () => { void this.cancel(); });
     on('#copy-button', () => { void this.submit(true); });
     on('#submit-button', () => { void this.submit(false); });
@@ -70,6 +93,7 @@ export class EditorWindow {
     unwrap.addEventListener('pointerdown', event => event.preventDefault());
     unwrap.addEventListener('click', () => this.editor.unwrap());
     this.root.querySelector('.editor-label')!.append(unwrap);
+    const saveTemplate=document.createElement('button');saveTemplate.id='save-template-button';saveTemplate.className='text-button';saveTemplate.textContent='保存为模板';saveTemplate.addEventListener('click',()=>{if(this.editor.latex){this.editor.closeCompletion();void this.packManager.open(this.editor.latex);}else this.status('请先输入需要保存的公式',true);});this.root.querySelector('.editor-label')!.append(saveTemplate);
     document.addEventListener('keydown', event => {
       // Prevent WebView history navigation even when a settings input has focus.
       if (event.altKey && !event.ctrlKey && ['ArrowLeft', 'ArrowRight'].includes(event.key)) event.preventDefault();
@@ -92,7 +116,7 @@ export class EditorWindow {
   private async initialize(): Promise<void> {
     try {
       await this.bridge.onOpen(() => {
-        if (!this.settingsPanel.element.hidden) return;
+        if (this.matrixDialog.element.open || !this.settingsPanel.element.hidden || !this.packManager.element.hidden) return;
         requestAnimationFrame(() => this.editor.focus());
         void this.bridge.status().then((status) => { if (status.error) this.status(status.error, true); });
       });
@@ -114,7 +138,7 @@ export class EditorWindow {
     const completion = this.editor.completion.state;
     this.editor.field.setAttribute('aria-expanded', String(completion.open));
     this.editor.field.setAttribute('aria-controls', 'completion-popup');
-    if (completion.open && this.editor.completion.selected) this.editor.field.setAttribute('aria-activedescendant', `candidate-${this.editor.completion.selected.id}`);
+    if (completion.open && this.editor.completion.selected) this.editor.field.setAttribute('aria-activedescendant', candidateId(this.editor.completion.selected));
     else this.editor.field.removeAttribute('aria-activedescendant');
     const latex = this.editor.latex;
     this.root.querySelector<HTMLElement>('#empty-hint')!.hidden = !!latex;
@@ -141,7 +165,7 @@ export class EditorWindow {
   private applyAppearance(settings: Pick<Settings, 'uiScale' | 'compact'>): void {
     document.documentElement.style.setProperty('--ui-scale', String(settings.uiScale / 100));
     document.body.classList.toggle('compact', settings.compact);
-    this.popup?.schedulePosition();
+    this.popup?.schedulePosition(true);
   }
 
   private status(message: string, error = false): void {

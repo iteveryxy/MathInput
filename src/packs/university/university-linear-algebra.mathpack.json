@@ -1,0 +1,3088 @@
+{
+  "schemaVersion": 1,
+  "id": "university-linear-algebra",
+  "name": "本科线性代数",
+  "version": "1.0.0",
+  "author": "Math Input",
+  "description": "矩阵和行列式、消元、向量与线性空间、线性映射、正交性、特征值与二次型。具体行列数的矩阵或行列式可从编辑器的“矩阵”入口生成。",
+  "snippets": [
+    {
+      "id": "generalmat",
+      "command": "generalmat",
+      "aliases": [
+        "juzhen",
+        "generalmatrix",
+        "juzhenmn"
+      ],
+      "name": "符号行列数的矩阵",
+      "description": "符号行列数的矩阵",
+      "latex": "{{mat}}=\\left[{{body}}\\right]_{ {{m}}\\times{{n}} }",
+      "parameters": [
+        {
+          "id": "mat",
+          "name": "矩阵",
+          "description": "矩阵",
+          "defaultValue": "A"
+        },
+        {
+          "id": "body",
+          "name": "一般矩阵元素",
+          "description": "一般矩阵元素",
+          "defaultValue": "a_{ij}"
+        },
+        {
+          "id": "m",
+          "name": "行数",
+          "description": "行数",
+          "defaultValue": "m"
+        },
+        {
+          "id": "n",
+          "name": "列数",
+          "description": "列数",
+          "defaultValue": "n"
+        }
+      ]
+    },
+    {
+      "id": "matdots",
+      "command": "matdots",
+      "aliases": [
+        "juzhenshenglue"
+      ],
+      "name": "矩阵省略号展开",
+      "description": "矩阵省略号展开",
+      "latex": "\\begin{pmatrix}{{a11}}&\\cdots&{{a1n}}\\\\\\vdots&\\ddots&\\vdots\\\\{{am1}}&\\cdots&{{amn}}\\end{pmatrix}",
+      "parameters": [
+        {
+          "id": "a11",
+          "name": "左上元素",
+          "description": "左上元素",
+          "defaultValue": "a_{11}"
+        },
+        {
+          "id": "a1n",
+          "name": "右上元素",
+          "description": "右上元素",
+          "defaultValue": "a_{1n}"
+        },
+        {
+          "id": "am1",
+          "name": "左下元素",
+          "description": "左下元素",
+          "defaultValue": "a_{m1}"
+        },
+        {
+          "id": "amn",
+          "name": "右下元素",
+          "description": "右下元素",
+          "defaultValue": "a_{mn}"
+        }
+      ]
+    },
+    {
+      "id": "detdots",
+      "command": "detdots",
+      "aliases": [
+        "njiehanglieshi"
+      ],
+      "name": "n 阶行列式省略号展开",
+      "description": "n 阶行列式省略号展开",
+      "latex": "\\begin{vmatrix}{{a11}}&\\cdots&{{a1n}}\\\\\\vdots&\\ddots&\\vdots\\\\{{an1}}&\\cdots&{{ann}}\\end{vmatrix}",
+      "parameters": [
+        {
+          "id": "a11",
+          "name": "左上元素",
+          "description": "左上元素",
+          "defaultValue": "a_{11}"
+        },
+        {
+          "id": "a1n",
+          "name": "右上元素",
+          "description": "右上元素",
+          "defaultValue": "a_{1n}"
+        },
+        {
+          "id": "an1",
+          "name": "左下元素",
+          "description": "左下元素",
+          "defaultValue": "a_{n1}"
+        },
+        {
+          "id": "ann",
+          "name": "右下元素",
+          "description": "右下元素",
+          "defaultValue": "a_{nn}"
+        }
+      ]
+    },
+    {
+      "id": "matspace",
+      "command": "matspace",
+      "aliases": [
+        "juzhenkongjian"
+      ],
+      "name": "矩阵空间",
+      "description": "矩阵空间",
+      "latex": "\\mathrm{M}_{ {{m}}\\times{{n}} }\\left( {{field}} \\right)",
+      "parameters": [
+        {
+          "id": "m",
+          "name": "行数",
+          "description": "行数",
+          "defaultValue": "m"
+        },
+        {
+          "id": "n",
+          "name": "列数",
+          "description": "列数",
+          "defaultValue": "n"
+        },
+        {
+          "id": "field",
+          "name": "数域",
+          "description": "数域",
+          "defaultValue": "\\mathbb{R}"
+        }
+      ]
+    },
+    {
+      "id": "matentry",
+      "command": "matentry",
+      "aliases": [
+        "juzhenyuansu"
+      ],
+      "name": "矩阵的单个元素",
+      "description": "矩阵的单个元素",
+      "latex": "({{mat}})_{ {{i}},{{j}} }",
+      "parameters": [
+        {
+          "id": "mat",
+          "name": "矩阵",
+          "description": "矩阵",
+          "defaultValue": "A"
+        },
+        {
+          "id": "i",
+          "name": "行指标",
+          "description": "行指标",
+          "defaultValue": "i"
+        },
+        {
+          "id": "j",
+          "name": "列指标",
+          "description": "列指标",
+          "defaultValue": "j"
+        }
+      ],
+      "wrapTarget": "mat"
+    },
+    {
+      "id": "matshape",
+      "command": "matshape",
+      "aliases": [
+        "juzhenweishu"
+      ],
+      "name": "矩阵的维数",
+      "description": "矩阵的维数",
+      "latex": "{{mat}}\\in {{field}}^{ {{m}}\\times{{n}} }",
+      "parameters": [
+        {
+          "id": "mat",
+          "name": "矩阵",
+          "description": "矩阵",
+          "defaultValue": "A"
+        },
+        {
+          "id": "field",
+          "name": "数域",
+          "description": "数域",
+          "defaultValue": "\\mathbb{R}"
+        },
+        {
+          "id": "m",
+          "name": "行数",
+          "description": "行数",
+          "defaultValue": "m"
+        },
+        {
+          "id": "n",
+          "name": "列数",
+          "description": "列数",
+          "defaultValue": "n"
+        }
+      ]
+    },
+    {
+      "id": "zeroarray",
+      "command": "zeroarray",
+      "aliases": [
+        "lingjuzhen",
+        "zero"
+      ],
+      "name": "指定维数的零矩阵",
+      "description": "指定维数的零矩阵",
+      "latex": "\\mathbf{0}_{ {{m}}\\times{{n}} }",
+      "parameters": [
+        {
+          "id": "m",
+          "name": "第二个阶数或指标",
+          "description": "第二个阶数或指标",
+          "defaultValue": "m"
+        },
+        {
+          "id": "n",
+          "name": "阶数或指标",
+          "description": "阶数或指标",
+          "defaultValue": "n"
+        }
+      ]
+    },
+    {
+      "id": "identity",
+      "command": "identity",
+      "aliases": [
+        "danweijuzhen",
+        "dwjz"
+      ],
+      "name": "单位矩阵",
+      "description": "单位矩阵",
+      "latex": "I_{ {{order}} }",
+      "parameters": [
+        {
+          "id": "order",
+          "name": "次数或阶数",
+          "description": "次数或阶数",
+          "defaultValue": "n"
+        }
+      ]
+    },
+    {
+      "id": "diag",
+      "command": "diag",
+      "aliases": [
+        "duijiaojuzhen"
+      ],
+      "name": "对角矩阵",
+      "description": "对角矩阵",
+      "latex": "\\operatorname{diag}\\left( {{body}} \\right)",
+      "parameters": [
+        {
+          "id": "body",
+          "name": "对角元素",
+          "description": "对角元素",
+          "defaultValue": "d_1,\\ldots,d_n"
+        }
+      ],
+      "wrapTarget": "body"
+    },
+    {
+      "id": "blockdiag",
+      "command": "blockdiag",
+      "aliases": [
+        "fenkuaiduijiao"
+      ],
+      "name": "分块对角矩阵",
+      "description": "分块对角矩阵",
+      "latex": "\\operatorname{diag}\\left( {{body}} \\right)",
+      "parameters": [
+        {
+          "id": "body",
+          "name": "对角块",
+          "description": "对角块",
+          "defaultValue": "A_1,\\ldots,A_k"
+        }
+      ],
+      "wrapTarget": "body"
+    },
+    {
+      "id": "blockmat",
+      "command": "blockmat",
+      "aliases": [
+        "fenkuaijuzhen"
+      ],
+      "name": "分块矩阵",
+      "description": "分块矩阵",
+      "latex": "\\left[\\begin{array}{c|c}{{tl}}&{{tr}}\\\\{{bl}}&{{br}}\\end{array}\\right]",
+      "parameters": [
+        {
+          "id": "tl",
+          "name": "左上块",
+          "description": "左上块",
+          "defaultValue": "A"
+        },
+        {
+          "id": "tr",
+          "name": "右上块",
+          "description": "右上块",
+          "defaultValue": "B"
+        },
+        {
+          "id": "bl",
+          "name": "左下块",
+          "description": "左下块",
+          "defaultValue": "C"
+        },
+        {
+          "id": "br",
+          "name": "右下块",
+          "description": "右下块",
+          "defaultValue": "D"
+        }
+      ]
+    },
+    {
+      "id": "augmat",
+      "command": "augmat",
+      "aliases": [
+        "zengguangjuzhen",
+        "augmented"
+      ],
+      "name": "增广矩阵（符号记法）",
+      "description": "增广矩阵（符号记法）",
+      "latex": "\\left[{{mat}}\\mid{{rhs}}\\right]",
+      "parameters": [
+        {
+          "id": "mat",
+          "name": "矩阵",
+          "description": "矩阵",
+          "defaultValue": "A"
+        },
+        {
+          "id": "rhs",
+          "name": "常数列",
+          "description": "常数列",
+          "defaultValue": "\\mathbf{b}"
+        }
+      ]
+    },
+    {
+      "id": "matprod",
+      "command": "matprod",
+      "aliases": [
+        "juzhenchengji"
+      ],
+      "name": "矩阵乘积",
+      "description": "矩阵乘积",
+      "latex": "{{mat}}{{matb}}",
+      "parameters": [
+        {
+          "id": "mat",
+          "name": "矩阵",
+          "description": "矩阵",
+          "defaultValue": "A"
+        },
+        {
+          "id": "matb",
+          "name": "第二个矩阵",
+          "description": "第二个矩阵",
+          "defaultValue": "B"
+        }
+      ]
+    },
+    {
+      "id": "prodentry",
+      "command": "prodentry",
+      "aliases": [
+        "juzhenchengjiyuansu"
+      ],
+      "name": "矩阵乘积的元素",
+      "description": "矩阵乘积的元素",
+      "latex": "{{lhs}}=\\sum_{ {{lower}} }^{ {{upper}} }{{rhs}}",
+      "parameters": [
+        {
+          "id": "lhs",
+          "name": "乘积对应元素",
+          "description": "乘积对应元素",
+          "defaultValue": "(AB)_{ij}"
+        },
+        {
+          "id": "lower",
+          "name": "求和起点",
+          "description": "求和起点",
+          "defaultValue": "k=1"
+        },
+        {
+          "id": "upper",
+          "name": "内维数",
+          "description": "内维数",
+          "defaultValue": "p"
+        },
+        {
+          "id": "rhs",
+          "name": "乘积项",
+          "description": "乘积项",
+          "defaultValue": "a_{ik}b_{kj}"
+        }
+      ]
+    },
+    {
+      "id": "transpose",
+      "command": "transpose",
+      "aliases": [
+        "trans",
+        "zhuanzhi",
+        "zz"
+      ],
+      "name": "转置矩阵",
+      "description": "转置矩阵",
+      "latex": "\\left( {{mat}} \\right)^{\\mathsf{T}}",
+      "parameters": [
+        {
+          "id": "mat",
+          "name": "矩阵",
+          "description": "矩阵",
+          "defaultValue": "A"
+        }
+      ],
+      "wrapTarget": "mat"
+    },
+    {
+      "id": "inverse",
+      "command": "inverse",
+      "aliases": [
+        "inv",
+        "nijuzhen",
+        "njz"
+      ],
+      "name": "逆矩阵",
+      "description": "逆矩阵",
+      "latex": "\\left( {{mat}} \\right)^{-1}",
+      "parameters": [
+        {
+          "id": "mat",
+          "name": "矩阵",
+          "description": "矩阵",
+          "defaultValue": "A"
+        }
+      ],
+      "wrapTarget": "mat"
+    },
+    {
+      "id": "conjtrans",
+      "command": "conjtrans",
+      "aliases": [
+        "gongezhuanzhi",
+        "hermitiantranspose"
+      ],
+      "name": "共轭转置（厄米伴随）",
+      "description": "共轭转置（厄米伴随）",
+      "latex": "\\left( {{mat}} \\right)^{\\mathsf{H}}",
+      "parameters": [
+        {
+          "id": "mat",
+          "name": "矩阵",
+          "description": "矩阵",
+          "defaultValue": "A"
+        }
+      ],
+      "wrapTarget": "mat"
+    },
+    {
+      "id": "adjoint",
+      "command": "adjoint",
+      "aliases": [
+        "bansuisuanzi"
+      ],
+      "name": "伴随算子",
+      "description": "伴随算子",
+      "latex": "\\left( {{mat}} \\right)^{*}",
+      "parameters": [
+        {
+          "id": "mat",
+          "name": "矩阵",
+          "description": "矩阵",
+          "defaultValue": "A"
+        }
+      ],
+      "wrapTarget": "mat"
+    },
+    {
+      "id": "pinverse",
+      "command": "pinverse",
+      "aliases": [
+        "weini"
+      ],
+      "name": "摩尔–彭若斯伪逆",
+      "description": "摩尔–彭若斯伪逆",
+      "latex": "\\left( {{mat}} \\right)^{\\dagger}",
+      "parameters": [
+        {
+          "id": "mat",
+          "name": "矩阵",
+          "description": "矩阵",
+          "defaultValue": "A"
+        }
+      ],
+      "wrapTarget": "mat"
+    },
+    {
+      "id": "matpower",
+      "command": "matpower",
+      "aliases": [
+        "juzhenmi"
+      ],
+      "name": "矩阵的幂",
+      "description": "矩阵的幂",
+      "latex": "\\left( {{mat}} \\right)^{ {{n}} }",
+      "parameters": [
+        {
+          "id": "mat",
+          "name": "矩阵",
+          "description": "矩阵",
+          "defaultValue": "A"
+        },
+        {
+          "id": "n",
+          "name": "阶数或指标",
+          "description": "阶数或指标",
+          "defaultValue": "n"
+        }
+      ],
+      "wrapTarget": "mat"
+    },
+    {
+      "id": "conjugatemat",
+      "command": "conjugatemat",
+      "aliases": [
+        "gongejuzhen"
+      ],
+      "name": "逐项共轭矩阵",
+      "description": "逐项共轭矩阵",
+      "latex": "\\overline{ {{mat}} }",
+      "parameters": [
+        {
+          "id": "mat",
+          "name": "矩阵",
+          "description": "矩阵",
+          "defaultValue": "A"
+        }
+      ],
+      "wrapTarget": "mat"
+    },
+    {
+      "id": "determinant",
+      "command": "determinant",
+      "aliases": [
+        "det",
+        "hanglieshi"
+      ],
+      "name": "矩阵的行列式",
+      "description": "矩阵的行列式",
+      "latex": "\\det\\left( {{mat}} \\right)",
+      "parameters": [
+        {
+          "id": "mat",
+          "name": "矩阵",
+          "description": "矩阵",
+          "defaultValue": "A"
+        }
+      ],
+      "wrapTarget": "mat"
+    },
+    {
+      "id": "trace",
+      "command": "trace",
+      "aliases": [
+        "tr",
+        "juzhenji"
+      ],
+      "name": "矩阵的迹",
+      "description": "矩阵的迹",
+      "latex": "\\operatorname{tr}\\left( {{mat}} \\right)",
+      "parameters": [
+        {
+          "id": "mat",
+          "name": "矩阵",
+          "description": "矩阵",
+          "defaultValue": "A"
+        }
+      ],
+      "wrapTarget": "mat"
+    },
+    {
+      "id": "rank",
+      "command": "rank",
+      "aliases": [
+        "zhi",
+        "juzhenzhi"
+      ],
+      "name": "矩阵的秩",
+      "description": "矩阵的秩",
+      "latex": "\\operatorname{rank}\\left( {{mat}} \\right)",
+      "parameters": [
+        {
+          "id": "mat",
+          "name": "矩阵",
+          "description": "矩阵",
+          "defaultValue": "A"
+        }
+      ],
+      "wrapTarget": "mat"
+    },
+    {
+      "id": "adjugate",
+      "command": "adjugate",
+      "aliases": [
+        "adj",
+        "bansuijuzhen"
+      ],
+      "name": "伴随矩阵（余因子矩阵的转置）",
+      "description": "伴随矩阵（余因子矩阵的转置）",
+      "latex": "\\operatorname{adj}\\left( {{mat}} \\right)",
+      "parameters": [
+        {
+          "id": "mat",
+          "name": "矩阵",
+          "description": "矩阵",
+          "defaultValue": "A"
+        }
+      ],
+      "wrapTarget": "mat"
+    },
+    {
+      "id": "rref",
+      "command": "rref",
+      "aliases": [
+        "hangzuijianjieti"
+      ],
+      "name": "行最简阶梯形",
+      "description": "行最简阶梯形",
+      "latex": "\\operatorname{rref}\\left( {{mat}} \\right)",
+      "parameters": [
+        {
+          "id": "mat",
+          "name": "矩阵",
+          "description": "矩阵",
+          "defaultValue": "A"
+        }
+      ],
+      "wrapTarget": "mat"
+    },
+    {
+      "id": "spectrum",
+      "command": "spectrum",
+      "aliases": [
+        "tezhengzhipu"
+      ],
+      "name": "谱（特征值集合）",
+      "description": "谱（特征值集合）",
+      "latex": "\\sigma\\left( {{mat}} \\right)",
+      "parameters": [
+        {
+          "id": "mat",
+          "name": "矩阵",
+          "description": "矩阵",
+          "defaultValue": "A"
+        }
+      ],
+      "wrapTarget": "mat"
+    },
+    {
+      "id": "specradius",
+      "command": "specradius",
+      "aliases": [
+        "pubanjing"
+      ],
+      "name": "谱半径",
+      "description": "谱半径",
+      "latex": "\\rho\\left( {{mat}} \\right)",
+      "parameters": [
+        {
+          "id": "mat",
+          "name": "矩阵",
+          "description": "矩阵",
+          "defaultValue": "A"
+        }
+      ],
+      "wrapTarget": "mat"
+    },
+    {
+      "id": "deltak",
+      "command": "deltak",
+      "aliases": [
+        "keluoneike",
+        "kroneckerdelta"
+      ],
+      "name": "克罗内克 δ",
+      "description": "克罗内克 δ",
+      "latex": "\\delta_{ {{i}}{{j}} }",
+      "parameters": [
+        {
+          "id": "i",
+          "name": "第一个指标",
+          "description": "第一个指标",
+          "defaultValue": "i"
+        },
+        {
+          "id": "j",
+          "name": "第二个指标",
+          "description": "第二个指标",
+          "defaultValue": "j"
+        }
+      ]
+    },
+    {
+      "id": "detperm",
+      "command": "detperm",
+      "aliases": [
+        "hanglieshipailie"
+      ],
+      "name": "行列式的排列展开",
+      "description": "行列式的排列展开",
+      "latex": "\\det{{mat}}=\\sum_{ {{lower}} }\\operatorname{sgn}\\left({{body}}\\right)\\prod_{ {{lhs}} }^{ {{n}} }{{rhs}}",
+      "parameters": [
+        {
+          "id": "mat",
+          "name": "矩阵",
+          "description": "矩阵",
+          "defaultValue": "A"
+        },
+        {
+          "id": "lower",
+          "name": "排列遍历范围",
+          "description": "排列遍历范围",
+          "defaultValue": "\\sigma\\in S_n"
+        },
+        {
+          "id": "body",
+          "name": "排列",
+          "description": "排列",
+          "defaultValue": "\\sigma"
+        },
+        {
+          "id": "lhs",
+          "name": "乘积起始指标",
+          "description": "乘积起始指标",
+          "defaultValue": "i=1"
+        },
+        {
+          "id": "n",
+          "name": "阶数或指标",
+          "description": "阶数或指标",
+          "defaultValue": "n"
+        },
+        {
+          "id": "rhs",
+          "name": "乘积因子",
+          "description": "乘积因子",
+          "defaultValue": "a_{i,\\sigma(i)}"
+        }
+      ]
+    },
+    {
+      "id": "minor",
+      "command": "minor",
+      "aliases": [
+        "yuzishi"
+      ],
+      "name": "余子式",
+      "description": "余子式",
+      "latex": "M_{ {{i}}{{j}} }",
+      "parameters": [
+        {
+          "id": "i",
+          "name": "去掉的行",
+          "description": "去掉的行",
+          "defaultValue": "i"
+        },
+        {
+          "id": "j",
+          "name": "去掉的列",
+          "description": "去掉的列",
+          "defaultValue": "j"
+        }
+      ]
+    },
+    {
+      "id": "cofactor",
+      "command": "cofactor",
+      "aliases": [
+        "daishuyuzishi"
+      ],
+      "name": "代数余子式",
+      "description": "代数余子式",
+      "latex": "{{lhs}}=(-1)^{ {{body}} }{{rhs}}",
+      "parameters": [
+        {
+          "id": "lhs",
+          "name": "代数余子式",
+          "description": "代数余子式",
+          "defaultValue": "C_{ij}"
+        },
+        {
+          "id": "body",
+          "name": "行列指标之和",
+          "description": "行列指标之和",
+          "defaultValue": "i+j"
+        },
+        {
+          "id": "rhs",
+          "name": "余子式",
+          "description": "余子式",
+          "defaultValue": "M_{ij}"
+        }
+      ]
+    },
+    {
+      "id": "laplaceexpand",
+      "command": "laplaceexpand",
+      "aliases": [
+        "hanglieshizhankai"
+      ],
+      "name": "按一行展开行列式",
+      "description": "按一行展开行列式",
+      "latex": "\\det{{mat}}=\\sum_{ {{lower}} }^{ {{upper}} }{{body}}",
+      "parameters": [
+        {
+          "id": "mat",
+          "name": "矩阵",
+          "description": "矩阵",
+          "defaultValue": "A"
+        },
+        {
+          "id": "lower",
+          "name": "起始列指标",
+          "description": "起始列指标",
+          "defaultValue": "j=1"
+        },
+        {
+          "id": "upper",
+          "name": "列数",
+          "description": "列数",
+          "defaultValue": "n"
+        },
+        {
+          "id": "body",
+          "name": "矩阵元素与代数余子式的乘积",
+          "description": "矩阵元素与代数余子式的乘积",
+          "defaultValue": "a_{ij}C_{ij}"
+        }
+      ]
+    },
+    {
+      "id": "cramer",
+      "command": "cramer",
+      "aliases": [
+        "kelamo"
+      ],
+      "name": "克拉默法则",
+      "description": "克拉默法则",
+      "latex": "{{lhs}}=\\frac{\\det {{matb}}}{\\det {{mat}}}",
+      "parameters": [
+        {
+          "id": "lhs",
+          "name": "未知量",
+          "description": "未知量",
+          "defaultValue": "x_i"
+        },
+        {
+          "id": "matb",
+          "name": "换列矩阵",
+          "description": "换列矩阵",
+          "defaultValue": "A_i"
+        },
+        {
+          "id": "mat",
+          "name": "可逆系数矩阵",
+          "description": "可逆系数矩阵",
+          "defaultValue": "A"
+        }
+      ]
+    },
+    {
+      "id": "rowop",
+      "command": "rowop",
+      "aliases": [
+        "hangbianhuan"
+      ],
+      "name": "带标注的行变换",
+      "description": "带标注的行变换",
+      "latex": "{{mat}}\\xrightarrow{ {{body}} }{{matb}}",
+      "parameters": [
+        {
+          "id": "mat",
+          "name": "矩阵",
+          "description": "矩阵",
+          "defaultValue": "A"
+        },
+        {
+          "id": "body",
+          "name": "行变换",
+          "description": "行变换",
+          "defaultValue": "R_2\\gets R_2-kR_1"
+        },
+        {
+          "id": "matb",
+          "name": "变换后的矩阵",
+          "description": "变换后的矩阵",
+          "defaultValue": "\\widetilde{A}"
+        }
+      ]
+    },
+    {
+      "id": "rowswap",
+      "command": "rowswap",
+      "aliases": [
+        "jiaohuanhang"
+      ],
+      "name": "交换两行",
+      "description": "交换两行",
+      "latex": "R_{ {{i}} }\\leftrightarrow R_{ {{j}} }",
+      "parameters": [
+        {
+          "id": "i",
+          "name": "第一行指标",
+          "description": "第一行指标",
+          "defaultValue": "i"
+        },
+        {
+          "id": "j",
+          "name": "第二行指标",
+          "description": "第二行指标",
+          "defaultValue": "j"
+        }
+      ]
+    },
+    {
+      "id": "rowscale",
+      "command": "rowscale",
+      "aliases": [
+        "hangbeicheng"
+      ],
+      "name": "将一行乘以非零数",
+      "description": "将一行乘以非零数",
+      "latex": "{{lhs}}\\gets{{body}}{{rhs}}",
+      "parameters": [
+        {
+          "id": "lhs",
+          "name": "目标行",
+          "description": "目标行",
+          "defaultValue": "R_i"
+        },
+        {
+          "id": "body",
+          "name": "非零倍数",
+          "description": "非零倍数",
+          "defaultValue": "k"
+        },
+        {
+          "id": "rhs",
+          "name": "原行",
+          "description": "原行",
+          "defaultValue": "R_i"
+        }
+      ]
+    },
+    {
+      "id": "rowadd",
+      "command": "rowadd",
+      "aliases": [
+        "hangxiangjia"
+      ],
+      "name": "将一行的倍数加到另一行",
+      "description": "将一行的倍数加到另一行",
+      "latex": "{{lhs}}\\gets{{rhs}}+{{a}}{{body}}",
+      "parameters": [
+        {
+          "id": "lhs",
+          "name": "目标行",
+          "description": "目标行",
+          "defaultValue": "R_i"
+        },
+        {
+          "id": "rhs",
+          "name": "目标行原值",
+          "description": "目标行原值",
+          "defaultValue": "R_i"
+        },
+        {
+          "id": "a",
+          "name": "倍数",
+          "description": "倍数",
+          "defaultValue": "k"
+        },
+        {
+          "id": "body",
+          "name": "加到目标行的源行",
+          "description": "加到目标行的源行",
+          "defaultValue": "R_j"
+        }
+      ]
+    },
+    {
+      "id": "linearsys",
+      "command": "linearsys",
+      "aliases": [
+        "xianxingfangchengzu",
+        "axb"
+      ],
+      "name": "矩阵形式的线性方程组",
+      "description": "矩阵形式的线性方程组",
+      "latex": "{{mat}}{{vec}}={{rhs}}",
+      "parameters": [
+        {
+          "id": "mat",
+          "name": "系数矩阵",
+          "description": "系数矩阵",
+          "defaultValue": "A"
+        },
+        {
+          "id": "vec",
+          "name": "未知向量",
+          "description": "未知向量",
+          "defaultValue": "\\mathbf{x}"
+        },
+        {
+          "id": "rhs",
+          "name": "常数向量",
+          "description": "常数向量",
+          "defaultValue": "\\mathbf{b}"
+        }
+      ]
+    },
+    {
+      "id": "homogeneous",
+      "command": "homogeneous",
+      "aliases": [
+        "qicixianxingfangchengzu"
+      ],
+      "name": "齐次线性方程组",
+      "description": "齐次线性方程组",
+      "latex": "{{mat}}{{vec}}=\\mathbf{0}",
+      "parameters": [
+        {
+          "id": "mat",
+          "name": "矩阵",
+          "description": "矩阵",
+          "defaultValue": "A"
+        },
+        {
+          "id": "vec",
+          "name": "未知向量",
+          "description": "未知向量",
+          "defaultValue": "\\mathbf{x}"
+        }
+      ]
+    },
+    {
+      "id": "systems",
+      "command": "systems",
+      "aliases": [
+        "fangchengzu"
+      ],
+      "name": "逐式书写线性方程组",
+      "description": "逐式书写线性方程组",
+      "latex": "\\begin{cases}{{lhs}}\\\\\\vdots\\\\{{rhs}}\\end{cases}",
+      "parameters": [
+        {
+          "id": "lhs",
+          "name": "第一条方程",
+          "description": "第一条方程",
+          "defaultValue": "a_{11}x_1+\\cdots+a_{1n}x_n=b_1"
+        },
+        {
+          "id": "rhs",
+          "name": "最后一条方程",
+          "description": "最后一条方程",
+          "defaultValue": "a_{m1}x_1+\\cdots+a_{mn}x_n=b_m"
+        }
+      ]
+    },
+    {
+      "id": "rankconsistent",
+      "command": "rankconsistent",
+      "aliases": [
+        "youjiepanduan"
+      ],
+      "name": "线性方程组有解的秩条件",
+      "description": "线性方程组有解的秩条件",
+      "latex": "\\operatorname{rank}\\left({{mat}}\\right)=\\operatorname{rank}\\left[{{body}}\\right]",
+      "parameters": [
+        {
+          "id": "mat",
+          "name": "系数矩阵",
+          "description": "系数矩阵",
+          "defaultValue": "A"
+        },
+        {
+          "id": "body",
+          "name": "增广矩阵内容",
+          "description": "增广矩阵内容",
+          "defaultValue": "A\\mid \\mathbf{b}"
+        }
+      ]
+    },
+    {
+      "id": "solutionfamily",
+      "command": "solutionfamily",
+      "aliases": [
+        "tongjie"
+      ],
+      "name": "非齐次方程组的解结构",
+      "description": "非齐次方程组的解结构",
+      "latex": "{{vec}}={{lhs}}+{{rhs}}",
+      "parameters": [
+        {
+          "id": "vec",
+          "name": "通解",
+          "description": "通解",
+          "defaultValue": "\\mathbf{x}"
+        },
+        {
+          "id": "lhs",
+          "name": "非齐次特解",
+          "description": "非齐次特解",
+          "defaultValue": "\\mathbf{x}_p"
+        },
+        {
+          "id": "rhs",
+          "name": "齐次方程组的通解",
+          "description": "齐次方程组的通解",
+          "defaultValue": "\\mathbf{x}_h"
+        }
+      ]
+    },
+    {
+      "id": "leastsquares",
+      "command": "leastsquares",
+      "aliases": [
+        "zuixiaoercheng"
+      ],
+      "name": "最小二乘问题",
+      "description": "最小二乘问题",
+      "latex": "\\min_{ {{vec}} }\\left\\lVert {{body}} \\right\\rVert_2^2",
+      "parameters": [
+        {
+          "id": "vec",
+          "name": "未知向量",
+          "description": "未知向量",
+          "defaultValue": "\\mathbf{x}"
+        },
+        {
+          "id": "body",
+          "name": "残差",
+          "description": "残差",
+          "defaultValue": "A\\mathbf{x}-\\mathbf{b}"
+        }
+      ]
+    },
+    {
+      "id": "normaleq",
+      "command": "normaleq",
+      "aliases": [
+        "zhengguifangcheng"
+      ],
+      "name": "最小二乘正规方程（实数）",
+      "description": "最小二乘正规方程（实数）",
+      "latex": "{{lhs}}={{rhs}}",
+      "parameters": [
+        {
+          "id": "lhs",
+          "name": "正规方程左端",
+          "description": "正规方程左端",
+          "defaultValue": "A^{\\mathsf{T}}A\\mathbf{x}"
+        },
+        {
+          "id": "rhs",
+          "name": "正规方程右端",
+          "description": "正规方程右端",
+          "defaultValue": "A^{\\mathsf{T}}\\mathbf{b}"
+        }
+      ]
+    },
+    {
+      "id": "vector",
+      "command": "vector",
+      "aliases": [
+        "vec",
+        "xiangliang",
+        "xl"
+      ],
+      "name": "箭头向量",
+      "description": "箭头向量",
+      "latex": "\\overrightarrow{ {{vec}} }",
+      "parameters": [
+        {
+          "id": "vec",
+          "name": "向量",
+          "description": "向量",
+          "defaultValue": "v"
+        }
+      ],
+      "wrapTarget": "vec"
+    },
+    {
+      "id": "boldvec",
+      "command": "boldvec",
+      "aliases": [
+        "cutixiangliang"
+      ],
+      "name": "粗体向量",
+      "description": "粗体向量",
+      "latex": "\\mathbf{ {{vec}} }",
+      "parameters": [
+        {
+          "id": "vec",
+          "name": "向量",
+          "description": "向量",
+          "defaultValue": "v"
+        }
+      ],
+      "wrapTarget": "vec"
+    },
+    {
+      "id": "unitvec",
+      "command": "unitvec",
+      "aliases": [
+        "danweixiangliang"
+      ],
+      "name": "带帽的单位向量",
+      "description": "带帽的单位向量",
+      "latex": "\\hat{ {{vec}} }",
+      "parameters": [
+        {
+          "id": "vec",
+          "name": "向量",
+          "description": "向量",
+          "defaultValue": "v"
+        }
+      ],
+      "wrapTarget": "vec"
+    },
+    {
+      "id": "stdvec",
+      "command": "stdvec",
+      "aliases": [
+        "biaozhunjixiangliang"
+      ],
+      "name": "标准基向量",
+      "description": "标准基向量",
+      "latex": "\\mathbf{e}_{ {{i}} }",
+      "parameters": [
+        {
+          "id": "i",
+          "name": "分量指标",
+          "description": "分量指标",
+          "defaultValue": "i"
+        }
+      ]
+    },
+    {
+      "id": "rowdots",
+      "command": "rowdots",
+      "aliases": [
+        "hangxiangliang",
+        "rowvec"
+      ],
+      "name": "符号维数的行向量",
+      "description": "符号维数的行向量",
+      "latex": "\\begin{pmatrix}{{lhs}}&\\cdots&{{rhs}}\\end{pmatrix}",
+      "parameters": [
+        {
+          "id": "lhs",
+          "name": "首分量",
+          "description": "首分量",
+          "defaultValue": "x_1"
+        },
+        {
+          "id": "rhs",
+          "name": "末分量",
+          "description": "末分量",
+          "defaultValue": "x_n"
+        }
+      ]
+    },
+    {
+      "id": "coldots",
+      "command": "coldots",
+      "aliases": [
+        "liexiangliang",
+        "colvec"
+      ],
+      "name": "符号维数的列向量",
+      "description": "符号维数的列向量",
+      "latex": "\\begin{pmatrix}{{lhs}}\\\\\\vdots\\\\{{rhs}}\\end{pmatrix}",
+      "parameters": [
+        {
+          "id": "lhs",
+          "name": "首分量",
+          "description": "首分量",
+          "defaultValue": "x_1"
+        },
+        {
+          "id": "rhs",
+          "name": "末分量",
+          "description": "末分量",
+          "defaultValue": "x_n"
+        }
+      ]
+    },
+    {
+      "id": "lincomb",
+      "command": "lincomb",
+      "aliases": [
+        "xianxingzuhe",
+        "xxzh"
+      ],
+      "name": "向量组的线性组合",
+      "description": "向量组的线性组合",
+      "latex": "\\sum_{ {{lower}} }^{ {{upper}} }{{body}}",
+      "parameters": [
+        {
+          "id": "lower",
+          "name": "起始指标",
+          "description": "起始指标",
+          "defaultValue": "i=1"
+        },
+        {
+          "id": "upper",
+          "name": "向量个数",
+          "description": "向量个数",
+          "defaultValue": "n"
+        },
+        {
+          "id": "body",
+          "name": "系数乘向量",
+          "description": "系数乘向量",
+          "defaultValue": "c_iv_i"
+        }
+      ],
+      "wrapTarget": "body"
+    },
+    {
+      "id": "lindep",
+      "command": "lindep",
+      "aliases": [
+        "xianxingxiangguan"
+      ],
+      "name": "线性相关性判定的等式",
+      "description": "线性相关性判定的等式",
+      "latex": "\\sum_{ {{lower}} }^{ {{upper}} }{{body}}=\\mathbf{0}",
+      "parameters": [
+        {
+          "id": "lower",
+          "name": "起始指标",
+          "description": "起始指标",
+          "defaultValue": "i=1"
+        },
+        {
+          "id": "upper",
+          "name": "向量个数",
+          "description": "向量个数",
+          "defaultValue": "n"
+        },
+        {
+          "id": "body",
+          "name": "系数乘向量",
+          "description": "系数乘向量",
+          "defaultValue": "c_iv_i"
+        }
+      ],
+      "wrapTarget": "body"
+    },
+    {
+      "id": "span",
+      "command": "span",
+      "aliases": [
+        "zhangcheng"
+      ],
+      "name": "向量组张成的空间",
+      "description": "向量组张成的空间",
+      "latex": "\\operatorname{span}\\left\\{ {{body}} \\right\\}",
+      "parameters": [
+        {
+          "id": "body",
+          "name": "向量列表",
+          "description": "向量列表",
+          "defaultValue": "v_1,\\ldots,v_n"
+        }
+      ],
+      "wrapTarget": "body"
+    },
+    {
+      "id": "basis",
+      "command": "basis",
+      "aliases": [
+        "youxuji"
+      ],
+      "name": "有序基",
+      "description": "有序基",
+      "latex": "{{basis}}=\\left( {{body}} \\right)",
+      "parameters": [
+        {
+          "id": "basis",
+          "name": "有序基",
+          "description": "有序基",
+          "defaultValue": "\\mathcal{B}"
+        },
+        {
+          "id": "body",
+          "name": "基向量列表",
+          "description": "基向量列表",
+          "defaultValue": "v_1,\\ldots,v_n"
+        }
+      ]
+    },
+    {
+      "id": "coordinate",
+      "command": "coordinate",
+      "aliases": [
+        "jizuobiaoju"
+      ],
+      "name": "向量在指定基下的坐标",
+      "description": "向量在指定基下的坐标",
+      "latex": "\\left[{{vec}}\\right]_{ {{basis}} }",
+      "parameters": [
+        {
+          "id": "vec",
+          "name": "向量",
+          "description": "向量",
+          "defaultValue": "v"
+        },
+        {
+          "id": "basis",
+          "name": "有序基",
+          "description": "有序基",
+          "defaultValue": "\\mathcal{B}"
+        }
+      ],
+      "wrapTarget": "vec"
+    },
+    {
+      "id": "basischange",
+      "command": "basischange",
+      "aliases": [
+        "huanjizuobiao"
+      ],
+      "name": "向量的换基坐标公式",
+      "description": "向量的换基坐标公式",
+      "latex": "{{lhs}}={{mat}}{{rhs}}",
+      "parameters": [
+        {
+          "id": "lhs",
+          "name": "旧基下的坐标",
+          "description": "旧基下的坐标",
+          "defaultValue": "[v]_{\\mathcal B}"
+        },
+        {
+          "id": "mat",
+          "name": "将新坐标转换为旧坐标的过渡矩阵",
+          "description": "将新坐标转换为旧坐标的过渡矩阵",
+          "defaultValue": "P"
+        },
+        {
+          "id": "rhs",
+          "name": "新基下的坐标",
+          "description": "新基下的坐标",
+          "defaultValue": "[v]_{\\mathcal C}"
+        }
+      ]
+    },
+    {
+      "id": "dimension",
+      "command": "dimension",
+      "aliases": [
+        "dim",
+        "weishu"
+      ],
+      "name": "空间的维数",
+      "description": "空间的维数",
+      "latex": "\\dim\\left( {{space}} \\right)",
+      "parameters": [
+        {
+          "id": "space",
+          "name": "线性空间",
+          "description": "线性空间",
+          "defaultValue": "V"
+        }
+      ],
+      "wrapTarget": "space"
+    },
+    {
+      "id": "directsum",
+      "command": "directsum",
+      "aliases": [
+        "zhihe"
+      ],
+      "name": "空间直和",
+      "description": "空间直和",
+      "latex": "{{space}}\\oplus{{subspace}}",
+      "parameters": [
+        {
+          "id": "space",
+          "name": "线性空间",
+          "description": "线性空间",
+          "defaultValue": "V"
+        },
+        {
+          "id": "subspace",
+          "name": "子空间",
+          "description": "子空间",
+          "defaultValue": "W"
+        }
+      ]
+    },
+    {
+      "id": "sumspaces",
+      "command": "sumspaces",
+      "aliases": [
+        "zikongjianzhihe"
+      ],
+      "name": "子空间的和",
+      "description": "子空间的和",
+      "latex": "{{space}}+{{subspace}}",
+      "parameters": [
+        {
+          "id": "space",
+          "name": "线性空间",
+          "description": "线性空间",
+          "defaultValue": "V"
+        },
+        {
+          "id": "subspace",
+          "name": "子空间",
+          "description": "子空间",
+          "defaultValue": "W"
+        }
+      ]
+    },
+    {
+      "id": "quotientspace",
+      "command": "quotientspace",
+      "aliases": [
+        "shangkongjian"
+      ],
+      "name": "商空间",
+      "description": "商空间",
+      "latex": "{{space}}/{{subspace}}",
+      "parameters": [
+        {
+          "id": "space",
+          "name": "线性空间",
+          "description": "线性空间",
+          "defaultValue": "V"
+        },
+        {
+          "id": "subspace",
+          "name": "子空间",
+          "description": "子空间",
+          "defaultValue": "W"
+        }
+      ]
+    },
+    {
+      "id": "subspace",
+      "command": "subspace",
+      "aliases": [
+        "zikongjian"
+      ],
+      "name": "子空间包含关系",
+      "description": "子空间包含关系",
+      "latex": "{{subspace}}\\leq {{space}}",
+      "parameters": [
+        {
+          "id": "subspace",
+          "name": "子空间",
+          "description": "子空间",
+          "defaultValue": "W"
+        },
+        {
+          "id": "space",
+          "name": "线性空间",
+          "description": "线性空间",
+          "defaultValue": "V"
+        }
+      ]
+    },
+    {
+      "id": "nullspace",
+      "command": "nullspace",
+      "aliases": [
+        "ker",
+        "he",
+        "lingkongjian"
+      ],
+      "name": "线性映射的核",
+      "description": "线性映射的核",
+      "latex": "\\ker\\left( {{map}} \\right)",
+      "parameters": [
+        {
+          "id": "map",
+          "name": "映射",
+          "description": "映射",
+          "defaultValue": "T"
+        }
+      ],
+      "wrapTarget": "map"
+    },
+    {
+      "id": "image",
+      "command": "image",
+      "aliases": [
+        "xiang",
+        "imap"
+      ],
+      "name": "线性映射的像",
+      "description": "线性映射的像",
+      "latex": "\\operatorname{im}\\left( {{map}} \\right)",
+      "parameters": [
+        {
+          "id": "map",
+          "name": "映射",
+          "description": "映射",
+          "defaultValue": "T"
+        }
+      ],
+      "wrapTarget": "map"
+    },
+    {
+      "id": "colspace",
+      "command": "colspace",
+      "aliases": [
+        "liekongjian"
+      ],
+      "name": "列空间",
+      "description": "列空间",
+      "latex": "\\operatorname{Col}\\left( {{mat}} \\right)",
+      "parameters": [
+        {
+          "id": "mat",
+          "name": "矩阵",
+          "description": "矩阵",
+          "defaultValue": "A"
+        }
+      ],
+      "wrapTarget": "mat"
+    },
+    {
+      "id": "rowspace",
+      "command": "rowspace",
+      "aliases": [
+        "hangkongjian"
+      ],
+      "name": "行空间",
+      "description": "行空间",
+      "latex": "\\operatorname{Row}\\left( {{mat}} \\right)",
+      "parameters": [
+        {
+          "id": "mat",
+          "name": "矩阵",
+          "description": "矩阵",
+          "defaultValue": "A"
+        }
+      ],
+      "wrapTarget": "mat"
+    },
+    {
+      "id": "ranknullity",
+      "command": "ranknullity",
+      "aliases": [
+        "zhiheweishu"
+      ],
+      "name": "秩–零度定理",
+      "description": "秩–零度定理",
+      "latex": "\\operatorname{rank}{{map}}+\\dim\\ker{{body}}=\\dim{{space}}",
+      "parameters": [
+        {
+          "id": "map",
+          "name": "映射",
+          "description": "映射",
+          "defaultValue": "T"
+        },
+        {
+          "id": "body",
+          "name": "求核的映射",
+          "description": "求核的映射",
+          "defaultValue": "T"
+        },
+        {
+          "id": "space",
+          "name": "线性空间",
+          "description": "线性空间",
+          "defaultValue": "V"
+        }
+      ]
+    },
+    {
+      "id": "linmap",
+      "command": "linmap",
+      "aliases": [
+        "xianxingyingshe"
+      ],
+      "name": "线性映射的定义域和值域",
+      "description": "线性映射的定义域和值域",
+      "latex": "{{map}}\\colon{{space}}\\to{{subspace}}",
+      "parameters": [
+        {
+          "id": "map",
+          "name": "映射",
+          "description": "映射",
+          "defaultValue": "T"
+        },
+        {
+          "id": "space",
+          "name": "线性空间",
+          "description": "线性空间",
+          "defaultValue": "V"
+        },
+        {
+          "id": "subspace",
+          "name": "子空间",
+          "description": "子空间",
+          "defaultValue": "W"
+        }
+      ]
+    },
+    {
+      "id": "homspace",
+      "command": "homspace",
+      "aliases": [
+        "hom",
+        "xianxingyingshekongjian"
+      ],
+      "name": "线性映射构成的空间",
+      "description": "线性映射构成的空间",
+      "latex": "\\operatorname{Hom}\\left( {{space}},{{subspace}} \\right)",
+      "parameters": [
+        {
+          "id": "space",
+          "name": "线性空间",
+          "description": "线性空间",
+          "defaultValue": "V"
+        },
+        {
+          "id": "subspace",
+          "name": "子空间",
+          "description": "子空间",
+          "defaultValue": "W"
+        }
+      ]
+    },
+    {
+      "id": "mapmatrix",
+      "command": "mapmatrix",
+      "aliases": [
+        "yingshejuzhen"
+      ],
+      "name": "线性映射在给定基下的矩阵",
+      "description": "线性映射在给定基下的矩阵",
+      "latex": "\\left[{{map}}\\right]_{ {{basis}} }^{ {{targetbasis}} }",
+      "parameters": [
+        {
+          "id": "map",
+          "name": "映射",
+          "description": "映射",
+          "defaultValue": "T"
+        },
+        {
+          "id": "basis",
+          "name": "定义域有序基",
+          "description": "定义域有序基",
+          "defaultValue": "\\mathcal B"
+        },
+        {
+          "id": "targetbasis",
+          "name": "到达空间的有序基",
+          "description": "到达空间的有序基",
+          "defaultValue": "\\mathcal C"
+        }
+      ],
+      "wrapTarget": "map"
+    },
+    {
+      "id": "dualspace",
+      "command": "dualspace",
+      "aliases": [
+        "duiou"
+      ],
+      "name": "对偶空间",
+      "description": "对偶空间",
+      "latex": "{{space}}^*",
+      "parameters": [
+        {
+          "id": "space",
+          "name": "线性空间",
+          "description": "线性空间",
+          "defaultValue": "V"
+        }
+      ],
+      "wrapTarget": "space"
+    },
+    {
+      "id": "duality",
+      "command": "duality",
+      "aliases": [
+        "duioupeidui"
+      ],
+      "name": "对偶配对",
+      "description": "对偶配对",
+      "latex": "\\left\\langle {{lhs}},{{vec}} \\right\\rangle",
+      "parameters": [
+        {
+          "id": "lhs",
+          "name": "对偶向量",
+          "description": "对偶向量",
+          "defaultValue": "\\varphi"
+        },
+        {
+          "id": "vec",
+          "name": "向量",
+          "description": "向量",
+          "defaultValue": "v"
+        }
+      ]
+    },
+    {
+      "id": "innerprod",
+      "command": "innerprod",
+      "aliases": [
+        "neiji"
+      ],
+      "name": "内积",
+      "description": "内积",
+      "latex": "\\left\\langle {{u}},{{v}} \\right\\rangle",
+      "parameters": [
+        {
+          "id": "u",
+          "name": "第一个向量或参数",
+          "description": "第一个向量或参数",
+          "defaultValue": "u"
+        },
+        {
+          "id": "v",
+          "name": "第二个向量或参数",
+          "description": "第二个向量或参数",
+          "defaultValue": "v"
+        }
+      ]
+    },
+    {
+      "id": "dotprod",
+      "command": "dotprod",
+      "aliases": [
+        "dianji",
+        "shuliangji"
+      ],
+      "name": "向量点积",
+      "description": "向量点积",
+      "latex": "{{u}}\\cdot{{v}}",
+      "parameters": [
+        {
+          "id": "u",
+          "name": "第一个向量或参数",
+          "description": "第一个向量或参数",
+          "defaultValue": "u"
+        },
+        {
+          "id": "v",
+          "name": "第二个向量或参数",
+          "description": "第二个向量或参数",
+          "defaultValue": "v"
+        }
+      ]
+    },
+    {
+      "id": "crossprod",
+      "command": "crossprod",
+      "aliases": [
+        "chaji",
+        "xiangliangji"
+      ],
+      "name": "向量叉积",
+      "description": "向量叉积",
+      "latex": "{{u}}\\times{{v}}",
+      "parameters": [
+        {
+          "id": "u",
+          "name": "第一个向量或参数",
+          "description": "第一个向量或参数",
+          "defaultValue": "u"
+        },
+        {
+          "id": "v",
+          "name": "第二个向量或参数",
+          "description": "第二个向量或参数",
+          "defaultValue": "v"
+        }
+      ]
+    },
+    {
+      "id": "tripleprod",
+      "command": "tripleprod",
+      "aliases": [
+        "hunheji"
+      ],
+      "name": "混合积",
+      "description": "混合积",
+      "latex": "{{u}}\\cdot\\left( {{v}}\\times{{w}} \\right)",
+      "parameters": [
+        {
+          "id": "u",
+          "name": "第一个向量或参数",
+          "description": "第一个向量或参数",
+          "defaultValue": "u"
+        },
+        {
+          "id": "v",
+          "name": "第二个向量或参数",
+          "description": "第二个向量或参数",
+          "defaultValue": "v"
+        },
+        {
+          "id": "w",
+          "name": "第三个向量或参数",
+          "description": "第三个向量或参数",
+          "defaultValue": "w"
+        }
+      ]
+    },
+    {
+      "id": "outerprod",
+      "command": "outerprod",
+      "aliases": [
+        "waiji"
+      ],
+      "name": "向量外积构成的矩阵",
+      "description": "向量外积构成的矩阵",
+      "latex": "{{u}}{{v}}^{\\mathsf T}",
+      "parameters": [
+        {
+          "id": "u",
+          "name": "第一个向量或参数",
+          "description": "第一个向量或参数",
+          "defaultValue": "u"
+        },
+        {
+          "id": "v",
+          "name": "第二个向量或参数",
+          "description": "第二个向量或参数",
+          "defaultValue": "v"
+        }
+      ]
+    },
+    {
+      "id": "norm",
+      "command": "norm",
+      "aliases": [
+        "fanshu"
+      ],
+      "name": "向量或矩阵范数",
+      "description": "向量或矩阵范数",
+      "latex": "\\left\\lVert {{vec}} \\right\\rVert",
+      "parameters": [
+        {
+          "id": "vec",
+          "name": "向量",
+          "description": "向量",
+          "defaultValue": "v"
+        }
+      ],
+      "wrapTarget": "vec"
+    },
+    {
+      "id": "pnorm",
+      "command": "pnorm",
+      "aliases": [
+        "pfanshu"
+      ],
+      "name": "带下标的 p 范数",
+      "description": "带下标的 p 范数",
+      "latex": "\\left\\lVert {{vec}} \\right\\rVert_{ {{n}} }",
+      "parameters": [
+        {
+          "id": "vec",
+          "name": "向量",
+          "description": "向量",
+          "defaultValue": "v"
+        },
+        {
+          "id": "n",
+          "name": "范数指标",
+          "description": "范数指标",
+          "defaultValue": "p"
+        }
+      ],
+      "wrapTarget": "vec"
+    },
+    {
+      "id": "lpnorm",
+      "command": "lpnorm",
+      "aliases": [
+        "pfanshuzhankai"
+      ],
+      "name": "向量 p 范数的展开",
+      "description": "向量 p 范数的展开",
+      "latex": "\\left(\\sum_{ {{lower}} }^{ {{upper}} }\\left|{{body}}\\right|^{ {{n}} }\\right)^{ {{power}} }",
+      "parameters": [
+        {
+          "id": "lower",
+          "name": "起始指标",
+          "description": "起始指标",
+          "defaultValue": "i=1"
+        },
+        {
+          "id": "upper",
+          "name": "向量维数",
+          "description": "向量维数",
+          "defaultValue": "n"
+        },
+        {
+          "id": "body",
+          "name": "分量",
+          "description": "分量",
+          "defaultValue": "x_i"
+        },
+        {
+          "id": "n",
+          "name": "范数指标",
+          "description": "范数指标",
+          "defaultValue": "p"
+        },
+        {
+          "id": "power",
+          "name": "外层指数",
+          "description": "外层指数",
+          "defaultValue": "1/p"
+        }
+      ]
+    },
+    {
+      "id": "matrixnorm",
+      "command": "matrixnorm",
+      "aliases": [
+        "frob",
+        "fufanshu"
+      ],
+      "name": "Frobenius 范数",
+      "description": "Frobenius 范数",
+      "latex": "\\left\\lVert {{mat}} \\right\\rVert_{\\mathrm{F}}",
+      "parameters": [
+        {
+          "id": "mat",
+          "name": "矩阵",
+          "description": "矩阵",
+          "defaultValue": "A"
+        }
+      ],
+      "wrapTarget": "mat"
+    },
+    {
+      "id": "distance",
+      "command": "distance",
+      "aliases": [
+        "juli"
+      ],
+      "name": "由向量范数给出的距离",
+      "description": "由向量范数给出的距离",
+      "latex": "d({{u}},{{v}})=\\left\\lVert {{body}} \\right\\rVert",
+      "parameters": [
+        {
+          "id": "u",
+          "name": "第一个向量或参数",
+          "description": "第一个向量或参数",
+          "defaultValue": "u"
+        },
+        {
+          "id": "v",
+          "name": "第二个向量或参数",
+          "description": "第二个向量或参数",
+          "defaultValue": "v"
+        },
+        {
+          "id": "body",
+          "name": "两向量之差",
+          "description": "两向量之差",
+          "defaultValue": "u-v"
+        }
+      ]
+    },
+    {
+      "id": "orthogonal",
+      "command": "orthogonal",
+      "aliases": [
+        "chuizhi"
+      ],
+      "name": "向量的正交关系",
+      "description": "向量的正交关系",
+      "latex": "{{u}}\\perp{{v}}",
+      "parameters": [
+        {
+          "id": "u",
+          "name": "第一个向量或参数",
+          "description": "第一个向量或参数",
+          "defaultValue": "u"
+        },
+        {
+          "id": "v",
+          "name": "第二个向量或参数",
+          "description": "第二个向量或参数",
+          "defaultValue": "v"
+        }
+      ]
+    },
+    {
+      "id": "orthcomp",
+      "command": "orthcomp",
+      "aliases": [
+        "zhengjiaobu"
+      ],
+      "name": "正交补",
+      "description": "正交补",
+      "latex": "{{subspace}}^\\perp",
+      "parameters": [
+        {
+          "id": "subspace",
+          "name": "子空间",
+          "description": "子空间",
+          "defaultValue": "W"
+        }
+      ],
+      "wrapTarget": "subspace"
+    },
+    {
+      "id": "proj",
+      "command": "proj",
+      "aliases": [
+        "touying"
+      ],
+      "name": "正交投影",
+      "description": "正交投影",
+      "latex": "\\operatorname{proj}_{ {{subspace}} }\\left( {{vec}} \\right)",
+      "parameters": [
+        {
+          "id": "subspace",
+          "name": "子空间",
+          "description": "子空间",
+          "defaultValue": "W"
+        },
+        {
+          "id": "vec",
+          "name": "向量",
+          "description": "向量",
+          "defaultValue": "v"
+        }
+      ],
+      "wrapTarget": "vec"
+    },
+    {
+      "id": "projformula",
+      "command": "projformula",
+      "aliases": [
+        "xiangliangtouying"
+      ],
+      "name": "向一维子空间的正交投影",
+      "description": "向一维子空间的正交投影",
+      "latex": "\\frac{\\left\\langle {{lhs}},{{rhs}} \\right\\rangle}{\\left\\lVert {{vec}} \\right\\rVert^2}{{body}}",
+      "parameters": [
+        {
+          "id": "lhs",
+          "name": "被投影的向量",
+          "description": "被投影的向量",
+          "defaultValue": "v"
+        },
+        {
+          "id": "rhs",
+          "name": "投影方向",
+          "description": "投影方向",
+          "defaultValue": "u"
+        },
+        {
+          "id": "vec",
+          "name": "投影方向",
+          "description": "投影方向",
+          "defaultValue": "u"
+        },
+        {
+          "id": "body",
+          "name": "投影方向",
+          "description": "投影方向",
+          "defaultValue": "u"
+        }
+      ]
+    },
+    {
+      "id": "gram",
+      "command": "gram",
+      "aliases": [
+        "gelamu"
+      ],
+      "name": "格拉姆矩阵",
+      "description": "格拉姆矩阵",
+      "latex": "G=\\left[ \\left\\langle {{lhs}},{{rhs}} \\right\\rangle \\right]_{ {{i}},{{j}} }",
+      "parameters": [
+        {
+          "id": "lhs",
+          "name": "第 i 个向量",
+          "description": "第 i 个向量",
+          "defaultValue": "v_i"
+        },
+        {
+          "id": "rhs",
+          "name": "第 j 个向量",
+          "description": "第 j 个向量",
+          "defaultValue": "v_j"
+        },
+        {
+          "id": "i",
+          "name": "行指标",
+          "description": "行指标",
+          "defaultValue": "i"
+        },
+        {
+          "id": "j",
+          "name": "列指标",
+          "description": "列指标",
+          "defaultValue": "j"
+        }
+      ]
+    },
+    {
+      "id": "gramschmidt",
+      "command": "gramschmidt",
+      "aliases": [
+        "zhengjiaohua"
+      ],
+      "name": "格拉姆–施密特正交化",
+      "description": "格拉姆–施密特正交化",
+      "latex": "{{lhs}}={{rhs}}-\\sum_{ {{lower}} }^{ {{upper}} }{{body}}",
+      "parameters": [
+        {
+          "id": "lhs",
+          "name": "新的正交向量",
+          "description": "新的正交向量",
+          "defaultValue": "u_k"
+        },
+        {
+          "id": "rhs",
+          "name": "输入向量",
+          "description": "输入向量",
+          "defaultValue": "v_k"
+        },
+        {
+          "id": "lower",
+          "name": "起始指标",
+          "description": "起始指标",
+          "defaultValue": "j=1"
+        },
+        {
+          "id": "upper",
+          "name": "末指标",
+          "description": "末指标",
+          "defaultValue": "k-1"
+        },
+        {
+          "id": "body",
+          "name": "在已有向量上的投影",
+          "description": "在已有向量上的投影",
+          "defaultValue": "\\frac{\\langle v_k,u_j\\rangle}{\\langle u_j,u_j\\rangle}u_j"
+        }
+      ]
+    },
+    {
+      "id": "orthmatrix",
+      "command": "orthmatrix",
+      "aliases": [
+        "zhengjiaojuzhen"
+      ],
+      "name": "正交矩阵条件",
+      "description": "正交矩阵条件",
+      "latex": "{{lhs}}={{rhs}}",
+      "parameters": [
+        {
+          "id": "lhs",
+          "name": "转置乘原矩阵",
+          "description": "转置乘原矩阵",
+          "defaultValue": "Q^{\\mathsf T}Q"
+        },
+        {
+          "id": "rhs",
+          "name": "单位矩阵",
+          "description": "单位矩阵",
+          "defaultValue": "I"
+        }
+      ]
+    },
+    {
+      "id": "unitary",
+      "command": "unitary",
+      "aliases": [
+        "youjuzhen"
+      ],
+      "name": "酉矩阵条件",
+      "description": "酉矩阵条件",
+      "latex": "{{lhs}}={{rhs}}",
+      "parameters": [
+        {
+          "id": "lhs",
+          "name": "共轭转置乘原矩阵",
+          "description": "共轭转置乘原矩阵",
+          "defaultValue": "U^{\\mathsf H}U"
+        },
+        {
+          "id": "rhs",
+          "name": "单位矩阵",
+          "description": "单位矩阵",
+          "defaultValue": "I"
+        }
+      ]
+    },
+    {
+      "id": "eigeneq",
+      "command": "eigeneq",
+      "aliases": [
+        "tezhengzhi",
+        "tzz"
+      ],
+      "name": "特征值方程",
+      "description": "特征值方程",
+      "latex": "\\det\\left( {{mat}}-{{value}} I \\right)=0",
+      "parameters": [
+        {
+          "id": "mat",
+          "name": "矩阵",
+          "description": "矩阵",
+          "defaultValue": "A"
+        },
+        {
+          "id": "value",
+          "name": "特征值",
+          "description": "特征值",
+          "defaultValue": "\\lambda"
+        }
+      ]
+    },
+    {
+      "id": "eigenvec",
+      "command": "eigenvec",
+      "aliases": [
+        "tezhengxiangliang"
+      ],
+      "name": "特征向量方程",
+      "description": "特征向量方程",
+      "latex": "{{mat}}{{vec}}={{value}}{{rhs}}",
+      "parameters": [
+        {
+          "id": "mat",
+          "name": "矩阵",
+          "description": "矩阵",
+          "defaultValue": "A"
+        },
+        {
+          "id": "vec",
+          "name": "特征向量",
+          "description": "特征向量",
+          "defaultValue": "v"
+        },
+        {
+          "id": "value",
+          "name": "特征值",
+          "description": "特征值",
+          "defaultValue": "\\lambda"
+        },
+        {
+          "id": "rhs",
+          "name": "同一个特征向量",
+          "description": "同一个特征向量",
+          "defaultValue": "v"
+        }
+      ]
+    },
+    {
+      "id": "charpoly",
+      "command": "charpoly",
+      "aliases": [
+        "tezhengduoxiangshi"
+      ],
+      "name": "特征多项式",
+      "description": "特征多项式",
+      "latex": "{{lhs}}=\\det\\left( {{rhs}}-{{mat}} \\right)",
+      "parameters": [
+        {
+          "id": "lhs",
+          "name": "特征多项式",
+          "description": "特征多项式",
+          "defaultValue": "p_A(t)"
+        },
+        {
+          "id": "rhs",
+          "name": "变量乘单位矩阵",
+          "description": "变量乘单位矩阵",
+          "defaultValue": "tI"
+        },
+        {
+          "id": "mat",
+          "name": "矩阵",
+          "description": "矩阵",
+          "defaultValue": "A"
+        }
+      ]
+    },
+    {
+      "id": "eigenspace",
+      "command": "eigenspace",
+      "aliases": [
+        "tezhengzikongjian"
+      ],
+      "name": "特征子空间",
+      "description": "特征子空间",
+      "latex": "E_{ {{value}} }=\\ker\\left( {{mat}}-{{rhs}} \\right)",
+      "parameters": [
+        {
+          "id": "value",
+          "name": "特征值",
+          "description": "特征值",
+          "defaultValue": "\\lambda"
+        },
+        {
+          "id": "mat",
+          "name": "矩阵",
+          "description": "矩阵",
+          "defaultValue": "A"
+        },
+        {
+          "id": "rhs",
+          "name": "特征值乘单位矩阵",
+          "description": "特征值乘单位矩阵",
+          "defaultValue": "\\lambda I"
+        }
+      ]
+    },
+    {
+      "id": "similarity",
+      "command": "similarity",
+      "aliases": [
+        "xiangsi"
+      ],
+      "name": "矩阵相似关系",
+      "description": "矩阵相似关系",
+      "latex": "{{mat}}\\sim{{matb}}",
+      "parameters": [
+        {
+          "id": "mat",
+          "name": "矩阵",
+          "description": "矩阵",
+          "defaultValue": "A"
+        },
+        {
+          "id": "matb",
+          "name": "第二个矩阵",
+          "description": "第二个矩阵",
+          "defaultValue": "B"
+        }
+      ]
+    },
+    {
+      "id": "similartransform",
+      "command": "similartransform",
+      "aliases": [
+        "xiangsibianhuan"
+      ],
+      "name": "相似变换",
+      "description": "相似变换",
+      "latex": "{{matb}}={{lhs}}{{mat}}{{rhs}}",
+      "parameters": [
+        {
+          "id": "matb",
+          "name": "第二个矩阵",
+          "description": "第二个矩阵",
+          "defaultValue": "B"
+        },
+        {
+          "id": "lhs",
+          "name": "过渡矩阵的逆",
+          "description": "过渡矩阵的逆",
+          "defaultValue": "P^{-1}"
+        },
+        {
+          "id": "mat",
+          "name": "矩阵",
+          "description": "矩阵",
+          "defaultValue": "A"
+        },
+        {
+          "id": "rhs",
+          "name": "过渡矩阵",
+          "description": "过渡矩阵",
+          "defaultValue": "P"
+        }
+      ]
+    },
+    {
+      "id": "congruence",
+      "command": "congruence",
+      "aliases": [
+        "juzhenhetong"
+      ],
+      "name": "矩阵合同",
+      "description": "矩阵合同",
+      "latex": "{{matb}}={{lhs}}{{mat}}{{rhs}}",
+      "parameters": [
+        {
+          "id": "matb",
+          "name": "第二个矩阵",
+          "description": "第二个矩阵",
+          "defaultValue": "B"
+        },
+        {
+          "id": "lhs",
+          "name": "变换矩阵的转置",
+          "description": "变换矩阵的转置",
+          "defaultValue": "P^{\\mathsf T}"
+        },
+        {
+          "id": "mat",
+          "name": "矩阵",
+          "description": "矩阵",
+          "defaultValue": "A"
+        },
+        {
+          "id": "rhs",
+          "name": "变换矩阵",
+          "description": "变换矩阵",
+          "defaultValue": "P"
+        }
+      ]
+    },
+    {
+      "id": "diagonalize",
+      "command": "diagonalize",
+      "aliases": [
+        "duijiaohua"
+      ],
+      "name": "矩阵相似对角化",
+      "description": "矩阵相似对角化",
+      "latex": "{{lhs}}=\\operatorname{diag}\\left( {{rhs}} \\right)",
+      "parameters": [
+        {
+          "id": "lhs",
+          "name": "相似变换",
+          "description": "相似变换",
+          "defaultValue": "P^{-1}AP"
+        },
+        {
+          "id": "rhs",
+          "name": "对角元素",
+          "description": "对角元素",
+          "defaultValue": "\\lambda_1,\\ldots,\\lambda_n"
+        }
+      ]
+    },
+    {
+      "id": "spectraldec",
+      "command": "spectraldec",
+      "aliases": [
+        "pufenjie"
+      ],
+      "name": "实对称矩阵的谱分解",
+      "description": "实对称矩阵的谱分解",
+      "latex": "{{mat}}={{lhs}}{{body}}{{rhs}}",
+      "parameters": [
+        {
+          "id": "mat",
+          "name": "矩阵",
+          "description": "矩阵",
+          "defaultValue": "A"
+        },
+        {
+          "id": "lhs",
+          "name": "正交特征向量矩阵",
+          "description": "正交特征向量矩阵",
+          "defaultValue": "Q"
+        },
+        {
+          "id": "body",
+          "name": "特征值的对角矩阵",
+          "description": "特征值的对角矩阵",
+          "defaultValue": "\\Lambda"
+        },
+        {
+          "id": "rhs",
+          "name": "正交矩阵的转置",
+          "description": "正交矩阵的转置",
+          "defaultValue": "Q^{\\mathsf T}"
+        }
+      ]
+    },
+    {
+      "id": "cayleyhamilton",
+      "command": "cayleyhamilton",
+      "aliases": [
+        "kailaihamidun"
+      ],
+      "name": "凯莱–哈密顿定理",
+      "description": "凯莱–哈密顿定理",
+      "latex": "{{body}}=\\mathbf{0}",
+      "parameters": [
+        {
+          "id": "body",
+          "name": "将矩阵代入自己的特征多项式",
+          "description": "将矩阵代入自己的特征多项式",
+          "defaultValue": "p_A(A)"
+        }
+      ]
+    },
+    {
+      "id": "jordan",
+      "command": "jordan",
+      "aliases": [
+        "ruoerdang"
+      ],
+      "name": "若尔当标准形记号",
+      "description": "若尔当标准形记号",
+      "latex": "J_{ {{order}} }\\left( {{value}} \\right)",
+      "parameters": [
+        {
+          "id": "order",
+          "name": "次数或阶数",
+          "description": "次数或阶数",
+          "defaultValue": "n"
+        },
+        {
+          "id": "value",
+          "name": "特征值",
+          "description": "特征值",
+          "defaultValue": "\\lambda"
+        }
+      ]
+    },
+    {
+      "id": "minpoly",
+      "command": "minpoly",
+      "aliases": [
+        "zuixiaoduoxiangshi"
+      ],
+      "name": "最小多项式记号",
+      "description": "最小多项式记号",
+      "latex": "m_{ {{mat}} }\\left( {{t}} \\right)",
+      "parameters": [
+        {
+          "id": "mat",
+          "name": "矩阵",
+          "description": "矩阵",
+          "defaultValue": "A"
+        },
+        {
+          "id": "t",
+          "name": "参数",
+          "description": "参数",
+          "defaultValue": "t"
+        }
+      ],
+      "wrapTarget": "mat"
+    },
+    {
+      "id": "svd",
+      "command": "svd",
+      "aliases": [
+        "qiyizhifenjie"
+      ],
+      "name": "奇异值分解",
+      "description": "奇异值分解",
+      "latex": "{{mat}}={{u}}{{body}}{{v}}^{\\mathsf H}",
+      "parameters": [
+        {
+          "id": "mat",
+          "name": "矩阵",
+          "description": "矩阵",
+          "defaultValue": "A"
+        },
+        {
+          "id": "u",
+          "name": "左奇异向量矩阵",
+          "description": "左奇异向量矩阵",
+          "defaultValue": "U"
+        },
+        {
+          "id": "body",
+          "name": "奇异值对角矩阵",
+          "description": "奇异值对角矩阵",
+          "defaultValue": "\\Sigma"
+        },
+        {
+          "id": "v",
+          "name": "右奇异向量矩阵",
+          "description": "右奇异向量矩阵",
+          "defaultValue": "V"
+        }
+      ]
+    },
+    {
+      "id": "singularvalue",
+      "command": "singularvalue",
+      "aliases": [
+        "qiyizhi"
+      ],
+      "name": "第 k 个奇异值",
+      "description": "第 k 个奇异值",
+      "latex": "\\sigma_{ {{k}} }\\left( {{mat}} \\right)",
+      "parameters": [
+        {
+          "id": "k",
+          "name": "指标",
+          "description": "指标",
+          "defaultValue": "k"
+        },
+        {
+          "id": "mat",
+          "name": "矩阵",
+          "description": "矩阵",
+          "defaultValue": "A"
+        }
+      ],
+      "wrapTarget": "mat"
+    },
+    {
+      "id": "lu",
+      "command": "lu",
+      "aliases": [
+        "lufenjie"
+      ],
+      "name": "LU 分解",
+      "description": "LU 分解",
+      "latex": "{{mat}}={{lhs}}{{rhs}}",
+      "parameters": [
+        {
+          "id": "mat",
+          "name": "矩阵",
+          "description": "矩阵",
+          "defaultValue": "A"
+        },
+        {
+          "id": "lhs",
+          "name": "下三角因子",
+          "description": "下三角因子",
+          "defaultValue": "L"
+        },
+        {
+          "id": "rhs",
+          "name": "上三角因子",
+          "description": "上三角因子",
+          "defaultValue": "U"
+        }
+      ]
+    },
+    {
+      "id": "qr",
+      "command": "qr",
+      "aliases": [
+        "qrfenjie"
+      ],
+      "name": "QR 分解",
+      "description": "QR 分解",
+      "latex": "{{mat}}={{lhs}}{{rhs}}",
+      "parameters": [
+        {
+          "id": "mat",
+          "name": "矩阵",
+          "description": "矩阵",
+          "defaultValue": "A"
+        },
+        {
+          "id": "lhs",
+          "name": "正交或酉因子",
+          "description": "正交或酉因子",
+          "defaultValue": "Q"
+        },
+        {
+          "id": "rhs",
+          "name": "上三角因子",
+          "description": "上三角因子",
+          "defaultValue": "R"
+        }
+      ]
+    },
+    {
+      "id": "cholesky",
+      "command": "cholesky",
+      "aliases": [
+        "qiaolesiji"
+      ],
+      "name": "Cholesky 分解",
+      "description": "Cholesky 分解",
+      "latex": "{{mat}}={{lhs}}{{rhs}}",
+      "parameters": [
+        {
+          "id": "mat",
+          "name": "矩阵",
+          "description": "矩阵",
+          "defaultValue": "A"
+        },
+        {
+          "id": "lhs",
+          "name": "下三角因子",
+          "description": "下三角因子",
+          "defaultValue": "L"
+        },
+        {
+          "id": "rhs",
+          "name": "下三角因子的共轭转置",
+          "description": "下三角因子的共轭转置",
+          "defaultValue": "L^{\\mathsf H}"
+        }
+      ]
+    },
+    {
+      "id": "quadform",
+      "command": "quadform",
+      "aliases": [
+        "ercixing",
+        "ecx"
+      ],
+      "name": "实二次型的矩阵形式",
+      "description": "实二次型的矩阵形式",
+      "latex": "{{lhs}}{{mat}}{{vec}}",
+      "parameters": [
+        {
+          "id": "lhs",
+          "name": "变量向量的转置",
+          "description": "变量向量的转置",
+          "defaultValue": "\\mathbf{x}^{\\mathsf T}"
+        },
+        {
+          "id": "mat",
+          "name": "对称矩阵",
+          "description": "对称矩阵",
+          "defaultValue": "A"
+        },
+        {
+          "id": "vec",
+          "name": "变量向量",
+          "description": "变量向量",
+          "defaultValue": "\\mathbf{x}"
+        }
+      ]
+    },
+    {
+      "id": "quadstandard",
+      "command": "quadstandard",
+      "aliases": [
+        "ercixingbiaozhunxing"
+      ],
+      "name": "二次型的对角标准形",
+      "description": "二次型的对角标准形",
+      "latex": "\\sum_{ {{lower}} }^{ {{upper}} }{{body}}",
+      "parameters": [
+        {
+          "id": "lower",
+          "name": "起始指标",
+          "description": "起始指标",
+          "defaultValue": "i=1"
+        },
+        {
+          "id": "upper",
+          "name": "末指标",
+          "description": "末指标",
+          "defaultValue": "n"
+        },
+        {
+          "id": "body",
+          "name": "对角系数与平方项",
+          "description": "对角系数与平方项",
+          "defaultValue": "\\lambda_i y_i^2"
+        }
+      ],
+      "wrapTarget": "body"
+    },
+    {
+      "id": "bilinear",
+      "command": "bilinear",
+      "aliases": [
+        "shuangxianxingxing"
+      ],
+      "name": "双线性型",
+      "description": "双线性型",
+      "latex": "{{u}}^{\\mathsf T}{{mat}}{{v}}",
+      "parameters": [
+        {
+          "id": "u",
+          "name": "第一个向量或参数",
+          "description": "第一个向量或参数",
+          "defaultValue": "u"
+        },
+        {
+          "id": "mat",
+          "name": "矩阵",
+          "description": "矩阵",
+          "defaultValue": "A"
+        },
+        {
+          "id": "v",
+          "name": "第二个向量或参数",
+          "description": "第二个向量或参数",
+          "defaultValue": "v"
+        }
+      ]
+    },
+    {
+      "id": "sesquilinear",
+      "command": "sesquilinear",
+      "aliases": [
+        "banshuangxianxingxing"
+      ],
+      "name": "复半双线性型",
+      "description": "复半双线性型",
+      "latex": "{{u}}^{\\mathsf H}{{mat}}{{v}}",
+      "parameters": [
+        {
+          "id": "u",
+          "name": "第一个向量或参数",
+          "description": "第一个向量或参数",
+          "defaultValue": "u"
+        },
+        {
+          "id": "mat",
+          "name": "矩阵",
+          "description": "矩阵",
+          "defaultValue": "A"
+        },
+        {
+          "id": "v",
+          "name": "第二个向量或参数",
+          "description": "第二个向量或参数",
+          "defaultValue": "v"
+        }
+      ]
+    },
+    {
+      "id": "posdef",
+      "command": "posdef",
+      "aliases": [
+        "zhengding"
+      ],
+      "name": "正定矩阵",
+      "description": "正定矩阵",
+      "latex": "{{mat}}\\succ 0",
+      "parameters": [
+        {
+          "id": "mat",
+          "name": "矩阵",
+          "description": "矩阵",
+          "defaultValue": "A"
+        }
+      ],
+      "wrapTarget": "mat"
+    },
+    {
+      "id": "semidef",
+      "command": "semidef",
+      "aliases": [
+        "banzhengding"
+      ],
+      "name": "半正定矩阵",
+      "description": "半正定矩阵",
+      "latex": "{{mat}}\\succeq 0",
+      "parameters": [
+        {
+          "id": "mat",
+          "name": "矩阵",
+          "description": "矩阵",
+          "defaultValue": "A"
+        }
+      ],
+      "wrapTarget": "mat"
+    },
+    {
+      "id": "sylvester",
+      "command": "sylvester",
+      "aliases": [
+        "shunxuzhuzishi"
+      ],
+      "name": "顺序主子式正定判据",
+      "description": "顺序主子式正定判据",
+      "latex": "{{body}}>0\\quad\\left({{cond}}\\right)",
+      "parameters": [
+        {
+          "id": "body",
+          "name": "顺序主子式",
+          "description": "顺序主子式",
+          "defaultValue": "\\Delta_k"
+        },
+        {
+          "id": "cond",
+          "name": "指标取值",
+          "description": "指标取值",
+          "defaultValue": "k=1,\\ldots,n"
+        }
+      ]
+    },
+    {
+      "id": "inertia",
+      "command": "inertia",
+      "aliases": [
+        "guanxingzhishu"
+      ],
+      "name": "惯性指标",
+      "description": "惯性指标",
+      "latex": "\\left({{lhs}},{{rhs}},{{body}}\\right)",
+      "parameters": [
+        {
+          "id": "lhs",
+          "name": "正特征值个数",
+          "description": "正特征值个数",
+          "defaultValue": "n_+"
+        },
+        {
+          "id": "rhs",
+          "name": "负特征值个数",
+          "description": "负特征值个数",
+          "defaultValue": "n_-"
+        },
+        {
+          "id": "body",
+          "name": "零特征值个数",
+          "description": "零特征值个数",
+          "defaultValue": "n_0"
+        }
+      ]
+    },
+    {
+      "id": "kronecker",
+      "command": "kronecker",
+      "aliases": [
+        "keluoneikeji"
+      ],
+      "name": "矩阵的克罗内克积",
+      "description": "矩阵的克罗内克积",
+      "latex": "{{mat}}\\otimes{{matb}}",
+      "parameters": [
+        {
+          "id": "mat",
+          "name": "矩阵",
+          "description": "矩阵",
+          "defaultValue": "A"
+        },
+        {
+          "id": "matb",
+          "name": "第二个矩阵",
+          "description": "第二个矩阵",
+          "defaultValue": "B"
+        }
+      ]
+    },
+    {
+      "id": "hadamard",
+      "command": "hadamard",
+      "aliases": [
+        "hadamaji"
+      ],
+      "name": "矩阵逐项乘积",
+      "description": "矩阵逐项乘积",
+      "latex": "{{mat}}\\odot{{matb}}",
+      "parameters": [
+        {
+          "id": "mat",
+          "name": "矩阵",
+          "description": "矩阵",
+          "defaultValue": "A"
+        },
+        {
+          "id": "matb",
+          "name": "第二个矩阵",
+          "description": "第二个矩阵",
+          "defaultValue": "B"
+        }
+      ]
+    }
+  ]
+}

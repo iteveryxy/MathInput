@@ -1,4 +1,5 @@
 mod native;
+mod formula_packs;
 
 use native::{NativeBridge, NativeOutcome};
 use serde::Serialize;
@@ -164,11 +165,13 @@ pub fn run() {
     tauri::Builder::default()
         .on_page_load(|webview, _| { let _ = webview.set_focus(); })
         .plugin(tauri_plugin_single_instance::init(|app, _, _| show_without_target(app)))
+        .plugin(tauri_plugin_dialog::init())
         .plugin(tauri_plugin_global_shortcut::Builder::new().with_handler(|app, _, event| {
             if event.state() == ShortcutState::Released { global_shortcut(app); }
         }).build())
-        .invoke_handler(tauri::generate_handler![desktop_status, configure_shortcut, copy_text, submit_text, cancel_input])
+        .invoke_handler(tauri::generate_handler![desktop_status, configure_shortcut, copy_text, submit_text, cancel_input, formula_packs::load_formula_packs, formula_packs::save_formula_packs, formula_packs::restore_formula_pack_backup, formula_packs::pick_formula_pack_file, formula_packs::export_formula_pack_file])
         .setup(|app| {
+            app.manage(formula_packs::PackFile::new(app.path().app_config_dir()?));
             let shortcut = config_path(app.handle()).ok().and_then(|path| fs::read_to_string(path).ok()).and_then(|text| serde_json::from_str::<String>(&text).ok()).filter(|text| text.len() < 64 && text.parse::<Shortcut>().is_ok()).unwrap_or_else(|| DEFAULT_SHORTCUT.into());
             let parsed: Shortcut = shortcut.parse().unwrap();
             let registration = app.global_shortcut().register(parsed);

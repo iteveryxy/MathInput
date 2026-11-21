@@ -1,0 +1,750 @@
+{
+  "schemaVersion": 1,
+  "id": "linear-algebra",
+  "name": "线性代数",
+  "version": "1.0.0",
+  "author": "Math Input",
+  "description": "离线矩阵、行列式、矩阵运算及线性代数常用表达式。所有参数均使用同一 Prompt 运行机制。",
+  "snippets": [
+    {
+      "id": "mat2",
+      "command": "mat2",
+      "aliases": [
+        "juzhen2",
+        "jz2"
+      ],
+      "name": "二阶矩阵",
+      "description": "二阶矩阵，参数按列表顺序编辑",
+      "latex": "\\begin{pmatrix}{{a}}&{{b}}\\\\{{c}}&{{d}}\\end{pmatrix}",
+      "parameters": [
+        {
+          "id": "a",
+          "name": "第 1 行第 1 列",
+          "description": "第 1 行第 1 列",
+          "defaultValue": "a"
+        },
+        {
+          "id": "b",
+          "name": "第 1 行第 2 列",
+          "description": "第 1 行第 2 列",
+          "defaultValue": "b"
+        },
+        {
+          "id": "c",
+          "name": "第 2 行第 1 列",
+          "description": "第 2 行第 1 列",
+          "defaultValue": "c"
+        },
+        {
+          "id": "d",
+          "name": "第 2 行第 2 列",
+          "description": "第 2 行第 2 列",
+          "defaultValue": "d"
+        }
+      ]
+    },
+    {
+      "id": "mat3",
+      "command": "mat3",
+      "aliases": [
+        "juzhen3",
+        "jz3"
+      ],
+      "name": "三阶矩阵",
+      "description": "三阶矩阵，参数按列表顺序编辑",
+      "latex": "\\begin{pmatrix}{{a}}&{{b}}&{{c}}\\\\{{d}}&{{e}}&{{f}}\\\\{{g}}&{{h}}&{{i}}\\end{pmatrix}",
+      "parameters": [
+        {
+          "id": "a",
+          "name": "第 1 行第 1 列",
+          "description": "第 1 行第 1 列",
+          "defaultValue": "a"
+        },
+        {
+          "id": "b",
+          "name": "第 1 行第 2 列",
+          "description": "第 1 行第 2 列",
+          "defaultValue": "b"
+        },
+        {
+          "id": "c",
+          "name": "第 1 行第 3 列",
+          "description": "第 1 行第 3 列",
+          "defaultValue": "c"
+        },
+        {
+          "id": "d",
+          "name": "第 2 行第 1 列",
+          "description": "第 2 行第 1 列",
+          "defaultValue": "d"
+        },
+        {
+          "id": "e",
+          "name": "第 2 行第 2 列",
+          "description": "第 2 行第 2 列",
+          "defaultValue": "e"
+        },
+        {
+          "id": "f",
+          "name": "第 2 行第 3 列",
+          "description": "第 2 行第 3 列",
+          "defaultValue": "f"
+        },
+        {
+          "id": "g",
+          "name": "第 3 行第 1 列",
+          "description": "第 3 行第 1 列",
+          "defaultValue": "g"
+        },
+        {
+          "id": "h",
+          "name": "第 3 行第 2 列",
+          "description": "第 3 行第 2 列",
+          "defaultValue": "h"
+        },
+        {
+          "id": "i",
+          "name": "第 3 行第 3 列",
+          "description": "第 3 行第 3 列",
+          "defaultValue": "i"
+        }
+      ]
+    },
+    {
+      "id": "det2",
+      "command": "det2",
+      "aliases": [
+        "hanglieshi2",
+        "hls2"
+      ],
+      "name": "二阶行列式",
+      "description": "二阶行列式，参数按列表顺序编辑",
+      "latex": "\\begin{vmatrix}{{a}}&{{b}}\\\\{{c}}&{{d}}\\end{vmatrix}",
+      "parameters": [
+        {
+          "id": "a",
+          "name": "第 1 行第 1 列",
+          "description": "第 1 行第 1 列",
+          "defaultValue": "a"
+        },
+        {
+          "id": "b",
+          "name": "第 1 行第 2 列",
+          "description": "第 1 行第 2 列",
+          "defaultValue": "b"
+        },
+        {
+          "id": "c",
+          "name": "第 2 行第 1 列",
+          "description": "第 2 行第 1 列",
+          "defaultValue": "c"
+        },
+        {
+          "id": "d",
+          "name": "第 2 行第 2 列",
+          "description": "第 2 行第 2 列",
+          "defaultValue": "d"
+        }
+      ]
+    },
+    {
+      "id": "det3",
+      "command": "det3",
+      "aliases": [
+        "hanglieshi3",
+        "hls3"
+      ],
+      "name": "三阶行列式",
+      "description": "三阶行列式，参数按列表顺序编辑",
+      "latex": "\\begin{vmatrix}{{a}}&{{b}}&{{c}}\\\\{{d}}&{{e}}&{{f}}\\\\{{g}}&{{h}}&{{i}}\\end{vmatrix}",
+      "parameters": [
+        {
+          "id": "a",
+          "name": "第 1 行第 1 列",
+          "description": "第 1 行第 1 列",
+          "defaultValue": "a"
+        },
+        {
+          "id": "b",
+          "name": "第 1 行第 2 列",
+          "description": "第 1 行第 2 列",
+          "defaultValue": "b"
+        },
+        {
+          "id": "c",
+          "name": "第 1 行第 3 列",
+          "description": "第 1 行第 3 列",
+          "defaultValue": "c"
+        },
+        {
+          "id": "d",
+          "name": "第 2 行第 1 列",
+          "description": "第 2 行第 1 列",
+          "defaultValue": "d"
+        },
+        {
+          "id": "e",
+          "name": "第 2 行第 2 列",
+          "description": "第 2 行第 2 列",
+          "defaultValue": "e"
+        },
+        {
+          "id": "f",
+          "name": "第 2 行第 3 列",
+          "description": "第 2 行第 3 列",
+          "defaultValue": "f"
+        },
+        {
+          "id": "g",
+          "name": "第 3 行第 1 列",
+          "description": "第 3 行第 1 列",
+          "defaultValue": "g"
+        },
+        {
+          "id": "h",
+          "name": "第 3 行第 2 列",
+          "description": "第 3 行第 2 列",
+          "defaultValue": "h"
+        },
+        {
+          "id": "i",
+          "name": "第 3 行第 3 列",
+          "description": "第 3 行第 3 列",
+          "defaultValue": "i"
+        }
+      ]
+    },
+    {
+      "id": "bmat2",
+      "command": "bmat2",
+      "aliases": [
+        "fangkuohaojuzhen"
+      ],
+      "name": "方括号矩阵",
+      "description": "方括号矩阵，参数按列表顺序编辑",
+      "latex": "\\begin{bmatrix}{{a}}&{{b}}\\\\{{c}}&{{d}}\\end{bmatrix}",
+      "parameters": [
+        {
+          "id": "a",
+          "name": "第 1 行第 1 列",
+          "description": "第 1 行第 1 列",
+          "defaultValue": "a"
+        },
+        {
+          "id": "b",
+          "name": "第 1 行第 2 列",
+          "description": "第 1 行第 2 列",
+          "defaultValue": "b"
+        },
+        {
+          "id": "c",
+          "name": "第 2 行第 1 列",
+          "description": "第 2 行第 1 列",
+          "defaultValue": "c"
+        },
+        {
+          "id": "d",
+          "name": "第 2 行第 2 列",
+          "description": "第 2 行第 2 列",
+          "defaultValue": "d"
+        }
+      ]
+    },
+    {
+      "id": "blockmat",
+      "command": "blockmat",
+      "aliases": [
+        "fenkuaijuzhen",
+        "fkjz"
+      ],
+      "name": "分块矩阵",
+      "description": "使用竖向分隔和四个可编辑矩阵块；当前 MathLive 不支持横向 hline 分隔。",
+      "latex": "\\left[\\begin{array}{c|c}{{a}}&{{b}}\\\\{{c}}&{{d}}\\end{array}\\right]",
+      "parameters": [
+        {
+          "id": "a",
+          "name": "左上块",
+          "description": "左上块",
+          "defaultValue": "A"
+        },
+        {
+          "id": "b",
+          "name": "右上块",
+          "description": "右上块",
+          "defaultValue": "B"
+        },
+        {
+          "id": "c",
+          "name": "左下块",
+          "description": "左下块",
+          "defaultValue": "C"
+        },
+        {
+          "id": "d",
+          "name": "右下块",
+          "description": "右下块",
+          "defaultValue": "D"
+        }
+      ]
+    },
+    {
+      "id": "rowvec",
+      "command": "rowvec",
+      "aliases": [
+        "hangxiangliang"
+      ],
+      "name": "行向量",
+      "description": "行向量，参数按列表顺序编辑",
+      "latex": "\\begin{pmatrix}{{a}}&{{b}}&{{c}}\\end{pmatrix}",
+      "parameters": [
+        {
+          "id": "a",
+          "name": "第一分量",
+          "description": "第一分量",
+          "defaultValue": "a"
+        },
+        {
+          "id": "b",
+          "name": "第二分量",
+          "description": "第二分量",
+          "defaultValue": "b"
+        },
+        {
+          "id": "c",
+          "name": "第三分量",
+          "description": "第三分量",
+          "defaultValue": "c"
+        }
+      ]
+    },
+    {
+      "id": "colvec",
+      "command": "colvec",
+      "aliases": [
+        "liexiangliang"
+      ],
+      "name": "列向量",
+      "description": "列向量，参数按列表顺序编辑",
+      "latex": "\\begin{pmatrix}{{a}}\\\\{{b}}\\\\{{c}}\\end{pmatrix}",
+      "parameters": [
+        {
+          "id": "a",
+          "name": "第一分量",
+          "description": "第一分量",
+          "defaultValue": "a"
+        },
+        {
+          "id": "b",
+          "name": "第二分量",
+          "description": "第二分量",
+          "defaultValue": "b"
+        },
+        {
+          "id": "c",
+          "name": "第三分量",
+          "description": "第三分量",
+          "defaultValue": "c"
+        }
+      ]
+    },
+    {
+      "id": "transpose",
+      "command": "transpose",
+      "aliases": [
+        "trans",
+        "zhuanzhi",
+        "zz"
+      ],
+      "name": "转置",
+      "description": "转置，参数按列表顺序编辑",
+      "latex": "\\left( {{matrix}} \\right)^{T}",
+      "parameters": [
+        {
+          "id": "matrix",
+          "name": "被转置的表达式",
+          "description": "被转置的表达式",
+          "defaultValue": "A"
+        }
+      ],
+      "wrapTarget": "matrix",
+      "preferSelection": true
+    },
+    {
+      "id": "inverse",
+      "command": "inverse",
+      "aliases": [
+        "inv",
+        "nijuzhen",
+        "njz"
+      ],
+      "name": "逆矩阵",
+      "description": "逆矩阵，参数按列表顺序编辑",
+      "latex": "\\left( {{matrix}} \\right)^{-1}",
+      "parameters": [
+        {
+          "id": "matrix",
+          "name": "可逆矩阵或表达式",
+          "description": "可逆矩阵或表达式",
+          "defaultValue": "A"
+        }
+      ],
+      "wrapTarget": "matrix",
+      "preferSelection": true
+    },
+    {
+      "id": "adjugate",
+      "command": "adjugate",
+      "aliases": [
+        "bansui",
+        "bsjz"
+      ],
+      "name": "伴随矩阵",
+      "description": "伴随矩阵，参数按列表顺序编辑",
+      "latex": "\\left( {{matrix}} \\right)^{*}",
+      "parameters": [
+        {
+          "id": "matrix",
+          "name": "矩阵",
+          "description": "矩阵",
+          "defaultValue": "A"
+        }
+      ],
+      "wrapTarget": "matrix",
+      "preferSelection": true
+    },
+    {
+      "id": "trace",
+      "command": "trace",
+      "aliases": [
+        "tr",
+        "ji"
+      ],
+      "name": "矩阵的迹",
+      "description": "矩阵的迹，参数按列表顺序编辑",
+      "latex": "\\operatorname{tr}\\left( {{matrix}} \\right)",
+      "parameters": [
+        {
+          "id": "matrix",
+          "name": "方阵",
+          "description": "方阵",
+          "defaultValue": "A"
+        }
+      ],
+      "wrapTarget": "matrix",
+      "preferSelection": true
+    },
+    {
+      "id": "rank",
+      "command": "rank",
+      "aliases": [
+        "zhi",
+        "juzhenzhi"
+      ],
+      "name": "矩阵的秩",
+      "description": "矩阵的秩，参数按列表顺序编辑",
+      "latex": "\\operatorname{rank}\\left( {{matrix}} \\right)",
+      "parameters": [
+        {
+          "id": "matrix",
+          "name": "矩阵",
+          "description": "矩阵",
+          "defaultValue": "A"
+        }
+      ],
+      "wrapTarget": "matrix",
+      "preferSelection": true
+    },
+    {
+      "id": "identity",
+      "command": "identity",
+      "aliases": [
+        "danweijuzhen",
+        "dwjz"
+      ],
+      "name": "单位矩阵",
+      "description": "单位矩阵，参数按列表顺序编辑",
+      "latex": "I_{ {{order}} }",
+      "parameters": [
+        {
+          "id": "order",
+          "name": "阶数",
+          "description": "阶数",
+          "defaultValue": "n"
+        }
+      ]
+    },
+    {
+      "id": "zeromat",
+      "command": "zeromat",
+      "aliases": [
+        "lingjuzhen",
+        "ljz"
+      ],
+      "name": "零矩阵",
+      "description": "零矩阵，参数按列表顺序编辑",
+      "latex": "O",
+      "parameters": []
+    },
+    {
+      "id": "matprod",
+      "command": "matprod",
+      "aliases": [
+        "juzhenchengji"
+      ],
+      "name": "矩阵乘积",
+      "description": "矩阵乘积，参数按列表顺序编辑",
+      "latex": "{{left}}\\,{{right}}",
+      "parameters": [
+        {
+          "id": "left",
+          "name": "左矩阵",
+          "description": "左矩阵",
+          "defaultValue": "A"
+        },
+        {
+          "id": "right",
+          "name": "右矩阵",
+          "description": "右矩阵",
+          "defaultValue": "B"
+        }
+      ]
+    },
+    {
+      "id": "syst2",
+      "command": "syst2",
+      "aliases": [
+        "fangchengzu",
+        "xxfcz"
+      ],
+      "name": "线性方程组",
+      "description": "线性方程组，参数按列表顺序编辑",
+      "latex": "\\begin{cases}{{first}}\\\\{{second}}\\end{cases}",
+      "parameters": [
+        {
+          "id": "first",
+          "name": "第一条方程",
+          "description": "第一条方程",
+          "defaultValue": "x+y=1"
+        },
+        {
+          "id": "second",
+          "name": "第二条方程",
+          "description": "第二条方程",
+          "defaultValue": "2x-y=0"
+        }
+      ]
+    },
+    {
+      "id": "eigeneq",
+      "command": "eigeneq",
+      "aliases": [
+        "tezhengzhi",
+        "tzz"
+      ],
+      "name": "特征值方程",
+      "description": "特征值方程，参数按列表顺序编辑",
+      "latex": "\\det\\left( {{matrix}}-{{value}} I \\right)=0",
+      "parameters": [
+        {
+          "id": "matrix",
+          "name": "方阵",
+          "description": "方阵",
+          "defaultValue": "A"
+        },
+        {
+          "id": "value",
+          "name": "特征值",
+          "description": "特征值",
+          "defaultValue": "\\lambda"
+        }
+      ]
+    },
+    {
+      "id": "charpoly",
+      "command": "charpoly",
+      "aliases": [
+        "tezhengduoxiangshi"
+      ],
+      "name": "特征多项式",
+      "description": "特征多项式，参数按列表顺序编辑",
+      "latex": "p(t)=\\det\\left( {{matrix}}-tI \\right)",
+      "parameters": [
+        {
+          "id": "matrix",
+          "name": "方阵",
+          "description": "方阵",
+          "defaultValue": "A"
+        }
+      ]
+    },
+    {
+      "id": "quadform",
+      "command": "quadform",
+      "aliases": [
+        "ercixing",
+        "ecx"
+      ],
+      "name": "二次型",
+      "description": "二次型，参数按列表顺序编辑",
+      "latex": "x^{T}{{matrix}}x",
+      "parameters": [
+        {
+          "id": "matrix",
+          "name": "二次型的矩阵",
+          "description": "二次型的矩阵",
+          "defaultValue": "A"
+        }
+      ]
+    },
+    {
+      "id": "innerprod",
+      "command": "innerprod",
+      "aliases": [
+        "neiji",
+        "nj"
+      ],
+      "name": "内积",
+      "description": "内积，参数按列表顺序编辑",
+      "latex": "\\left\\langle {{left}},{{right}} \\right\\rangle",
+      "parameters": [
+        {
+          "id": "left",
+          "name": "左向量",
+          "description": "左向量",
+          "defaultValue": "u"
+        },
+        {
+          "id": "right",
+          "name": "右向量",
+          "description": "右向量",
+          "defaultValue": "v"
+        }
+      ]
+    },
+    {
+      "id": "lincomb",
+      "command": "lincomb",
+      "aliases": [
+        "xianxingzuhe",
+        "xxzh"
+      ],
+      "name": "向量组线性组合",
+      "description": "向量组线性组合，参数按列表顺序编辑",
+      "latex": "{{combination}}",
+      "parameters": [
+        {
+          "id": "combination",
+          "name": "线性组合表达式",
+          "description": "线性组合表达式",
+          "defaultValue": "c_1v_1+c_2v_2+\\cdots+c_nv_n"
+        }
+      ]
+    },
+    {
+      "id": "similarity",
+      "command": "similarity",
+      "aliases": [
+        "xiangsi",
+        "xs"
+      ],
+      "name": "矩阵相似关系",
+      "description": "矩阵相似关系，参数按列表顺序编辑",
+      "latex": "{{matrix}}=P^{-1}{{similar}}P",
+      "parameters": [
+        {
+          "id": "matrix",
+          "name": "原矩阵",
+          "description": "原矩阵",
+          "defaultValue": "A"
+        },
+        {
+          "id": "similar",
+          "name": "相似矩阵",
+          "description": "相似矩阵",
+          "defaultValue": "B"
+        }
+      ]
+    },
+    {
+      "id": "orthogonal",
+      "command": "orthogonal",
+      "aliases": [
+        "zhengjiao",
+        "zj"
+      ],
+      "name": "正交矩阵关系",
+      "description": "正交矩阵关系，参数按列表顺序编辑",
+      "latex": "{{relation}}",
+      "parameters": [
+        {
+          "id": "relation",
+          "name": "正交关系",
+          "description": "正交关系",
+          "defaultValue": "Q^{T}Q=I"
+        }
+      ]
+    },
+    {
+      "id": "vector",
+      "command": "vector",
+      "aliases": [
+        "xiangliang",
+        "xl"
+      ],
+      "name": "向量箭头",
+      "description": "向量箭头，参数按列表顺序编辑",
+      "latex": "\\overrightarrow{ {{vector}} }",
+      "parameters": [
+        {
+          "id": "vector",
+          "name": "向量或表达式",
+          "description": "向量或表达式",
+          "defaultValue": "v"
+        }
+      ],
+      "wrapTarget": "vector",
+      "preferSelection": true
+    },
+    {
+      "id": "norm",
+      "command": "norm",
+      "aliases": [
+        "fanshu"
+      ],
+      "name": "范数",
+      "description": "范数，参数按列表顺序编辑",
+      "latex": "\\left\\lVert {{vector}} \\right\\rVert",
+      "parameters": [
+        {
+          "id": "vector",
+          "name": "向量或表达式",
+          "description": "向量或表达式",
+          "defaultValue": "v"
+        }
+      ],
+      "wrapTarget": "vector",
+      "preferSelection": true
+    },
+    {
+      "id": "determinant",
+      "command": "determinant",
+      "aliases": [
+        "det",
+        "hanglieshi"
+      ],
+      "name": "行列式运算",
+      "description": "行列式运算，参数按列表顺序编辑",
+      "latex": "\\det\\left( {{matrix}} \\right)",
+      "parameters": [
+        {
+          "id": "matrix",
+          "name": "矩阵或表达式",
+          "description": "矩阵或表达式",
+          "defaultValue": "A"
+        }
+      ],
+      "wrapTarget": "matrix",
+      "preferSelection": true
+    }
+  ]
+}

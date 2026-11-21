@@ -1,11 +1,48 @@
-node_modules/
-dist/
-src-tauri/target/
-test-results/
-playwright-report/
-.local/
+# Dependencies and generated frontend assets
+/node_modules/
+/dist/
+/public/mathlive/
+*.tsbuildinfo
+
+# Tauri and Windows build output
+/src-tauri/target/
+/src-tauri/gen/
+/release/
+*.exe
+*.msi
+*.pdb
+
+# Test output and local tooling
+/test-results/
+/playwright-report/
+/reports/
+/coverage/
+/.local/
+/.agentbridge/
+/.codex/
 *.log
-release/
-reports/
-public/mathlive/
-src-tauri/gen/
+
+# Local application state and credentials
+/formula-packs.json
+/formula-packs.backup.json
+/formula-packs.corrupt-*.json
+.env
+.env.*
+!.env.example
+!.env.*.example
+/.npmrc
+*.pem
+*.key
+*.pfx
+*.p12
+*.snk
+
+# Editor and operating system files
+/.idea/
+/.vs/
+/.vscode/
+*.user
+*.suo
+Thumbs.db
+Desktop.ini
+.DS_Store

@@ -84,6 +84,48 @@ input[type=checkbox] { accent-color: #a596f5; }
 #settings-error { font-size: 0.76923rem; }
 ::-webkit-scrollbar { width: 0.38462rem; height: 0.30769rem; }
 ::-webkit-scrollbar-thumb { background: #45415d; border-radius: 0.30769rem; }
+.candidate-source { display:inline-block; margin-left:.45rem; padding:.05rem .3rem; border:1px solid #4a4364; border-radius:.3rem; color:#9f91c6; font-size:.65rem; max-width:8rem; overflow:hidden; text-overflow:ellipsis; vertical-align:middle; white-space:nowrap; }
+.packs-open #app > .editor-main, .packs-open #app > .footer, .packs-open #app > .status, .packs-open #app > .last-result, .packs-open #app > .help-panel, .packs-open #settings-container { display:none; }
+.packs-open #settings-button, .packs-open #help-button { display:none; }
+.pack-manager { position:relative; height:520px; display:flex; flex-direction:column; padding:1rem; overflow:hidden; border-top:1px solid #333348; }
+.pack-header { display:flex; align-items:center; justify-content:space-between; gap:.5rem; }
+.pack-header h2 { font-size:1.2rem; margin:.3rem 0; }
+.pack-header button { font-size:.8rem; padding:.4rem .6rem; }
+.pack-body { flex:1; min-height:0; overflow:auto; padding:.3rem .2rem .8rem; }
+.pack-status { margin:.4rem 0; font-size:.8rem; color:#94bfae; overflow-wrap:anywhere; max-height:6rem; overflow:auto; }
+.pack-status.error,.pack-manager .error { color:#edb393; }
+.pack-toolbar { display:flex; gap:.4rem; flex-wrap:wrap; margin:.6rem 0; }
+.pack-toolbar button { padding:.4rem .6rem; font-size:.8rem; }
+.pack-layout { display:grid; grid-template-columns:minmax(95px, .6fr) minmax(0,1.4fr); gap:.8rem; }
+.pack-list { border-right:1px solid #323348; padding-right:.6rem; }
+.pack-row { display:grid; grid-template-columns:1.2rem minmax(0,1fr); align-items:center; padding:.6rem 0; gap:.2rem; }
+.pack-row input[type=checkbox] { margin:0; }
+.pack-row button { text-align:left; border:0; background:transparent; padding:.3rem; overflow-wrap:anywhere; font-size:.85rem; }
+.pack-row button.selected { color:#d3c1ff; background:#a596f51a; }
+.pack-row small { grid-column:1/-1; color:#838da4; font-size:.7rem; }
+.pack-details { min-width:0; }
+.pack-details h3 { margin:.4rem 0; font-size:1rem; }
+.pack-details p { font-size:.8rem; color:#9ba3b9; line-height:1.6; overflow-wrap:anywhere; }
+.pack-manager label { display:block; color:#b4b9d0; font-size:.85rem; margin:.7rem 0; }
+.pack-manager input:not([type=checkbox]),.pack-manager textarea,.pack-manager select { display:block; width:100%; min-width:0; margin-top:.3rem; border:1px solid #38374c; border-radius:.4rem; padding:.5rem; color:#e0dcf1; background:#101420; }
+.pack-manager textarea { font-family:Consolas,monospace; min-height:5rem; }
+.pack-manager input[type=checkbox] { width:auto; display:inline-block; margin-right:.5rem; }
+.formula-row { padding:.7rem 0; border-bottom:1px solid #303047; overflow-wrap:anywhere; }
+.formula-row strong { font-size:.85rem; }.formula-row small { display:block; margin:.4rem 0; color:#7e8b9f; font-size:.7rem; }
+.formula-preview { padding:.6rem .3rem; font-size:1.35rem; overflow:auto; color:#e8defe; max-height:14rem; }
+.formula-preview,.candidate-preview { contain:layout paint; isolation:isolate; position:relative; }
+.formula-row .formula-preview { font-size:1.05rem; }
+.pack-conflicts { padding:.5rem; border:1px solid #826a3a; border-radius:.4rem; color:#dbc191; font-size:.75rem; overflow-wrap:anywhere; }
+.parameter-editor fieldset { border:1px solid #38374c; border-radius:.5rem; margin:.7rem 0; padding:.5rem; }
+.parameter-editor legend { color:#b8a5e5; }
+.parameter-editor button { font-size:.75rem; padding:.3rem .5rem; margin-right:.3rem; }
+.pack-manager form > button { margin:.5rem .4rem .5rem 0; padding:.5rem .65rem; }
+.pack-confirm { position:absolute; z-index:1200; top:4rem; left:1rem; right:1rem; background:#262236; border:1px solid #9b85cf; border-radius:.7rem; padding:1rem; box-shadow:0 1rem 3rem #000b; }
+.pack-confirm p { line-height:1.6; overflow-wrap:anywhere; }.pack-confirm button { margin-right:.6rem; }
+.template-test { border-top:1px solid #39374c; margin-top:1rem; }.template-test h3 { color:#c5b2ee; }.template-test code { display:block; white-space:pre-wrap; overflow-wrap:anywhere; padding:.7rem 0; }
+.template-test button { margin:.4rem .4rem .4rem 0; }.template-test math-field { min-height:5rem; font-size:1.8rem; border:1px solid #544567; border-radius:.4rem; }
+.template-test .parameter-tooltip { position:static; inset:auto; padding:.5rem 0; white-space:normal; flex-wrap:wrap; }
+#open-formula-packs { margin-left:auto; padding:.3rem .6rem; }
 /* v0.2: dimensions follow rem/UI scale; popup coordinates remain viewport CSS pixels. */
 body { min-width: 0; padding: 2.5rem 1rem; }
 .shell { width: min(440px, 100%); }
@@ -100,6 +142,14 @@ body { min-width: 0; padding: 2.5rem 1rem; }
 .editor-label label { flex: 1; letter-spacing: 0; font-size: .8rem; }
 .text-button { font-size: .75rem; white-space: nowrap; }
 .editor-container { max-height: 13rem; overflow: auto; overscroll-behavior: contain; }
+.matrix-dialog { width: min(30rem, calc(100% - 2rem)); max-height: calc(100% - 1rem); margin: auto; padding: 1rem; border: 1px solid #4d4566; border-radius: .65rem; color: inherit; background: #191d2a; }
+.matrix-dialog::backdrop { background: #0b0e16aa; }
+.matrix-dialog h2 { margin: 0 0 .8rem; font-size: 1.1rem; }
+.matrix-dialog p { margin: .65rem 0; font-size: .8rem; }
+.matrix-dimensions { display: grid; grid-template-columns: 1fr 1fr 2fr; gap: .65rem; }
+.matrix-dimensions label { min-width: 0; font-size: .8rem; }
+.matrix-dimensions input, .matrix-dimensions select { display: block; width: 100%; margin-top: .25rem; padding: .35rem; border: 1px solid #38374c; border-radius: .35rem; color: #e0dcf1; background: #101420; }
+.matrix-actions { display: flex; justify-content: flex-end; gap: .5rem; }
 math-field { min-height: 5.3rem; padding: .75rem 1rem; font-size: 2.3rem; }
 math-field[data-semantic-selection=true] { --selection-background-color: #9274e080; --selection-color: #fff; outline: 1px solid #ad91ee88; outline-offset: -2px; }
 .empty-hint { top: 1rem; left: 1rem; }

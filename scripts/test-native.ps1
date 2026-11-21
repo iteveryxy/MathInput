@@ -35,7 +35,11 @@ try {
     if (Test-Path -LiteralPath 'reports\native-integration.json') {
         $taskReport = Get-Content -LiteralPath 'reports\native-integration.json' -Raw -Encoding UTF8 | ConvertFrom-Json
         $taskReport | Add-Member -NotePropertyName bridgeSourceSha256 -NotePropertyValue $taskBridgeHash -Force
-        $taskReport | Add-Member -NotePropertyName releaseExeSha256 -NotePropertyValue (Get-FileHash -LiteralPath 'release\MathInput.exe' -Algorithm SHA256).Hash -Force
+        $taskVersion = (Get-Content -LiteralPath 'package.json' -Raw -Encoding UTF8 | ConvertFrom-Json).version
+        $taskReleaseExe = Join-Path $taskRoot ('release\v' + $taskVersion + '\MathInput.exe')
+        if (-not (Test-Path -LiteralPath $taskReleaseExe)) { $taskReleaseExe = Join-Path $taskRoot 'release\MathInput.exe' }
+        $taskReport | Add-Member -NotePropertyName releaseExeSha256 -NotePropertyValue (Get-FileHash -LiteralPath $taskReleaseExe -Algorithm SHA256).Hash -Force
+        $taskReport | Add-Member -NotePropertyName releaseExe -NotePropertyValue $taskReleaseExe -Force
         $taskReport | ConvertTo-Json -Depth 12 | Set-Content -LiteralPath 'reports\native-integration.json' -Encoding utf8
     }
     if ($taskExit -ne 0 -or -not $taskReport -or -not $taskReport.success -or $taskReport.passed -ne 4 -or $taskReport.expected -ne 4 -or $taskReport.skipped -ne 0) {

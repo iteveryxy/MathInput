@@ -1,4 +1,4 @@
-# Math Input v0.2 Windows 构建与交付
+# Math Input v0.3 Windows 构建与交付
 
 ## 前置条件
 
@@ -20,7 +20,7 @@ npm run desktop:build
 ./scripts/package.ps1
 ```
 
-默认生成 `src-tauri/target/release/math-input.exe`；交付副本是 `release/MathInput.exe`。这个文件已包含前端代码、数学字体、图标和静态样式。复制 EXE 到其他目录也可运行，WebView2 用户数据仍使用当前用户的应用数据目录；这里的“便携”指无需安装的 EXE，不表示设置随 EXE 目录移动。
+默认生成 `src-tauri/target/release/math-input.exe`；正式交付副本是 `release/v0.3.0/MathInput.exe`，根目录 `release/MathInput.exe` 是便捷副本。这个文件已包含前端代码、数学字体、图标和静态样式。复制 EXE 到其他目录也可运行，WebView2 用户数据仍使用当前用户的应用数据目录；这里的“便携”指无需安装的 EXE，不表示设置随 EXE 目录移动。
 
 首次构建需要下载 npm 与 Cargo 依赖；之后可使用现有缓存。不要在没有缓存的新机器上承诺离线构建。生产运行不需要开发服务器或开发工具链。
 
@@ -66,8 +66,12 @@ Windows 可能不允许后台进程取得前台；交互模式最多等待 120 �
 
 ## 构建说明
 
-`package.ps1` 只复制当前已构建文件并生成 SHA-256，不代替编译或测试。报告、文档和版权说明一起放入 `release/`，可复核源文件与交付文件的哈希。大型 MathLive JavaScript 块的 Vite 体积提示是资源大小提示，不是构建错误；离线数学编辑库约 0.86 MB，压缩后约 0.24 MB。
+`package.ps1` 只复制当前已构建文件并生成 SHA-256，不代替编译或测试。报告、文档、示例包和版权说明一起放入版本化目录 `release/v0.3.0/`，压缩包位于 `release/`。运行中的旧 EXE 若占用根目录便捷副本，会保留该文件并在 current-release.json 记录未更新；版本化目录和对应 SHA256SUMS.txt 为准。大型 MathLive JavaScript 块的 Vite 体积提示是资源大小提示，不是构建错误；离线数学编辑库约 0.87 MB，压缩后约 0.25 MB。
 
-v0.2 的版本化压缩包为 `release/MathInput-0.2.0-win64.zip`，文件名从 package.json 读取。前端、Cargo 与 Tauri 配置的版本均为 0.2.0，应用标识保持不变，使 v0.1 草稿、别名和设置可继续使用。旧设置自动补上 85% 缩放与紧凑模式，不清空用户数据。
+v0.3 的版本化压缩包为 `release/MathInput-0.3.0-win64.zip`，文件名从 package.json 读取。前端、Cargo 与 Tauri 配置版本为 0.3.0，应用标识 local.mathinput.desktop 保持不变；旧设置、草稿和结果存储键未更换。公式包使用新的 formula-packs.json，用户库不会被示例包或版本更新覆盖。
 
-本轮开始前的可恢复检查点在 `.local/checkpoints/v0.1-20261028-161007/`，包括 v0.1 可运行 EXE、原生报告和源码。`sources.zip` 是原始比较存档，`sources-restorable.zip` 保留前后端原目录层级并补入未修改的图标/构建文件，恢复时应解压后者到新目录；`RESTORE.txt` 有简要说明。没有初始化或推送远程仓库，也没有为本轮添加新前端依赖。
+交付包包含 formula-packs/linear-algebra.mathpack.json 和公开规范及 JSON Schema。新增 Rust 依赖为官方 tauri-plugin-dialog 及其文件对话框依赖；没有新增 npm 依赖或前端文件系统权限。Cargo.lock 固定实际解析版本，首次构建需要下载这些依赖，之后可离线构建。
+
+v0.3 开发前已按任务书初始化本地 Git 并提交 v0.2 检查点：061c887057d387ae8a5191f00330ff86a6df1f5d，标签 checkpoint-v0.2-20261028。额外备份目录 .local/checkpoints/v0.2-before-formula-packs 包含 sources.zip、原 EXE、原交付包和 RESTORE.json。恢复时解压到新目录，或先查看该标签；不应直接丢弃当前改动。没有创建远程仓库或推送代码。
+
+旧版检查点 .local/checkpoints/v0.1-20261028-161007 仍保留。其 sources-restorable.zip 是可恢复源码，RESTORE.txt 记录方法；它与新 v0.2 Git 检查点互不覆盖。

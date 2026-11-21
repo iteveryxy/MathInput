@@ -8,6 +8,7 @@ Math Input includes open-source dependencies. Original notices remain in npm/Car
 | Cortex Compute Engine 0.58.0 (MathLive dependency) | MIT | https://github.com/cortex-js/compute-engine |
 | KaTeX fonts bundled by MathLive | MIT | https://github.com/KaTeX/KaTeX |
 | Tauri 2 and official plugins | MIT or Apache-2.0 | https://github.com/tauri-apps |
+| rfd 0.17.2 (native file dialogs) | MIT | https://github.com/PolyMeilex/rfd |
 | windows / windows-sys Rust crates | MIT or Apache-2.0 | https://github.com/microsoft/windows-rs |
 | Vite, Vitest (build/test) | MIT | https://github.com/vitejs |
 | TypeScript (build) | Apache-2.0 | https://github.com/microsoft/TypeScript |

@@ -1,0 +1,1722 @@
+{
+  "schemaVersion": 1,
+  "id": "math-notation",
+  "name": "通用数学记号",
+  "version": "1.0.0",
+  "author": "Math Input",
+  "description": "高等数学与线性代数共用的希腊字母、数集、集合运算、逻辑量词、关系、区间、括号和常用标记。",
+  "snippets": [
+    {
+      "id": "gamma",
+      "command": "gamma",
+      "aliases": [],
+      "name": "伽马",
+      "description": "伽马",
+      "latex": "\\gamma",
+      "parameters": []
+    },
+    {
+      "id": "delta",
+      "command": "delta",
+      "aliases": [],
+      "name": "德尔塔",
+      "description": "德尔塔",
+      "latex": "\\delta",
+      "parameters": []
+    },
+    {
+      "id": "epsilon",
+      "command": "epsilon",
+      "aliases": [],
+      "name": "艾普西龙",
+      "description": "艾普西龙",
+      "latex": "\\epsilon",
+      "parameters": []
+    },
+    {
+      "id": "zeta",
+      "command": "zeta",
+      "aliases": [],
+      "name": "泽塔",
+      "description": "泽塔",
+      "latex": "\\zeta",
+      "parameters": []
+    },
+    {
+      "id": "eta",
+      "command": "eta",
+      "aliases": [],
+      "name": "伊塔",
+      "description": "伊塔",
+      "latex": "\\eta",
+      "parameters": []
+    },
+    {
+      "id": "iota",
+      "command": "iota",
+      "aliases": [],
+      "name": "约塔",
+      "description": "约塔",
+      "latex": "\\iota",
+      "parameters": []
+    },
+    {
+      "id": "kappa",
+      "command": "kappa",
+      "aliases": [],
+      "name": "卡帕",
+      "description": "卡帕",
+      "latex": "\\kappa",
+      "parameters": []
+    },
+    {
+      "id": "lambda",
+      "command": "lambda",
+      "aliases": [],
+      "name": "拉姆达",
+      "description": "拉姆达",
+      "latex": "\\lambda",
+      "parameters": []
+    },
+    {
+      "id": "mu",
+      "command": "mu",
+      "aliases": [],
+      "name": "缪",
+      "description": "缪",
+      "latex": "\\mu",
+      "parameters": []
+    },
+    {
+      "id": "nu",
+      "command": "nu",
+      "aliases": [],
+      "name": "纽",
+      "description": "纽",
+      "latex": "\\nu",
+      "parameters": []
+    },
+    {
+      "id": "xi",
+      "command": "xi",
+      "aliases": [],
+      "name": "克西",
+      "description": "克西",
+      "latex": "\\xi",
+      "parameters": []
+    },
+    {
+      "id": "omicron",
+      "command": "omicron",
+      "aliases": [],
+      "name": "奥密克戎",
+      "description": "奥密克戎",
+      "latex": "\\omicron",
+      "parameters": []
+    },
+    {
+      "id": "rho",
+      "command": "rho",
+      "aliases": [],
+      "name": "柔",
+      "description": "柔",
+      "latex": "\\rho",
+      "parameters": []
+    },
+    {
+      "id": "greeksigma",
+      "command": "greeksigma",
+      "aliases": [
+        "xigema"
+      ],
+      "name": "西格玛",
+      "description": "西格玛",
+      "latex": "\\sigma",
+      "parameters": []
+    },
+    {
+      "id": "tau",
+      "command": "tau",
+      "aliases": [],
+      "name": "陶",
+      "description": "陶",
+      "latex": "\\tau",
+      "parameters": []
+    },
+    {
+      "id": "upsilon",
+      "command": "upsilon",
+      "aliases": [],
+      "name": "宇普西龙",
+      "description": "宇普西龙",
+      "latex": "\\upsilon",
+      "parameters": []
+    },
+    {
+      "id": "phi",
+      "command": "phi",
+      "aliases": [],
+      "name": "斐",
+      "description": "斐",
+      "latex": "\\phi",
+      "parameters": []
+    },
+    {
+      "id": "chi",
+      "command": "chi",
+      "aliases": [],
+      "name": "开",
+      "description": "开",
+      "latex": "\\chi",
+      "parameters": []
+    },
+    {
+      "id": "psi",
+      "command": "psi",
+      "aliases": [],
+      "name": "普西",
+      "description": "普西",
+      "latex": "\\psi",
+      "parameters": []
+    },
+    {
+      "id": "omega",
+      "command": "omega",
+      "aliases": [],
+      "name": "欧米伽",
+      "description": "欧米伽",
+      "latex": "\\omega",
+      "parameters": []
+    },
+    {
+      "id": "varepsilon",
+      "command": "varepsilon",
+      "aliases": [],
+      "name": "变体 ε",
+      "description": "变体 ε",
+      "latex": "\\varepsilon",
+      "parameters": []
+    },
+    {
+      "id": "vartheta",
+      "command": "vartheta",
+      "aliases": [],
+      "name": "变体 ϑ",
+      "description": "变体 ϑ",
+      "latex": "\\vartheta",
+      "parameters": []
+    },
+    {
+      "id": "varkappa",
+      "command": "varkappa",
+      "aliases": [],
+      "name": "变体 ϰ",
+      "description": "变体 ϰ",
+      "latex": "\\varkappa",
+      "parameters": []
+    },
+    {
+      "id": "varpi",
+      "command": "varpi",
+      "aliases": [],
+      "name": "变体 ϖ",
+      "description": "变体 ϖ",
+      "latex": "\\varpi",
+      "parameters": []
+    },
+    {
+      "id": "varrho",
+      "command": "varrho",
+      "aliases": [],
+      "name": "变体 ϱ",
+      "description": "变体 ϱ",
+      "latex": "\\varrho",
+      "parameters": []
+    },
+    {
+      "id": "varsigma",
+      "command": "varsigma",
+      "aliases": [],
+      "name": "变体 ς",
+      "description": "变体 ς",
+      "latex": "\\varsigma",
+      "parameters": []
+    },
+    {
+      "id": "varphi",
+      "command": "varphi",
+      "aliases": [],
+      "name": "变体 φ",
+      "description": "变体 φ",
+      "latex": "\\varphi",
+      "parameters": []
+    },
+    {
+      "id": "biggamma",
+      "command": "biggamma",
+      "aliases": [
+        "uppergamma"
+      ],
+      "name": "Gamma（大写希腊字母）",
+      "description": "Gamma（大写希腊字母）",
+      "latex": "\\Gamma",
+      "parameters": []
+    },
+    {
+      "id": "bigdelta",
+      "command": "bigdelta",
+      "aliases": [
+        "upperdelta"
+      ],
+      "name": "Delta（大写希腊字母）",
+      "description": "Delta（大写希腊字母）",
+      "latex": "\\Delta",
+      "parameters": []
+    },
+    {
+      "id": "bigtheta",
+      "command": "bigtheta",
+      "aliases": [
+        "uppertheta"
+      ],
+      "name": "Theta（大写希腊字母）",
+      "description": "Theta（大写希腊字母）",
+      "latex": "\\Theta",
+      "parameters": []
+    },
+    {
+      "id": "biglambda",
+      "command": "biglambda",
+      "aliases": [
+        "upperlambda"
+      ],
+      "name": "Lambda（大写希腊字母）",
+      "description": "Lambda（大写希腊字母）",
+      "latex": "\\Lambda",
+      "parameters": []
+    },
+    {
+      "id": "bigxi",
+      "command": "bigxi",
+      "aliases": [
+        "upperxi"
+      ],
+      "name": "Xi（大写希腊字母）",
+      "description": "Xi（大写希腊字母）",
+      "latex": "\\Xi",
+      "parameters": []
+    },
+    {
+      "id": "bigpi",
+      "command": "bigpi",
+      "aliases": [
+        "upperpi"
+      ],
+      "name": "Pi（大写希腊字母）",
+      "description": "Pi（大写希腊字母）",
+      "latex": "\\Pi",
+      "parameters": []
+    },
+    {
+      "id": "bigsigma",
+      "command": "bigsigma",
+      "aliases": [
+        "uppersigma"
+      ],
+      "name": "Sigma（大写希腊字母）",
+      "description": "Sigma（大写希腊字母）",
+      "latex": "\\Sigma",
+      "parameters": []
+    },
+    {
+      "id": "bigupsilon",
+      "command": "bigupsilon",
+      "aliases": [
+        "upperupsilon"
+      ],
+      "name": "Upsilon（大写希腊字母）",
+      "description": "Upsilon（大写希腊字母）",
+      "latex": "\\Upsilon",
+      "parameters": []
+    },
+    {
+      "id": "bigphi",
+      "command": "bigphi",
+      "aliases": [
+        "upperphi"
+      ],
+      "name": "Phi（大写希腊字母）",
+      "description": "Phi（大写希腊字母）",
+      "latex": "\\Phi",
+      "parameters": []
+    },
+    {
+      "id": "bigpsi",
+      "command": "bigpsi",
+      "aliases": [
+        "upperpsi"
+      ],
+      "name": "Psi（大写希腊字母）",
+      "description": "Psi（大写希腊字母）",
+      "latex": "\\Psi",
+      "parameters": []
+    },
+    {
+      "id": "bigomega",
+      "command": "bigomega",
+      "aliases": [
+        "upperomega"
+      ],
+      "name": "Omega（大写希腊字母）",
+      "description": "Omega（大写希腊字母）",
+      "latex": "\\Omega",
+      "parameters": []
+    },
+    {
+      "id": "infty",
+      "command": "infty",
+      "aliases": [
+        "infinity",
+        "wuqiong"
+      ],
+      "name": "无穷大",
+      "description": "无穷大",
+      "latex": "\\infty",
+      "parameters": []
+    },
+    {
+      "id": "euler",
+      "command": "euler",
+      "aliases": [],
+      "name": "自然底数 e",
+      "description": "自然底数 e",
+      "latex": "\\mathrm{e}",
+      "parameters": []
+    },
+    {
+      "id": "imagunit",
+      "command": "imagunit",
+      "aliases": [
+        "xushudanwei"
+      ],
+      "name": "虚数单位 i",
+      "description": "虚数单位 i",
+      "latex": "\\mathrm{i}",
+      "parameters": []
+    },
+    {
+      "id": "partialsign",
+      "command": "partialsign",
+      "aliases": [],
+      "name": "偏微分符号",
+      "description": "偏微分符号",
+      "latex": "\\partial",
+      "parameters": []
+    },
+    {
+      "id": "nabla",
+      "command": "nabla",
+      "aliases": [],
+      "name": "倒三角微分算子",
+      "description": "倒三角微分算子",
+      "latex": "\\nabla",
+      "parameters": []
+    },
+    {
+      "id": "naturals",
+      "command": "naturals",
+      "aliases": [
+        "ziranjishu"
+      ],
+      "name": "自然数集",
+      "description": "自然数集",
+      "latex": "\\mathbb N",
+      "parameters": []
+    },
+    {
+      "id": "integers",
+      "command": "integers",
+      "aliases": [
+        "zhengshuji"
+      ],
+      "name": "整数集",
+      "description": "整数集",
+      "latex": "\\mathbb Z",
+      "parameters": []
+    },
+    {
+      "id": "rationals",
+      "command": "rationals",
+      "aliases": [
+        "youlijishu"
+      ],
+      "name": "有理数集",
+      "description": "有理数集",
+      "latex": "\\mathbb Q",
+      "parameters": []
+    },
+    {
+      "id": "reals",
+      "command": "reals",
+      "aliases": [
+        "shishuji"
+      ],
+      "name": "实数集",
+      "description": "实数集",
+      "latex": "\\mathbb R",
+      "parameters": []
+    },
+    {
+      "id": "complexes",
+      "command": "complexes",
+      "aliases": [
+        "fushuji"
+      ],
+      "name": "复数集",
+      "description": "复数集",
+      "latex": "\\mathbb C",
+      "parameters": []
+    },
+    {
+      "id": "emptyset",
+      "command": "emptyset",
+      "aliases": [
+        "kongji"
+      ],
+      "name": "空集",
+      "description": "空集",
+      "latex": "\\varnothing",
+      "parameters": []
+    },
+    {
+      "id": "forall",
+      "command": "forall",
+      "aliases": [
+        "renyi"
+      ],
+      "name": "任意、全称量词",
+      "description": "任意、全称量词",
+      "latex": "\\forall",
+      "parameters": []
+    },
+    {
+      "id": "exists",
+      "command": "exists",
+      "aliases": [
+        "cunzai"
+      ],
+      "name": "存在量词",
+      "description": "存在量词",
+      "latex": "\\exists",
+      "parameters": []
+    },
+    {
+      "id": "nexists",
+      "command": "nexists",
+      "aliases": [
+        "bucunzai"
+      ],
+      "name": "不存在量词",
+      "description": "不存在量词",
+      "latex": "\\nexists",
+      "parameters": []
+    },
+    {
+      "id": "implies",
+      "command": "implies",
+      "aliases": [
+        "tuichu"
+      ],
+      "name": "蕴含",
+      "description": "蕴含",
+      "latex": "\\Longrightarrow",
+      "parameters": []
+    },
+    {
+      "id": "iff",
+      "command": "iff",
+      "aliases": [
+        "dangqiejindang"
+      ],
+      "name": "当且仅当",
+      "description": "当且仅当",
+      "latex": "\\Longleftrightarrow",
+      "parameters": []
+    },
+    {
+      "id": "logicaland",
+      "command": "logicaland",
+      "aliases": [
+        "luojiyu"
+      ],
+      "name": "逻辑与",
+      "description": "逻辑与",
+      "latex": "\\land",
+      "parameters": []
+    },
+    {
+      "id": "logicalor",
+      "command": "logicalor",
+      "aliases": [
+        "luojihuo"
+      ],
+      "name": "逻辑或",
+      "description": "逻辑或",
+      "latex": "\\lor",
+      "parameters": []
+    },
+    {
+      "id": "logicalnot",
+      "command": "logicalnot",
+      "aliases": [
+        "luojifei"
+      ],
+      "name": "逻辑非",
+      "description": "逻辑非",
+      "latex": "\\neg",
+      "parameters": []
+    },
+    {
+      "id": "therefore",
+      "command": "therefore",
+      "aliases": [
+        "suoyi"
+      ],
+      "name": "所以",
+      "description": "所以",
+      "latex": "\\therefore",
+      "parameters": []
+    },
+    {
+      "id": "because",
+      "command": "because",
+      "aliases": [
+        "yinwei"
+      ],
+      "name": "因为",
+      "description": "因为",
+      "latex": "\\because",
+      "parameters": []
+    },
+    {
+      "id": "memberof",
+      "command": "memberof",
+      "aliases": [
+        "shuyu"
+      ],
+      "name": "属于",
+      "description": "属于",
+      "latex": "\\in",
+      "parameters": []
+    },
+    {
+      "id": "notmember",
+      "command": "notmember",
+      "aliases": [
+        "bushuyu"
+      ],
+      "name": "不属于",
+      "description": "不属于",
+      "latex": "\\notin",
+      "parameters": []
+    },
+    {
+      "id": "subset",
+      "command": "subset",
+      "aliases": [
+        "zhenziji"
+      ],
+      "name": "真子集",
+      "description": "真子集",
+      "latex": "\\subsetneq",
+      "parameters": []
+    },
+    {
+      "id": "subseteq",
+      "command": "subseteq",
+      "aliases": [
+        "ziji"
+      ],
+      "name": "子集",
+      "description": "子集",
+      "latex": "\\subseteq",
+      "parameters": []
+    },
+    {
+      "id": "supseteq",
+      "command": "supseteq",
+      "aliases": [
+        "chaoji"
+      ],
+      "name": "超集",
+      "description": "超集",
+      "latex": "\\supseteq",
+      "parameters": []
+    },
+    {
+      "id": "union",
+      "command": "union",
+      "aliases": [
+        "bingji"
+      ],
+      "name": "并集",
+      "description": "并集",
+      "latex": "\\cup",
+      "parameters": []
+    },
+    {
+      "id": "intersection",
+      "command": "intersection",
+      "aliases": [
+        "jiaoji"
+      ],
+      "name": "交集",
+      "description": "交集",
+      "latex": "\\cap",
+      "parameters": []
+    },
+    {
+      "id": "setminus",
+      "command": "setminus",
+      "aliases": [
+        "chaji"
+      ],
+      "name": "集合差",
+      "description": "集合差",
+      "latex": "\\setminus",
+      "parameters": []
+    },
+    {
+      "id": "maps",
+      "command": "maps",
+      "aliases": [
+        "youjiantou"
+      ],
+      "name": "右箭头",
+      "description": "右箭头",
+      "latex": "\\to",
+      "parameters": []
+    },
+    {
+      "id": "mapsto",
+      "command": "mapsto",
+      "aliases": [
+        "yingshedao"
+      ],
+      "name": "映射到",
+      "description": "映射到",
+      "latex": "\\mapsto",
+      "parameters": []
+    },
+    {
+      "id": "hookto",
+      "command": "hookto",
+      "aliases": [],
+      "name": "嵌入映射箭头",
+      "description": "嵌入映射箭头",
+      "latex": "\\hookrightarrow",
+      "parameters": []
+    },
+    {
+      "id": "onto",
+      "command": "onto",
+      "aliases": [
+        "manshe"
+      ],
+      "name": "满射箭头",
+      "description": "满射箭头",
+      "latex": "\\twoheadrightarrow",
+      "parameters": []
+    },
+    {
+      "id": "neq",
+      "command": "neq",
+      "aliases": [
+        "budengyu"
+      ],
+      "name": "不等于",
+      "description": "不等于",
+      "latex": "\\ne",
+      "parameters": []
+    },
+    {
+      "id": "leq",
+      "command": "leq",
+      "aliases": [
+        "xiaoyudengyu"
+      ],
+      "name": "小于等于",
+      "description": "小于等于",
+      "latex": "\\le",
+      "parameters": []
+    },
+    {
+      "id": "geq",
+      "command": "geq",
+      "aliases": [
+        "dayudengyu"
+      ],
+      "name": "大于等于",
+      "description": "大于等于",
+      "latex": "\\ge",
+      "parameters": []
+    },
+    {
+      "id": "approx",
+      "command": "approx",
+      "aliases": [
+        "yuedengyu"
+      ],
+      "name": "约等于",
+      "description": "约等于",
+      "latex": "\\approx",
+      "parameters": []
+    },
+    {
+      "id": "equiv",
+      "command": "equiv",
+      "aliases": [
+        "hengdeng"
+      ],
+      "name": "恒等或同余",
+      "description": "恒等或同余",
+      "latex": "\\equiv",
+      "parameters": []
+    },
+    {
+      "id": "propto",
+      "command": "propto",
+      "aliases": [
+        "chengbili"
+      ],
+      "name": "成比例",
+      "description": "成比例",
+      "latex": "\\propto",
+      "parameters": []
+    },
+    {
+      "id": "cong",
+      "command": "cong",
+      "aliases": [
+        "tonggou"
+      ],
+      "name": "同构或全等",
+      "description": "同构或全等",
+      "latex": "\\cong",
+      "parameters": []
+    },
+    {
+      "id": "gg",
+      "command": "gg",
+      "aliases": [
+        "yuandayu"
+      ],
+      "name": "远大于",
+      "description": "远大于",
+      "latex": "\\gg",
+      "parameters": []
+    },
+    {
+      "id": "ll",
+      "command": "ll",
+      "aliases": [
+        "yuanxiaoyu"
+      ],
+      "name": "远小于",
+      "description": "远小于",
+      "latex": "\\ll",
+      "parameters": []
+    },
+    {
+      "id": "pm",
+      "command": "pm",
+      "aliases": [
+        "zhengfuhao"
+      ],
+      "name": "正负号",
+      "description": "正负号",
+      "latex": "\\pm",
+      "parameters": []
+    },
+    {
+      "id": "mp",
+      "command": "mp",
+      "aliases": [
+        "fuzhenghao"
+      ],
+      "name": "负正号",
+      "description": "负正号",
+      "latex": "\\mp",
+      "parameters": []
+    },
+    {
+      "id": "times",
+      "command": "times",
+      "aliases": [
+        "chenghao"
+      ],
+      "name": "叉号或乘号",
+      "description": "叉号或乘号",
+      "latex": "\\times",
+      "parameters": []
+    },
+    {
+      "id": "cdot",
+      "command": "cdot",
+      "aliases": [
+        "diancheng"
+      ],
+      "name": "点乘记号",
+      "description": "点乘记号",
+      "latex": "\\cdot",
+      "parameters": []
+    },
+    {
+      "id": "perp",
+      "command": "perp",
+      "aliases": [
+        "chuizhifu"
+      ],
+      "name": "垂直记号",
+      "description": "垂直记号",
+      "latex": "\\perp",
+      "parameters": []
+    },
+    {
+      "id": "parallel",
+      "command": "parallel",
+      "aliases": [
+        "pingxing"
+      ],
+      "name": "平行记号",
+      "description": "平行记号",
+      "latex": "\\parallel",
+      "parameters": []
+    },
+    {
+      "id": "angle",
+      "command": "angle",
+      "aliases": [
+        "jiao"
+      ],
+      "name": "角",
+      "description": "角",
+      "latex": "\\angle",
+      "parameters": []
+    },
+    {
+      "id": "degree",
+      "command": "degree",
+      "aliases": [
+        "dushu"
+      ],
+      "name": "度数符号",
+      "description": "度数符号",
+      "latex": "{}^\\circ",
+      "parameters": []
+    },
+    {
+      "id": "tensor",
+      "command": "tensor",
+      "aliases": [
+        "zhangliangji"
+      ],
+      "name": "张量积记号",
+      "description": "张量积记号",
+      "latex": "\\otimes",
+      "parameters": []
+    },
+    {
+      "id": "oplus",
+      "command": "oplus",
+      "aliases": [
+        "zhihefu"
+      ],
+      "name": "直和记号",
+      "description": "直和记号",
+      "latex": "\\oplus",
+      "parameters": []
+    },
+    {
+      "id": "ldots",
+      "command": "ldots",
+      "aliases": [
+        "shengluehao"
+      ],
+      "name": "底部省略号",
+      "description": "底部省略号",
+      "latex": "\\ldots",
+      "parameters": []
+    },
+    {
+      "id": "cdots",
+      "command": "cdots",
+      "aliases": [],
+      "name": "水平居中省略号",
+      "description": "水平居中省略号",
+      "latex": "\\cdots",
+      "parameters": []
+    },
+    {
+      "id": "vdots",
+      "command": "vdots",
+      "aliases": [],
+      "name": "竖向省略号",
+      "description": "竖向省略号",
+      "latex": "\\vdots",
+      "parameters": []
+    },
+    {
+      "id": "ddots",
+      "command": "ddots",
+      "aliases": [],
+      "name": "斜向省略号",
+      "description": "斜向省略号",
+      "latex": "\\ddots",
+      "parameters": []
+    },
+    {
+      "id": "abs",
+      "command": "abs",
+      "aliases": [
+        "jueduizhi"
+      ],
+      "name": "绝对值或复数模",
+      "description": "绝对值或复数模",
+      "latex": "\\left|{{body}}\\right|",
+      "parameters": [
+        {
+          "id": "body",
+          "name": "表达式",
+          "description": "表达式",
+          "defaultValue": "x"
+        }
+      ],
+      "wrapTarget": "body"
+    },
+    {
+      "id": "floor",
+      "command": "floor",
+      "aliases": [
+        "xiangxiaquzheng"
+      ],
+      "name": "向下取整",
+      "description": "向下取整",
+      "latex": "\\left\\lfloor{{body}}\\right\\rfloor",
+      "parameters": [
+        {
+          "id": "body",
+          "name": "表达式",
+          "description": "表达式",
+          "defaultValue": "x"
+        }
+      ],
+      "wrapTarget": "body"
+    },
+    {
+      "id": "ceil",
+      "command": "ceil",
+      "aliases": [
+        "xiangshangquzheng"
+      ],
+      "name": "向上取整",
+      "description": "向上取整",
+      "latex": "\\left\\lceil{{body}}\\right\\rceil",
+      "parameters": [
+        {
+          "id": "body",
+          "name": "表达式",
+          "description": "表达式",
+          "defaultValue": "x"
+        }
+      ],
+      "wrapTarget": "body"
+    },
+    {
+      "id": "parens",
+      "command": "parens",
+      "aliases": [
+        "yuankuohao"
+      ],
+      "name": "自动伸缩圆括号",
+      "description": "自动伸缩圆括号",
+      "latex": "\\left({{body}}\\right)",
+      "parameters": [
+        {
+          "id": "body",
+          "name": "表达式",
+          "description": "表达式",
+          "defaultValue": "x"
+        }
+      ],
+      "wrapTarget": "body"
+    },
+    {
+      "id": "brackets",
+      "command": "brackets",
+      "aliases": [
+        "fangkuohao"
+      ],
+      "name": "自动伸缩方括号",
+      "description": "自动伸缩方括号",
+      "latex": "\\left[{{body}}\\right]",
+      "parameters": [
+        {
+          "id": "body",
+          "name": "表达式",
+          "description": "表达式",
+          "defaultValue": "x"
+        }
+      ],
+      "wrapTarget": "body"
+    },
+    {
+      "id": "braces",
+      "command": "braces",
+      "aliases": [
+        "huakuohao"
+      ],
+      "name": "自动伸缩花括号",
+      "description": "自动伸缩花括号",
+      "latex": "\\left\\{ {{body}} \\right\\}",
+      "parameters": [
+        {
+          "id": "body",
+          "name": "表达式",
+          "description": "表达式",
+          "defaultValue": "x"
+        }
+      ],
+      "wrapTarget": "body"
+    },
+    {
+      "id": "conjugate",
+      "command": "conjugate",
+      "aliases": [
+        "gonge"
+      ],
+      "name": "共轭或上划线",
+      "description": "共轭或上划线",
+      "latex": "\\overline{ {{body}} }",
+      "parameters": [
+        {
+          "id": "body",
+          "name": "表达式",
+          "description": "表达式",
+          "defaultValue": "x"
+        }
+      ],
+      "wrapTarget": "body"
+    },
+    {
+      "id": "hat",
+      "command": "hat",
+      "aliases": [
+        "maozi"
+      ],
+      "name": "顶部帽记号",
+      "description": "顶部帽记号",
+      "latex": "\\widehat{ {{body}} }",
+      "parameters": [
+        {
+          "id": "body",
+          "name": "表达式",
+          "description": "表达式",
+          "defaultValue": "x"
+        }
+      ],
+      "wrapTarget": "body"
+    },
+    {
+      "id": "tilde",
+      "command": "tilde",
+      "aliases": [
+        "bolangxian"
+      ],
+      "name": "顶部波浪线",
+      "description": "顶部波浪线",
+      "latex": "\\widetilde{ {{body}} }",
+      "parameters": [
+        {
+          "id": "body",
+          "name": "表达式",
+          "description": "表达式",
+          "defaultValue": "x"
+        }
+      ],
+      "wrapTarget": "body"
+    },
+    {
+      "id": "factorial",
+      "command": "factorial",
+      "aliases": [
+        "jiecheng"
+      ],
+      "name": "阶乘",
+      "description": "阶乘",
+      "latex": "{{body}}!",
+      "parameters": [
+        {
+          "id": "body",
+          "name": "表达式",
+          "description": "表达式",
+          "defaultValue": "n"
+        }
+      ],
+      "wrapTarget": "body"
+    },
+    {
+      "id": "realpart",
+      "command": "realpart",
+      "aliases": [
+        "shibu"
+      ],
+      "name": "复数实部",
+      "description": "复数实部",
+      "latex": "\\operatorname{Re}\\left({{body}}\\right)",
+      "parameters": [
+        {
+          "id": "body",
+          "name": "表达式",
+          "description": "表达式",
+          "defaultValue": "z"
+        }
+      ],
+      "wrapTarget": "body"
+    },
+    {
+      "id": "imagpart",
+      "command": "imagpart",
+      "aliases": [
+        "xubu"
+      ],
+      "name": "复数虚部",
+      "description": "复数虚部",
+      "latex": "\\operatorname{Im}\\left({{body}}\\right)",
+      "parameters": [
+        {
+          "id": "body",
+          "name": "表达式",
+          "description": "表达式",
+          "defaultValue": "z"
+        }
+      ],
+      "wrapTarget": "body"
+    },
+    {
+      "id": "complexarg",
+      "command": "complexarg",
+      "aliases": [
+        "fujiao"
+      ],
+      "name": "复数辐角",
+      "description": "复数辐角",
+      "latex": "\\arg\\left({{body}}\\right)",
+      "parameters": [
+        {
+          "id": "body",
+          "name": "表达式",
+          "description": "表达式",
+          "defaultValue": "z"
+        }
+      ],
+      "wrapTarget": "body"
+    },
+    {
+      "id": "minof",
+      "command": "minof",
+      "aliases": [
+        "zuixiaozhi"
+      ],
+      "name": "最小值",
+      "description": "最小值",
+      "latex": "\\min\\left\\{ {{body}}\\right\\}",
+      "parameters": [
+        {
+          "id": "body",
+          "name": "表达式",
+          "description": "表达式",
+          "defaultValue": "x,y"
+        }
+      ],
+      "wrapTarget": "body"
+    },
+    {
+      "id": "maxof",
+      "command": "maxof",
+      "aliases": [
+        "zuidazhi"
+      ],
+      "name": "最大值",
+      "description": "最大值",
+      "latex": "\\max\\left\\{ {{body}}\\right\\}",
+      "parameters": [
+        {
+          "id": "body",
+          "name": "表达式",
+          "description": "表达式",
+          "defaultValue": "x,y"
+        }
+      ],
+      "wrapTarget": "body"
+    },
+    {
+      "id": "sup",
+      "command": "sup",
+      "aliases": [
+        "shangquejie"
+      ],
+      "name": "上确界",
+      "description": "上确界",
+      "latex": "\\sup\\left({{body}}\\right)",
+      "parameters": [
+        {
+          "id": "body",
+          "name": "表达式",
+          "description": "表达式",
+          "defaultValue": "A"
+        }
+      ],
+      "wrapTarget": "body"
+    },
+    {
+      "id": "inf",
+      "command": "inf",
+      "aliases": [
+        "xiaquejie"
+      ],
+      "name": "下确界",
+      "description": "下确界",
+      "latex": "\\inf\\left({{body}}\\right)",
+      "parameters": [
+        {
+          "id": "body",
+          "name": "表达式",
+          "description": "表达式",
+          "defaultValue": "A"
+        }
+      ],
+      "wrapTarget": "body"
+    },
+    {
+      "id": "complement",
+      "command": "complement",
+      "aliases": [
+        "buji"
+      ],
+      "name": "补集",
+      "description": "补集",
+      "latex": "{{body}}^{\\complement}",
+      "parameters": [
+        {
+          "id": "body",
+          "name": "表达式",
+          "description": "表达式",
+          "defaultValue": "A"
+        }
+      ],
+      "wrapTarget": "body"
+    },
+    {
+      "id": "openinterval",
+      "command": "openinterval",
+      "aliases": [
+        "kaiqujian"
+      ],
+      "name": "开区间",
+      "description": "开区间",
+      "latex": "\\left({{a}},{{b}}\\right)",
+      "parameters": [
+        {
+          "id": "a",
+          "name": "常数或左端点",
+          "description": "常数或左端点",
+          "defaultValue": "a"
+        },
+        {
+          "id": "b",
+          "name": "常数或右端点",
+          "description": "常数或右端点",
+          "defaultValue": "b"
+        }
+      ]
+    },
+    {
+      "id": "closedinterval",
+      "command": "closedinterval",
+      "aliases": [
+        "biqujian"
+      ],
+      "name": "闭区间",
+      "description": "闭区间",
+      "latex": "\\left[{{a}},{{b}}\\right]",
+      "parameters": [
+        {
+          "id": "a",
+          "name": "常数或左端点",
+          "description": "常数或左端点",
+          "defaultValue": "a"
+        },
+        {
+          "id": "b",
+          "name": "常数或右端点",
+          "description": "常数或右端点",
+          "defaultValue": "b"
+        }
+      ]
+    },
+    {
+      "id": "leftopen",
+      "command": "leftopen",
+      "aliases": [
+        "zuokaibiqujian"
+      ],
+      "name": "左开右闭区间",
+      "description": "左开右闭区间",
+      "latex": "\\left({{a}},{{b}}\\right]",
+      "parameters": [
+        {
+          "id": "a",
+          "name": "常数或左端点",
+          "description": "常数或左端点",
+          "defaultValue": "a"
+        },
+        {
+          "id": "b",
+          "name": "常数或右端点",
+          "description": "常数或右端点",
+          "defaultValue": "b"
+        }
+      ]
+    },
+    {
+      "id": "rightopen",
+      "command": "rightopen",
+      "aliases": [
+        "youkaibiqujian"
+      ],
+      "name": "左闭右开区间",
+      "description": "左闭右开区间",
+      "latex": "\\left[{{a}},{{b}}\\right)",
+      "parameters": [
+        {
+          "id": "a",
+          "name": "常数或左端点",
+          "description": "常数或左端点",
+          "defaultValue": "a"
+        },
+        {
+          "id": "b",
+          "name": "常数或右端点",
+          "description": "常数或右端点",
+          "defaultValue": "b"
+        }
+      ]
+    },
+    {
+      "id": "setbuilder",
+      "command": "setbuilder",
+      "aliases": [
+        "jijimiaoshu"
+      ],
+      "name": "集合描述记法",
+      "description": "集合描述记法",
+      "latex": "\\left\\{ {{element}}\\mid {{cond}}\\right\\}",
+      "parameters": [
+        {
+          "id": "element",
+          "name": "元素",
+          "description": "元素",
+          "defaultValue": "x"
+        },
+        {
+          "id": "cond",
+          "name": "条件",
+          "description": "条件",
+          "defaultValue": "x>0"
+        }
+      ]
+    },
+    {
+      "id": "cartesian",
+      "command": "cartesian",
+      "aliases": [
+        "dikaerji"
+      ],
+      "name": "笛卡尔积",
+      "description": "笛卡尔积",
+      "latex": "{{lhs}}\\times{{rhs}}",
+      "parameters": [
+        {
+          "id": "lhs",
+          "name": "第一个集合",
+          "description": "第一个集合",
+          "defaultValue": "A"
+        },
+        {
+          "id": "rhs",
+          "name": "第二个集合",
+          "description": "第二个集合",
+          "defaultValue": "B"
+        }
+      ]
+    },
+    {
+      "id": "bigcup",
+      "command": "bigcup",
+      "aliases": [
+        "dajihebing"
+      ],
+      "name": "带指标的并集",
+      "description": "带指标的并集",
+      "latex": "\\bigcup_{ {{lower}} }^{ {{upper}} }{{set}}",
+      "parameters": [
+        {
+          "id": "lower",
+          "name": "起始指标",
+          "description": "起始指标",
+          "defaultValue": "i=1"
+        },
+        {
+          "id": "upper",
+          "name": "末指标",
+          "description": "末指标",
+          "defaultValue": "n"
+        },
+        {
+          "id": "set",
+          "name": "集合项",
+          "description": "集合项",
+          "defaultValue": "A_i"
+        }
+      ],
+      "wrapTarget": "set"
+    },
+    {
+      "id": "bigcap",
+      "command": "bigcap",
+      "aliases": [
+        "dajihejiao"
+      ],
+      "name": "带指标的交集",
+      "description": "带指标的交集",
+      "latex": "\\bigcap_{ {{lower}} }^{ {{upper}} }{{set}}",
+      "parameters": [
+        {
+          "id": "lower",
+          "name": "起始指标",
+          "description": "起始指标",
+          "defaultValue": "i=1"
+        },
+        {
+          "id": "upper",
+          "name": "末指标",
+          "description": "末指标",
+          "defaultValue": "n"
+        },
+        {
+          "id": "set",
+          "name": "集合项",
+          "description": "集合项",
+          "defaultValue": "A_i"
+        }
+      ],
+      "wrapTarget": "set"
+    },
+    {
+      "id": "binomial",
+      "command": "binomial",
+      "aliases": [
+        "binom",
+        "zuheshu"
+      ],
+      "name": "二项式系数",
+      "description": "二项式系数",
+      "latex": "\\binom{ {{n}} }{ {{k}} }",
+      "parameters": [
+        {
+          "id": "n",
+          "name": "阶数或指标",
+          "description": "阶数或指标",
+          "defaultValue": "n"
+        },
+        {
+          "id": "k",
+          "name": "指标",
+          "description": "指标",
+          "defaultValue": "k"
+        }
+      ]
+    },
+    {
+      "id": "nthroot",
+      "command": "nthroot",
+      "aliases": [
+        "kaifang",
+        "cigenhao"
+      ],
+      "name": "n 次方根",
+      "description": "n 次方根",
+      "latex": "\\sqrt[{{n}}]{ {{body}} }",
+      "parameters": [
+        {
+          "id": "n",
+          "name": "阶数或指标",
+          "description": "阶数或指标",
+          "defaultValue": "n"
+        },
+        {
+          "id": "body",
+          "name": "表达式",
+          "description": "表达式",
+          "defaultValue": "x"
+        }
+      ],
+      "wrapTarget": "body"
+    },
+    {
+      "id": "underbrace",
+      "command": "underbrace",
+      "aliases": [
+        "xiadakuohao"
+      ],
+      "name": "带下方说明的大括号",
+      "description": "带下方说明的大括号",
+      "latex": "\\underbrace{ {{body}} }_{ {{lower}} }",
+      "parameters": [
+        {
+          "id": "body",
+          "name": "表达式",
+          "description": "表达式",
+          "defaultValue": "x"
+        },
+        {
+          "id": "lower",
+          "name": "下方说明",
+          "description": "下方说明",
+          "defaultValue": "n"
+        }
+      ],
+      "wrapTarget": "body"
+    },
+    {
+      "id": "overbrace",
+      "command": "overbrace",
+      "aliases": [
+        "shangdakuohao"
+      ],
+      "name": "带上方说明的大括号",
+      "description": "带上方说明的大括号",
+      "latex": "\\overbrace{ {{body}} }^{ {{upper}} }",
+      "parameters": [
+        {
+          "id": "body",
+          "name": "表达式",
+          "description": "表达式",
+          "defaultValue": "x"
+        },
+        {
+          "id": "upper",
+          "name": "上方说明",
+          "description": "上方说明",
+          "defaultValue": "n"
+        }
+      ],
+      "wrapTarget": "body"
+    },
+    {
+      "id": "sequence",
+      "command": "sequence",
+      "aliases": [
+        "shulie"
+      ],
+      "name": "数列记号",
+      "description": "数列记号",
+      "latex": "\\left({{body}}\\right)_{ {{lower}} }^{\\infty}",
+      "parameters": [
+        {
+          "id": "body",
+          "name": "数列通项",
+          "description": "数列通项",
+          "defaultValue": "a_n"
+        },
+        {
+          "id": "lower",
+          "name": "起始指标",
+          "description": "起始指标",
+          "defaultValue": "n=1"
+        }
+      ],
+      "wrapTarget": "body"
+    },
+    {
+      "id": "indexed",
+      "command": "indexed",
+      "aliases": [
+        "shangxiabiao"
+      ],
+      "name": "上下标",
+      "description": "上下标",
+      "latex": "{{body}}_{ {{lower}} }^{ {{upper}} }",
+      "parameters": [
+        {
+          "id": "body",
+          "name": "表达式",
+          "description": "表达式",
+          "defaultValue": "x"
+        },
+        {
+          "id": "lower",
+          "name": "下标",
+          "description": "下标",
+          "defaultValue": "i"
+        },
+        {
+          "id": "upper",
+          "name": "上标",
+          "description": "上标",
+          "defaultValue": "n"
+        }
+      ],
+      "wrapTarget": "body"
+    },
+    {
+      "id": "blackboard",
+      "command": "blackboard",
+      "aliases": [
+        "heibancuti"
+      ],
+      "name": "黑板粗体",
+      "description": "黑板粗体",
+      "latex": "\\mathbb{ {{body}} }",
+      "parameters": [
+        {
+          "id": "body",
+          "name": "字母",
+          "description": "字母",
+          "defaultValue": "R"
+        }
+      ],
+      "wrapTarget": "body"
+    },
+    {
+      "id": "calligraphic",
+      "command": "calligraphic",
+      "aliases": [
+        "shufati"
+      ],
+      "name": "书法体大写字母",
+      "description": "书法体大写字母",
+      "latex": "\\mathcal{ {{body}} }",
+      "parameters": [
+        {
+          "id": "body",
+          "name": "大写字母",
+          "description": "大写字母",
+          "defaultValue": "F"
+        }
+      ],
+      "wrapTarget": "body"
+    }
+  ]
+}

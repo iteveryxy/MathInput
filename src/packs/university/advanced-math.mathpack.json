@@ -1,0 +1,3171 @@
+{
+  "schemaVersion": 1,
+  "id": "advanced-math",
+  "name": "高等数学",
+  "version": "1.0.0",
+  "author": "Math Input",
+  "description": "函数、极限、一元与多元微积分、空间解析几何、向量场积分、级数和常微分方程。基础数学包提供根式、分式、求和、双侧极限和定积分。",
+  "snippets": [
+    {
+      "id": "cot",
+      "command": "cot",
+      "aliases": [
+        "yuqie"
+      ],
+      "name": "余切",
+      "description": "余切",
+      "latex": "\\cot\\left( {{x}} \\right)",
+      "parameters": [
+        {
+          "id": "x",
+          "name": "变量",
+          "description": "变量",
+          "defaultValue": "x"
+        }
+      ],
+      "wrapTarget": "x"
+    },
+    {
+      "id": "sec",
+      "command": "sec",
+      "aliases": [
+        "zhengge"
+      ],
+      "name": "正割",
+      "description": "正割",
+      "latex": "\\sec\\left( {{x}} \\right)",
+      "parameters": [
+        {
+          "id": "x",
+          "name": "变量",
+          "description": "变量",
+          "defaultValue": "x"
+        }
+      ],
+      "wrapTarget": "x"
+    },
+    {
+      "id": "csc",
+      "command": "csc",
+      "aliases": [
+        "yuge"
+      ],
+      "name": "余割",
+      "description": "余割",
+      "latex": "\\csc\\left( {{x}} \\right)",
+      "parameters": [
+        {
+          "id": "x",
+          "name": "变量",
+          "description": "变量",
+          "defaultValue": "x"
+        }
+      ],
+      "wrapTarget": "x"
+    },
+    {
+      "id": "arcsin",
+      "command": "arcsin",
+      "aliases": [
+        "fanzhengxian"
+      ],
+      "name": "反正弦",
+      "description": "反正弦",
+      "latex": "\\arcsin\\left( {{x}} \\right)",
+      "parameters": [
+        {
+          "id": "x",
+          "name": "变量",
+          "description": "变量",
+          "defaultValue": "x"
+        }
+      ],
+      "wrapTarget": "x"
+    },
+    {
+      "id": "arccos",
+      "command": "arccos",
+      "aliases": [
+        "fanyuxian"
+      ],
+      "name": "反余弦",
+      "description": "反余弦",
+      "latex": "\\arccos\\left( {{x}} \\right)",
+      "parameters": [
+        {
+          "id": "x",
+          "name": "变量",
+          "description": "变量",
+          "defaultValue": "x"
+        }
+      ],
+      "wrapTarget": "x"
+    },
+    {
+      "id": "arctan",
+      "command": "arctan",
+      "aliases": [
+        "fanzhengqie"
+      ],
+      "name": "反正切",
+      "description": "反正切",
+      "latex": "\\arctan\\left( {{x}} \\right)",
+      "parameters": [
+        {
+          "id": "x",
+          "name": "变量",
+          "description": "变量",
+          "defaultValue": "x"
+        }
+      ],
+      "wrapTarget": "x"
+    },
+    {
+      "id": "sinh",
+      "command": "sinh",
+      "aliases": [
+        "shuangquzhengxian"
+      ],
+      "name": "双曲正弦",
+      "description": "双曲正弦",
+      "latex": "\\sinh\\left( {{x}} \\right)",
+      "parameters": [
+        {
+          "id": "x",
+          "name": "变量",
+          "description": "变量",
+          "defaultValue": "x"
+        }
+      ],
+      "wrapTarget": "x"
+    },
+    {
+      "id": "cosh",
+      "command": "cosh",
+      "aliases": [
+        "shuangquyuxian"
+      ],
+      "name": "双曲余弦",
+      "description": "双曲余弦",
+      "latex": "\\cosh\\left( {{x}} \\right)",
+      "parameters": [
+        {
+          "id": "x",
+          "name": "变量",
+          "description": "变量",
+          "defaultValue": "x"
+        }
+      ],
+      "wrapTarget": "x"
+    },
+    {
+      "id": "tanh",
+      "command": "tanh",
+      "aliases": [
+        "shuangquzhengqie"
+      ],
+      "name": "双曲正切",
+      "description": "双曲正切",
+      "latex": "\\tanh\\left( {{x}} \\right)",
+      "parameters": [
+        {
+          "id": "x",
+          "name": "变量",
+          "description": "变量",
+          "defaultValue": "x"
+        }
+      ],
+      "wrapTarget": "x"
+    },
+    {
+      "id": "coth",
+      "command": "coth",
+      "aliases": [
+        "shuangquyuqie"
+      ],
+      "name": "双曲余切",
+      "description": "双曲余切",
+      "latex": "\\coth\\left( {{x}} \\right)",
+      "parameters": [
+        {
+          "id": "x",
+          "name": "变量",
+          "description": "变量",
+          "defaultValue": "x"
+        }
+      ],
+      "wrapTarget": "x"
+    },
+    {
+      "id": "ln",
+      "command": "ln",
+      "aliases": [
+        "ziranduishu"
+      ],
+      "name": "自然对数",
+      "description": "自然对数",
+      "latex": "\\ln\\left( {{x}} \\right)",
+      "parameters": [
+        {
+          "id": "x",
+          "name": "变量",
+          "description": "变量",
+          "defaultValue": "x"
+        }
+      ],
+      "wrapTarget": "x"
+    },
+    {
+      "id": "lg",
+      "command": "lg",
+      "aliases": [
+        "changyongduishu"
+      ],
+      "name": "常用对数",
+      "description": "常用对数",
+      "latex": "\\lg\\left( {{x}} \\right)",
+      "parameters": [
+        {
+          "id": "x",
+          "name": "变量",
+          "description": "变量",
+          "defaultValue": "x"
+        }
+      ],
+      "wrapTarget": "x"
+    },
+    {
+      "id": "exp",
+      "command": "exp",
+      "aliases": [
+        "ziranzhishu"
+      ],
+      "name": "自然指数函数",
+      "description": "自然指数函数",
+      "latex": "\\exp\\left( {{x}} \\right)",
+      "parameters": [
+        {
+          "id": "x",
+          "name": "变量",
+          "description": "变量",
+          "defaultValue": "x"
+        }
+      ],
+      "wrapTarget": "x"
+    },
+    {
+      "id": "arccot",
+      "command": "arccot",
+      "aliases": [],
+      "name": "反余切",
+      "description": "反余切",
+      "latex": "\\operatorname{arccot}\\left( {{x}} \\right)",
+      "parameters": [
+        {
+          "id": "x",
+          "name": "变量",
+          "description": "变量",
+          "defaultValue": "x"
+        }
+      ],
+      "wrapTarget": "x"
+    },
+    {
+      "id": "arsinh",
+      "command": "arsinh",
+      "aliases": [],
+      "name": "反双曲正弦",
+      "description": "反双曲正弦",
+      "latex": "\\operatorname{arsinh}\\left( {{x}} \\right)",
+      "parameters": [
+        {
+          "id": "x",
+          "name": "变量",
+          "description": "变量",
+          "defaultValue": "x"
+        }
+      ],
+      "wrapTarget": "x"
+    },
+    {
+      "id": "arcosh",
+      "command": "arcosh",
+      "aliases": [],
+      "name": "反双曲余弦",
+      "description": "反双曲余弦",
+      "latex": "\\operatorname{arcosh}\\left( {{x}} \\right)",
+      "parameters": [
+        {
+          "id": "x",
+          "name": "变量",
+          "description": "变量",
+          "defaultValue": "x"
+        }
+      ],
+      "wrapTarget": "x"
+    },
+    {
+      "id": "artanh",
+      "command": "artanh",
+      "aliases": [],
+      "name": "反双曲正切",
+      "description": "反双曲正切",
+      "latex": "\\operatorname{artanh}\\left( {{x}} \\right)",
+      "parameters": [
+        {
+          "id": "x",
+          "name": "变量",
+          "description": "变量",
+          "defaultValue": "x"
+        }
+      ],
+      "wrapTarget": "x"
+    },
+    {
+      "id": "sgn",
+      "command": "sgn",
+      "aliases": [],
+      "name": "符号函数",
+      "description": "符号函数",
+      "latex": "\\operatorname{sgn}\\left( {{x}} \\right)",
+      "parameters": [
+        {
+          "id": "x",
+          "name": "变量",
+          "description": "变量",
+          "defaultValue": "x"
+        }
+      ],
+      "wrapTarget": "x"
+    },
+    {
+      "id": "logbase",
+      "command": "logbase",
+      "aliases": [
+        "duishu",
+        "log"
+      ],
+      "name": "指定底数的对数",
+      "description": "指定底数的对数",
+      "latex": "\\log_{ {{a}} }\\left( {{x}} \\right)",
+      "parameters": [
+        {
+          "id": "a",
+          "name": "底数",
+          "description": "底数",
+          "defaultValue": "2"
+        },
+        {
+          "id": "x",
+          "name": "变量",
+          "description": "变量",
+          "defaultValue": "x"
+        }
+      ],
+      "wrapTarget": "x"
+    },
+    {
+      "id": "naturalpower",
+      "command": "naturalpower",
+      "aliases": [
+        "ezhishu"
+      ],
+      "name": "自然指数幂",
+      "description": "自然指数幂",
+      "latex": "\\mathrm{e}^{ {{x}} }",
+      "parameters": [
+        {
+          "id": "x",
+          "name": "变量",
+          "description": "变量",
+          "defaultValue": "x"
+        }
+      ],
+      "wrapTarget": "x"
+    },
+    {
+      "id": "func",
+      "command": "func",
+      "aliases": [
+        "hanshuzhi"
+      ],
+      "name": "函数值",
+      "description": "函数值",
+      "latex": "{{f}}\\left( {{x}} \\right)",
+      "parameters": [
+        {
+          "id": "f",
+          "name": "函数名",
+          "description": "函数名",
+          "defaultValue": "f"
+        },
+        {
+          "id": "x",
+          "name": "变量",
+          "description": "变量",
+          "defaultValue": "x"
+        }
+      ],
+      "wrapTarget": "x"
+    },
+    {
+      "id": "inversefunc",
+      "command": "inversefunc",
+      "aliases": [
+        "fanhanshu"
+      ],
+      "name": "反函数",
+      "description": "反函数",
+      "latex": "{{f}}^{-1}\\left( {{x}} \\right)",
+      "parameters": [
+        {
+          "id": "f",
+          "name": "函数名",
+          "description": "函数名",
+          "defaultValue": "f"
+        },
+        {
+          "id": "x",
+          "name": "变量",
+          "description": "变量",
+          "defaultValue": "x"
+        }
+      ],
+      "wrapTarget": "x"
+    },
+    {
+      "id": "composefunc",
+      "command": "composefunc",
+      "aliases": [
+        "fuhehanshu"
+      ],
+      "name": "复合函数",
+      "description": "复合函数",
+      "latex": "\\left( {{f}} \\circ {{g}} \\right)\\left( {{x}} \\right)",
+      "parameters": [
+        {
+          "id": "f",
+          "name": "外层函数",
+          "description": "外层函数",
+          "defaultValue": "f"
+        },
+        {
+          "id": "g",
+          "name": "内层函数",
+          "description": "内层函数",
+          "defaultValue": "g"
+        },
+        {
+          "id": "x",
+          "name": "变量",
+          "description": "变量",
+          "defaultValue": "x"
+        }
+      ],
+      "wrapTarget": "x"
+    },
+    {
+      "id": "piecewise",
+      "command": "piecewise",
+      "aliases": [
+        "fenduanhanshu"
+      ],
+      "name": "分段函数",
+      "description": "分段函数",
+      "latex": "\\begin{cases}{{lhs}}&{{cond}}\\\\{{rhs}}&{{other}}\\end{cases}",
+      "parameters": [
+        {
+          "id": "lhs",
+          "name": "第一段函数",
+          "description": "第一段函数",
+          "defaultValue": "x^2"
+        },
+        {
+          "id": "cond",
+          "name": "条件",
+          "description": "条件",
+          "defaultValue": "x>0"
+        },
+        {
+          "id": "rhs",
+          "name": "第二段函数",
+          "description": "第二段函数",
+          "defaultValue": "0"
+        },
+        {
+          "id": "other",
+          "name": "第二段条件",
+          "description": "第二段条件",
+          "defaultValue": "x\\le 0"
+        }
+      ]
+    },
+    {
+      "id": "limleft",
+      "command": "limleft",
+      "aliases": [
+        "zuojixian"
+      ],
+      "name": "左极限",
+      "description": "左极限",
+      "latex": "\\lim_{ {{x}}\\to{{target}}^{-} } {{f}}",
+      "parameters": [
+        {
+          "id": "x",
+          "name": "变量",
+          "description": "变量",
+          "defaultValue": "x"
+        },
+        {
+          "id": "target",
+          "name": "趋近值",
+          "description": "趋近值",
+          "defaultValue": "0"
+        },
+        {
+          "id": "f",
+          "name": "函数",
+          "description": "函数",
+          "defaultValue": "f(x)"
+        }
+      ],
+      "wrapTarget": "f"
+    },
+    {
+      "id": "limright",
+      "command": "limright",
+      "aliases": [
+        "youjixian"
+      ],
+      "name": "右极限",
+      "description": "右极限",
+      "latex": "\\lim_{ {{x}}\\to{{target}}^{+} } {{f}}",
+      "parameters": [
+        {
+          "id": "x",
+          "name": "变量",
+          "description": "变量",
+          "defaultValue": "x"
+        },
+        {
+          "id": "target",
+          "name": "趋近值",
+          "description": "趋近值",
+          "defaultValue": "0"
+        },
+        {
+          "id": "f",
+          "name": "函数",
+          "description": "函数",
+          "defaultValue": "f(x)"
+        }
+      ],
+      "wrapTarget": "f"
+    },
+    {
+      "id": "liminfty",
+      "command": "liminfty",
+      "aliases": [
+        "wuqiongjixian"
+      ],
+      "name": "无穷远极限",
+      "description": "无穷远极限",
+      "latex": "\\lim_{ {{x}}\\to\\infty } {{f}}",
+      "parameters": [
+        {
+          "id": "x",
+          "name": "变量",
+          "description": "变量",
+          "defaultValue": "x"
+        },
+        {
+          "id": "f",
+          "name": "函数",
+          "description": "函数",
+          "defaultValue": "f(x)"
+        }
+      ],
+      "wrapTarget": "f"
+    },
+    {
+      "id": "limneg",
+      "command": "limneg",
+      "aliases": [
+        "fuwuqiongjixian"
+      ],
+      "name": "负无穷极限",
+      "description": "负无穷极限",
+      "latex": "\\lim_{ {{x}}\\to-\\infty } {{f}}",
+      "parameters": [
+        {
+          "id": "x",
+          "name": "变量",
+          "description": "变量",
+          "defaultValue": "x"
+        },
+        {
+          "id": "f",
+          "name": "函数",
+          "description": "函数",
+          "defaultValue": "f(x)"
+        }
+      ],
+      "wrapTarget": "f"
+    },
+    {
+      "id": "limseq",
+      "command": "limseq",
+      "aliases": [
+        "shuliejixian"
+      ],
+      "name": "数列极限",
+      "description": "数列极限",
+      "latex": "\\lim_{ {{n}}\\to\\infty } {{body}}",
+      "parameters": [
+        {
+          "id": "n",
+          "name": "阶数或指标",
+          "description": "阶数或指标",
+          "defaultValue": "n"
+        },
+        {
+          "id": "body",
+          "name": "通项",
+          "description": "通项",
+          "defaultValue": "a_n"
+        }
+      ],
+      "wrapTarget": "body"
+    },
+    {
+      "id": "limsup",
+      "command": "limsup",
+      "aliases": [
+        "shangjixian"
+      ],
+      "name": "上极限",
+      "description": "上极限",
+      "latex": "\\limsup_{ {{n}}\\to\\infty } {{body}}",
+      "parameters": [
+        {
+          "id": "n",
+          "name": "阶数或指标",
+          "description": "阶数或指标",
+          "defaultValue": "n"
+        },
+        {
+          "id": "body",
+          "name": "通项",
+          "description": "通项",
+          "defaultValue": "a_n"
+        }
+      ],
+      "wrapTarget": "body"
+    },
+    {
+      "id": "liminf",
+      "command": "liminf",
+      "aliases": [
+        "xiajixian"
+      ],
+      "name": "下极限",
+      "description": "下极限",
+      "latex": "\\liminf_{ {{n}}\\to\\infty } {{body}}",
+      "parameters": [
+        {
+          "id": "n",
+          "name": "阶数或指标",
+          "description": "阶数或指标",
+          "defaultValue": "n"
+        },
+        {
+          "id": "body",
+          "name": "通项",
+          "description": "通项",
+          "defaultValue": "a_n"
+        }
+      ],
+      "wrapTarget": "body"
+    },
+    {
+      "id": "limmulti",
+      "command": "limmulti",
+      "aliases": [
+        "duoyuanjixian"
+      ],
+      "name": "多元函数极限",
+      "description": "多元函数极限",
+      "latex": "\\lim_{ {{lhs}}\\to{{rhs}} } {{f}}",
+      "parameters": [
+        {
+          "id": "lhs",
+          "name": "变量点",
+          "description": "变量点",
+          "defaultValue": "(x,y)"
+        },
+        {
+          "id": "rhs",
+          "name": "趋近点",
+          "description": "趋近点",
+          "defaultValue": "(0,0)"
+        },
+        {
+          "id": "f",
+          "name": "函数",
+          "description": "函数",
+          "defaultValue": "f(x,y)"
+        }
+      ],
+      "wrapTarget": "f"
+    },
+    {
+      "id": "littleo",
+      "command": "littleo",
+      "aliases": [
+        "gaojiewuqiongxiao"
+      ],
+      "name": "高阶无穷小",
+      "description": "高阶无穷小",
+      "latex": "o\\left( {{body}} \\right)",
+      "parameters": [
+        {
+          "id": "body",
+          "name": "比较量",
+          "description": "比较量",
+          "defaultValue": "x^n"
+        }
+      ],
+      "wrapTarget": "body"
+    },
+    {
+      "id": "bigo",
+      "command": "bigo",
+      "aliases": [
+        "dao"
+      ],
+      "name": "大 O 渐近记号",
+      "description": "大 O 渐近记号",
+      "latex": "O\\left( {{body}} \\right)",
+      "parameters": [
+        {
+          "id": "body",
+          "name": "比较量",
+          "description": "比较量",
+          "defaultValue": "x^n"
+        }
+      ],
+      "wrapTarget": "body"
+    },
+    {
+      "id": "asymptotic",
+      "command": "asymptotic",
+      "aliases": [
+        "dengjiawuqiongxiao"
+      ],
+      "name": "渐近等价",
+      "description": "渐近等价",
+      "latex": "{{lhs}}\\sim{{rhs}}",
+      "parameters": [
+        {
+          "id": "lhs",
+          "name": "左端表达式",
+          "description": "左端表达式",
+          "defaultValue": "\\sin x"
+        },
+        {
+          "id": "rhs",
+          "name": "右端表达式",
+          "description": "右端表达式",
+          "defaultValue": "x"
+        }
+      ],
+      "wrapTarget": "lhs"
+    },
+    {
+      "id": "epsdelta",
+      "command": "epsdelta",
+      "aliases": [
+        "epsilondelta"
+      ],
+      "name": "ε–δ 极限条件",
+      "description": "ε–δ 极限条件",
+      "latex": "0<\\left| {{lhs}} \\right|<\\delta\\ \\Longrightarrow\\ \\left| {{rhs}} \\right|<\\varepsilon",
+      "parameters": [
+        {
+          "id": "lhs",
+          "name": "自变量之差",
+          "description": "自变量之差",
+          "defaultValue": "x-a"
+        },
+        {
+          "id": "rhs",
+          "name": "函数值之差",
+          "description": "函数值之差",
+          "defaultValue": "f(x)-L"
+        }
+      ]
+    },
+    {
+      "id": "diffquot",
+      "command": "diffquot",
+      "aliases": [
+        "chashang"
+      ],
+      "name": "差商",
+      "description": "差商",
+      "latex": "\\frac{ {{lhs}} }{ {{rhs}} }",
+      "parameters": [
+        {
+          "id": "lhs",
+          "name": "函数增量",
+          "description": "函数增量",
+          "defaultValue": "f(x+h)-f(x)"
+        },
+        {
+          "id": "rhs",
+          "name": "自变量增量",
+          "description": "自变量增量",
+          "defaultValue": "h"
+        }
+      ],
+      "wrapTarget": "lhs"
+    },
+    {
+      "id": "prime",
+      "command": "prime",
+      "aliases": [
+        "daoshu",
+        "yijiedaoshu"
+      ],
+      "name": "一阶导数（撇号）",
+      "description": "一阶导数（撇号）",
+      "latex": "{{f}}^{\\prime}",
+      "parameters": [
+        {
+          "id": "f",
+          "name": "被求导表达式",
+          "description": "被求导表达式",
+          "defaultValue": "f"
+        }
+      ],
+      "wrapTarget": "f"
+    },
+    {
+      "id": "doubleprime",
+      "command": "doubleprime",
+      "aliases": [
+        "erjiedaoshu"
+      ],
+      "name": "二阶导数（撇号）",
+      "description": "二阶导数（撇号）",
+      "latex": "{{f}}^{\\prime\\prime}",
+      "parameters": [
+        {
+          "id": "f",
+          "name": "被求导表达式",
+          "description": "被求导表达式",
+          "defaultValue": "f"
+        }
+      ],
+      "wrapTarget": "f"
+    },
+    {
+      "id": "nthprime",
+      "command": "nthprime",
+      "aliases": [
+        "gaojiedaoshu"
+      ],
+      "name": "高阶导数（括号上标）",
+      "description": "高阶导数（括号上标）",
+      "latex": "{{f}}^{({{order}})}",
+      "parameters": [
+        {
+          "id": "f",
+          "name": "被求导表达式",
+          "description": "被求导表达式",
+          "defaultValue": "f"
+        },
+        {
+          "id": "order",
+          "name": "次数或阶数",
+          "description": "次数或阶数",
+          "defaultValue": "n"
+        }
+      ],
+      "wrapTarget": "f"
+    },
+    {
+      "id": "deriv",
+      "command": "deriv",
+      "aliases": [
+        "qiudao",
+        "dybydx"
+      ],
+      "name": "莱布尼茨导数",
+      "description": "莱布尼茨导数",
+      "latex": "\\frac{\\mathrm{d} {{y}}}{\\mathrm{d} {{x}}}",
+      "parameters": [
+        {
+          "id": "y",
+          "name": "第二变量",
+          "description": "第二变量",
+          "defaultValue": "y"
+        },
+        {
+          "id": "x",
+          "name": "变量",
+          "description": "变量",
+          "defaultValue": "x"
+        }
+      ],
+      "wrapTarget": "y"
+    },
+    {
+      "id": "derivop",
+      "command": "derivop",
+      "aliases": [
+        "weifensuanzi"
+      ],
+      "name": "一阶微分算子",
+      "description": "一阶微分算子",
+      "latex": "\\frac{\\mathrm{d}}{\\mathrm{d} {{x}}}\\left( {{f}} \\right)",
+      "parameters": [
+        {
+          "id": "x",
+          "name": "变量",
+          "description": "变量",
+          "defaultValue": "x"
+        },
+        {
+          "id": "f",
+          "name": "函数",
+          "description": "函数",
+          "defaultValue": "f(x)"
+        }
+      ],
+      "wrapTarget": "f"
+    },
+    {
+      "id": "derivn",
+      "command": "derivn",
+      "aliases": [
+        "leibnizn"
+      ],
+      "name": "高阶莱布尼茨导数",
+      "description": "高阶莱布尼茨导数",
+      "latex": "\\frac{\\mathrm{d}^{ {{n}} } {{y}}}{\\mathrm{d} {{x}}^{ {{m}} }}",
+      "parameters": [
+        {
+          "id": "n",
+          "name": "分子阶数",
+          "description": "分子阶数",
+          "defaultValue": "n"
+        },
+        {
+          "id": "y",
+          "name": "第二变量",
+          "description": "第二变量",
+          "defaultValue": "y"
+        },
+        {
+          "id": "x",
+          "name": "变量",
+          "description": "变量",
+          "defaultValue": "x"
+        },
+        {
+          "id": "m",
+          "name": "分母阶数",
+          "description": "分母阶数",
+          "defaultValue": "n"
+        }
+      ],
+      "wrapTarget": "y"
+    },
+    {
+      "id": "diff",
+      "command": "diff",
+      "aliases": [
+        "weifen"
+      ],
+      "name": "微分",
+      "description": "微分",
+      "latex": "\\mathrm{d} {{x}}",
+      "parameters": [
+        {
+          "id": "x",
+          "name": "变量",
+          "description": "变量",
+          "defaultValue": "x"
+        }
+      ],
+      "wrapTarget": "x"
+    },
+    {
+      "id": "totaldiff",
+      "command": "totaldiff",
+      "aliases": [
+        "quanweifen"
+      ],
+      "name": "二元函数的全微分",
+      "description": "二元函数的全微分",
+      "latex": "\\mathrm{d} {{z}}={{lhs}}\\mathrm{d}x+{{rhs}}\\mathrm{d}y",
+      "parameters": [
+        {
+          "id": "z",
+          "name": "第三变量",
+          "description": "第三变量",
+          "defaultValue": "z"
+        },
+        {
+          "id": "lhs",
+          "name": "对 x 的偏导数",
+          "description": "对 x 的偏导数",
+          "defaultValue": "\\frac{\\partial z}{\\partial x}"
+        },
+        {
+          "id": "rhs",
+          "name": "对 y 的偏导数",
+          "description": "对 y 的偏导数",
+          "defaultValue": "\\frac{\\partial z}{\\partial y}"
+        }
+      ]
+    },
+    {
+      "id": "partial",
+      "command": "partial",
+      "aliases": [
+        "piandao",
+        "pandaoshu"
+      ],
+      "name": "偏导数",
+      "description": "偏导数",
+      "latex": "\\frac{\\partial {{f}}}{\\partial {{x}}}",
+      "parameters": [
+        {
+          "id": "f",
+          "name": "函数",
+          "description": "函数",
+          "defaultValue": "f(x)"
+        },
+        {
+          "id": "x",
+          "name": "变量",
+          "description": "变量",
+          "defaultValue": "x"
+        }
+      ],
+      "wrapTarget": "f"
+    },
+    {
+      "id": "partialsecond",
+      "command": "partialsecond",
+      "aliases": [
+        "erjiepiandao"
+      ],
+      "name": "二阶偏导数",
+      "description": "二阶偏导数",
+      "latex": "\\frac{\\partial^2 {{f}}}{\\partial {{x}}^2}",
+      "parameters": [
+        {
+          "id": "f",
+          "name": "函数",
+          "description": "函数",
+          "defaultValue": "f(x)"
+        },
+        {
+          "id": "x",
+          "name": "变量",
+          "description": "变量",
+          "defaultValue": "x"
+        }
+      ],
+      "wrapTarget": "f"
+    },
+    {
+      "id": "partialmixed",
+      "command": "partialmixed",
+      "aliases": [
+        "hunhepiandao"
+      ],
+      "name": "混合偏导数",
+      "description": "混合偏导数",
+      "latex": "\\frac{\\partial^2 {{f}}}{\\partial {{x}}\\partial {{y}}}",
+      "parameters": [
+        {
+          "id": "f",
+          "name": "函数",
+          "description": "函数",
+          "defaultValue": "f(x)"
+        },
+        {
+          "id": "x",
+          "name": "变量",
+          "description": "变量",
+          "defaultValue": "x"
+        },
+        {
+          "id": "y",
+          "name": "第二变量",
+          "description": "第二变量",
+          "defaultValue": "y"
+        }
+      ],
+      "wrapTarget": "f"
+    },
+    {
+      "id": "partialmulti",
+      "command": "partialmulti",
+      "aliases": [
+        "duozhibiaopiandao"
+      ],
+      "name": "多指标偏导数",
+      "description": "多指标偏导数",
+      "latex": "\\partial^{ {{n}} } {{f}}",
+      "parameters": [
+        {
+          "id": "n",
+          "name": "多指标",
+          "description": "多指标",
+          "defaultValue": "\\alpha"
+        },
+        {
+          "id": "f",
+          "name": "函数",
+          "description": "函数",
+          "defaultValue": "f(x)"
+        }
+      ],
+      "wrapTarget": "f"
+    },
+    {
+      "id": "evalat",
+      "command": "evalat",
+      "aliases": [
+        "qiuzhi"
+      ],
+      "name": "在指定点求值",
+      "description": "在指定点求值",
+      "latex": "\\left. {{body}} \\right|_{ {{cond}} }",
+      "parameters": [
+        {
+          "id": "body",
+          "name": "表达式",
+          "description": "表达式",
+          "defaultValue": "x"
+        },
+        {
+          "id": "cond",
+          "name": "求值条件",
+          "description": "求值条件",
+          "defaultValue": "x=a"
+        }
+      ],
+      "wrapTarget": "body"
+    },
+    {
+      "id": "evalbounds",
+      "command": "evalbounds",
+      "aliases": [
+        "shangxiaxiandairu"
+      ],
+      "name": "代入上下限",
+      "description": "代入上下限",
+      "latex": "\\left. {{body}} \\right|_{ {{lower}} }^{ {{upper}} }",
+      "parameters": [
+        {
+          "id": "body",
+          "name": "原函数",
+          "description": "原函数",
+          "defaultValue": "F(x)"
+        },
+        {
+          "id": "lower",
+          "name": "下界",
+          "description": "下界",
+          "defaultValue": "a"
+        },
+        {
+          "id": "upper",
+          "name": "上界",
+          "description": "上界",
+          "defaultValue": "b"
+        }
+      ],
+      "wrapTarget": "body"
+    },
+    {
+      "id": "gradient",
+      "command": "gradient",
+      "aliases": [
+        "tidu",
+        "grad"
+      ],
+      "name": "梯度",
+      "description": "梯度",
+      "latex": "\\nabla {{f}}",
+      "parameters": [
+        {
+          "id": "f",
+          "name": "函数",
+          "description": "函数",
+          "defaultValue": "f(x)"
+        }
+      ],
+      "wrapTarget": "f"
+    },
+    {
+      "id": "divergence",
+      "command": "divergence",
+      "aliases": [
+        "sandu",
+        "div"
+      ],
+      "name": "散度",
+      "description": "散度",
+      "latex": "\\nabla\\cdot{{vec}}",
+      "parameters": [
+        {
+          "id": "vec",
+          "name": "向量场",
+          "description": "向量场",
+          "defaultValue": "\\mathbf{F}"
+        }
+      ],
+      "wrapTarget": "vec"
+    },
+    {
+      "id": "curl",
+      "command": "curl",
+      "aliases": [
+        "xuandu"
+      ],
+      "name": "旋度",
+      "description": "旋度",
+      "latex": "\\nabla\\times{{vec}}",
+      "parameters": [
+        {
+          "id": "vec",
+          "name": "向量场",
+          "description": "向量场",
+          "defaultValue": "\\mathbf{F}"
+        }
+      ],
+      "wrapTarget": "vec"
+    },
+    {
+      "id": "laplacian",
+      "command": "laplacian",
+      "aliases": [
+        "lapulasi"
+      ],
+      "name": "拉普拉斯算子",
+      "description": "拉普拉斯算子",
+      "latex": "\\nabla^2 {{f}}",
+      "parameters": [
+        {
+          "id": "f",
+          "name": "函数",
+          "description": "函数",
+          "defaultValue": "f(x)"
+        }
+      ],
+      "wrapTarget": "f"
+    },
+    {
+      "id": "dirderiv",
+      "command": "dirderiv",
+      "aliases": [
+        "fangxiangdaoshu"
+      ],
+      "name": "方向导数",
+      "description": "方向导数",
+      "latex": "D_{ {{u}} } {{f}}",
+      "parameters": [
+        {
+          "id": "u",
+          "name": "方向单位向量",
+          "description": "方向单位向量",
+          "defaultValue": "\\mathbf{u}"
+        },
+        {
+          "id": "f",
+          "name": "函数",
+          "description": "函数",
+          "defaultValue": "f(x)"
+        }
+      ],
+      "wrapTarget": "f"
+    },
+    {
+      "id": "jacobian",
+      "command": "jacobian",
+      "aliases": [
+        "yakebi",
+        "jacobi"
+      ],
+      "name": "雅可比行列式记号",
+      "description": "雅可比行列式记号",
+      "latex": "\\frac{\\partial\\left( {{lhs}} \\right)}{\\partial\\left( {{rhs}} \\right)}",
+      "parameters": [
+        {
+          "id": "lhs",
+          "name": "变换后的变量",
+          "description": "变换后的变量",
+          "defaultValue": "u,v"
+        },
+        {
+          "id": "rhs",
+          "name": "变换前的变量",
+          "description": "变换前的变量",
+          "defaultValue": "x,y"
+        }
+      ]
+    },
+    {
+      "id": "jacmat",
+      "command": "jacmat",
+      "aliases": [
+        "yakebijuzhen"
+      ],
+      "name": "雅可比矩阵记号",
+      "description": "雅可比矩阵记号",
+      "latex": "D{{map}}\\left( {{x}} \\right)",
+      "parameters": [
+        {
+          "id": "map",
+          "name": "映射",
+          "description": "映射",
+          "defaultValue": "F"
+        },
+        {
+          "id": "x",
+          "name": "变量",
+          "description": "变量",
+          "defaultValue": "x"
+        }
+      ],
+      "wrapTarget": "map"
+    },
+    {
+      "id": "hessian",
+      "command": "hessian",
+      "aliases": [
+        "haisenjuzhen"
+      ],
+      "name": "海森矩阵记号",
+      "description": "海森矩阵记号",
+      "latex": "H_{ {{f}} }\\left( {{x}} \\right)",
+      "parameters": [
+        {
+          "id": "f",
+          "name": "函数名",
+          "description": "函数名",
+          "defaultValue": "f"
+        },
+        {
+          "id": "x",
+          "name": "变量",
+          "description": "变量",
+          "defaultValue": "x"
+        }
+      ],
+      "wrapTarget": "f"
+    },
+    {
+      "id": "taylor",
+      "command": "taylor",
+      "aliases": [
+        "taile"
+      ],
+      "name": "带余项的泰勒公式",
+      "description": "带余项的泰勒公式",
+      "latex": "{{f}}=\\sum_{k=0}^{ {{n}} }\\frac{ {{lhs}} }{k!}{{rhs}}^k+{{body}}",
+      "parameters": [
+        {
+          "id": "f",
+          "name": "函数",
+          "description": "函数",
+          "defaultValue": "f(x)"
+        },
+        {
+          "id": "n",
+          "name": "阶数或指标",
+          "description": "阶数或指标",
+          "defaultValue": "n"
+        },
+        {
+          "id": "lhs",
+          "name": "中心处的各阶导数",
+          "description": "中心处的各阶导数",
+          "defaultValue": "f^{(k)}(a)"
+        },
+        {
+          "id": "rhs",
+          "name": "自变量与展开中心的差",
+          "description": "自变量与展开中心的差",
+          "defaultValue": "(x-a)"
+        },
+        {
+          "id": "body",
+          "name": "余项",
+          "description": "余项",
+          "defaultValue": "R_n(x)"
+        }
+      ]
+    },
+    {
+      "id": "peano",
+      "command": "peano",
+      "aliases": [
+        "peiyanuoyuxiang"
+      ],
+      "name": "佩亚诺余项",
+      "description": "佩亚诺余项",
+      "latex": "o\\left( ({{x}}-{{a}})^{ {{order}} } \\right)",
+      "parameters": [
+        {
+          "id": "x",
+          "name": "变量",
+          "description": "变量",
+          "defaultValue": "x"
+        },
+        {
+          "id": "a",
+          "name": "常数或左端点",
+          "description": "常数或左端点",
+          "defaultValue": "a"
+        },
+        {
+          "id": "order",
+          "name": "次数或阶数",
+          "description": "次数或阶数",
+          "defaultValue": "n"
+        }
+      ]
+    },
+    {
+      "id": "lagrange",
+      "command": "lagrange",
+      "aliases": [
+        "lagelangriyuxiang"
+      ],
+      "name": "拉格朗日余项",
+      "description": "拉格朗日余项",
+      "latex": "\\frac{ {{lhs}} }{ {{rhs}} }{{body}}",
+      "parameters": [
+        {
+          "id": "lhs",
+          "name": "中间点的高阶导数",
+          "description": "中间点的高阶导数",
+          "defaultValue": "f^{(n+1)}(\\xi)"
+        },
+        {
+          "id": "rhs",
+          "name": "阶乘",
+          "description": "阶乘",
+          "defaultValue": "(n+1)!"
+        },
+        {
+          "id": "body",
+          "name": "幂项",
+          "description": "幂项",
+          "defaultValue": "(x-a)^{n+1}"
+        }
+      ]
+    },
+    {
+      "id": "newtonstep",
+      "command": "newtonstep",
+      "aliases": [
+        "niudundiedai"
+      ],
+      "name": "牛顿迭代",
+      "description": "牛顿迭代",
+      "latex": "{{lhs}}={{rhs}}-\\frac{ {{f}} }{ {{g}} }",
+      "parameters": [
+        {
+          "id": "lhs",
+          "name": "新迭代点",
+          "description": "新迭代点",
+          "defaultValue": "x_{k+1}"
+        },
+        {
+          "id": "rhs",
+          "name": "当前点",
+          "description": "当前点",
+          "defaultValue": "x_k"
+        },
+        {
+          "id": "f",
+          "name": "函数值",
+          "description": "函数值",
+          "defaultValue": "f(x_k)"
+        },
+        {
+          "id": "g",
+          "name": "导数值",
+          "description": "导数值",
+          "defaultValue": "f^\\prime(x_k)"
+        }
+      ]
+    },
+    {
+      "id": "stationary",
+      "command": "stationary",
+      "aliases": [
+        "zhudian"
+      ],
+      "name": "多元函数驻点条件",
+      "description": "多元函数驻点条件",
+      "latex": "\\nabla {{f}}=\\mathbf{0}",
+      "parameters": [
+        {
+          "id": "f",
+          "name": "函数",
+          "description": "函数",
+          "defaultValue": "f(x)"
+        }
+      ],
+      "wrapTarget": "f"
+    },
+    {
+      "id": "lagmult",
+      "command": "lagmult",
+      "aliases": [
+        "lagelangrichengzi"
+      ],
+      "name": "拉格朗日乘子条件",
+      "description": "拉格朗日乘子条件",
+      "latex": "\\nabla {{f}}={{value}}\\nabla {{g}}",
+      "parameters": [
+        {
+          "id": "f",
+          "name": "函数",
+          "description": "函数",
+          "defaultValue": "f(x)"
+        },
+        {
+          "id": "value",
+          "name": "特征值",
+          "description": "特征值",
+          "defaultValue": "\\lambda"
+        },
+        {
+          "id": "g",
+          "name": "第二个函数",
+          "description": "第二个函数",
+          "defaultValue": "g(x)"
+        }
+      ],
+      "wrapTarget": "f"
+    },
+    {
+      "id": "mvt",
+      "command": "mvt",
+      "aliases": [
+        "zhongzhidingli"
+      ],
+      "name": "拉格朗日中值公式",
+      "description": "拉格朗日中值公式",
+      "latex": "\\frac{ {{lhs}} }{ {{rhs}} }={{body}}",
+      "parameters": [
+        {
+          "id": "lhs",
+          "name": "函数值之差",
+          "description": "函数值之差",
+          "defaultValue": "f(b)-f(a)"
+        },
+        {
+          "id": "rhs",
+          "name": "区间长度",
+          "description": "区间长度",
+          "defaultValue": "b-a"
+        },
+        {
+          "id": "body",
+          "name": "中间点导数",
+          "description": "中间点导数",
+          "defaultValue": "f^\\prime(\\xi)"
+        }
+      ]
+    },
+    {
+      "id": "curvature",
+      "command": "curvature",
+      "aliases": [
+        "qulv"
+      ],
+      "name": "平面曲线曲率",
+      "description": "平面曲线曲率",
+      "latex": "\\kappa=\\frac{\\left| {{lhs}} \\right|}{\\left(1+\\left( {{rhs}} \\right)^2\\right)^{3/2}}",
+      "parameters": [
+        {
+          "id": "lhs",
+          "name": "二阶导数",
+          "description": "二阶导数",
+          "defaultValue": "y^{\\prime\\prime}"
+        },
+        {
+          "id": "rhs",
+          "name": "一阶导数",
+          "description": "一阶导数",
+          "defaultValue": "y^\\prime"
+        }
+      ]
+    },
+    {
+      "id": "indefint",
+      "command": "indefint",
+      "aliases": [
+        "budingjifen"
+      ],
+      "name": "不定积分",
+      "description": "不定积分",
+      "latex": "\\int {{f}}\\,\\mathrm{d} {{x}}+{{c}}",
+      "parameters": [
+        {
+          "id": "f",
+          "name": "函数",
+          "description": "函数",
+          "defaultValue": "f(x)"
+        },
+        {
+          "id": "x",
+          "name": "变量",
+          "description": "变量",
+          "defaultValue": "x"
+        },
+        {
+          "id": "c",
+          "name": "常数",
+          "description": "常数",
+          "defaultValue": "C"
+        }
+      ],
+      "wrapTarget": "f"
+    },
+    {
+      "id": "antiderivative",
+      "command": "antiderivative",
+      "aliases": [
+        "yuanhanshu"
+      ],
+      "name": "原函数与积分常数",
+      "description": "原函数与积分常数",
+      "latex": "\\int {{f}}\\,\\mathrm{d} {{x}}={{rhs}}+{{c}}",
+      "parameters": [
+        {
+          "id": "f",
+          "name": "函数",
+          "description": "函数",
+          "defaultValue": "f(x)"
+        },
+        {
+          "id": "x",
+          "name": "变量",
+          "description": "变量",
+          "defaultValue": "x"
+        },
+        {
+          "id": "rhs",
+          "name": "原函数",
+          "description": "原函数",
+          "defaultValue": "F(x)"
+        },
+        {
+          "id": "c",
+          "name": "常数",
+          "description": "常数",
+          "defaultValue": "C"
+        }
+      ],
+      "wrapTarget": "f"
+    },
+    {
+      "id": "improperint",
+      "command": "improperint",
+      "aliases": [
+        "fanchangjifen"
+      ],
+      "name": "无穷区间反常积分",
+      "description": "无穷区间反常积分",
+      "latex": "\\int_{ {{lower}} }^{\\infty} {{f}}\\,\\mathrm{d} {{x}}",
+      "parameters": [
+        {
+          "id": "lower",
+          "name": "下界",
+          "description": "下界",
+          "defaultValue": "a"
+        },
+        {
+          "id": "f",
+          "name": "函数",
+          "description": "函数",
+          "defaultValue": "f(x)"
+        },
+        {
+          "id": "x",
+          "name": "变量",
+          "description": "变量",
+          "defaultValue": "x"
+        }
+      ],
+      "wrapTarget": "f"
+    },
+    {
+      "id": "intvariable",
+      "command": "intvariable",
+      "aliases": [
+        "bianshangxianjifen"
+      ],
+      "name": "变上限积分",
+      "description": "变上限积分",
+      "latex": "\\int_{ {{lower}} }^{ {{x}} } {{f}}\\,\\mathrm{d} {{t}}",
+      "parameters": [
+        {
+          "id": "lower",
+          "name": "下界",
+          "description": "下界",
+          "defaultValue": "a"
+        },
+        {
+          "id": "x",
+          "name": "变量",
+          "description": "变量",
+          "defaultValue": "x"
+        },
+        {
+          "id": "f",
+          "name": "被积函数",
+          "description": "被积函数",
+          "defaultValue": "f(t)"
+        },
+        {
+          "id": "t",
+          "name": "参数",
+          "description": "参数",
+          "defaultValue": "t"
+        }
+      ],
+      "wrapTarget": "f"
+    },
+    {
+      "id": "intdomain",
+      "command": "intdomain",
+      "aliases": [
+        "quyujifen"
+      ],
+      "name": "定义域上的积分",
+      "description": "定义域上的积分",
+      "latex": "\\int_{ {{domain}} } {{f}}\\,\\mathrm{d} {{x}}",
+      "parameters": [
+        {
+          "id": "domain",
+          "name": "积分区域或定义域",
+          "description": "积分区域或定义域",
+          "defaultValue": "D"
+        },
+        {
+          "id": "f",
+          "name": "函数",
+          "description": "函数",
+          "defaultValue": "f(x)"
+        },
+        {
+          "id": "x",
+          "name": "变量",
+          "description": "变量",
+          "defaultValue": "x"
+        }
+      ],
+      "wrapTarget": "f"
+    },
+    {
+      "id": "doubleint",
+      "command": "doubleint",
+      "aliases": [
+        "iint",
+        "erchongjifen"
+      ],
+      "name": "二重积分",
+      "description": "二重积分",
+      "latex": "\\iint_{ {{domain}} } {{f}}\\,\\mathrm{d} {{body}}",
+      "parameters": [
+        {
+          "id": "domain",
+          "name": "积分区域或定义域",
+          "description": "积分区域或定义域",
+          "defaultValue": "D"
+        },
+        {
+          "id": "f",
+          "name": "被积函数",
+          "description": "被积函数",
+          "defaultValue": "f(x,y)"
+        },
+        {
+          "id": "body",
+          "name": "面积元记号",
+          "description": "面积元记号",
+          "defaultValue": "\\sigma"
+        }
+      ],
+      "wrapTarget": "f"
+    },
+    {
+      "id": "tripleint",
+      "command": "tripleint",
+      "aliases": [
+        "iiint",
+        "sanchongjifen"
+      ],
+      "name": "三重积分",
+      "description": "三重积分",
+      "latex": "\\iiint_{ {{region}} } {{f}}\\,\\mathrm{d} {{body}}",
+      "parameters": [
+        {
+          "id": "region",
+          "name": "空间区域",
+          "description": "空间区域",
+          "defaultValue": "\\Omega"
+        },
+        {
+          "id": "f",
+          "name": "被积函数",
+          "description": "被积函数",
+          "defaultValue": "f(x,y,z)"
+        },
+        {
+          "id": "body",
+          "name": "体积元记号",
+          "description": "体积元记号",
+          "defaultValue": "V"
+        }
+      ],
+      "wrapTarget": "f"
+    },
+    {
+      "id": "iteratedint",
+      "command": "iteratedint",
+      "aliases": [
+        "leicijifen"
+      ],
+      "name": "累次积分",
+      "description": "累次积分",
+      "latex": "\\int_{ {{lower}} }^{ {{upper}} }\\!\\int_{ {{lhs}} }^{ {{rhs}} }{{f}}\\,\\mathrm{d} {{y}}\\,\\mathrm{d} {{x}}",
+      "parameters": [
+        {
+          "id": "lower",
+          "name": "下界",
+          "description": "下界",
+          "defaultValue": "a"
+        },
+        {
+          "id": "upper",
+          "name": "上界",
+          "description": "上界",
+          "defaultValue": "b"
+        },
+        {
+          "id": "lhs",
+          "name": "内层下限",
+          "description": "内层下限",
+          "defaultValue": "c(x)"
+        },
+        {
+          "id": "rhs",
+          "name": "内层上限",
+          "description": "内层上限",
+          "defaultValue": "d(x)"
+        },
+        {
+          "id": "f",
+          "name": "被积函数",
+          "description": "被积函数",
+          "defaultValue": "f(x,y)"
+        },
+        {
+          "id": "y",
+          "name": "第二变量",
+          "description": "第二变量",
+          "defaultValue": "y"
+        },
+        {
+          "id": "x",
+          "name": "变量",
+          "description": "变量",
+          "defaultValue": "x"
+        }
+      ],
+      "wrapTarget": "f"
+    },
+    {
+      "id": "lineint",
+      "command": "lineint",
+      "aliases": [
+        "quxianjifen",
+        "dixianjifen"
+      ],
+      "name": "第一类曲线积分",
+      "description": "第一类曲线积分",
+      "latex": "\\int_{ {{path}} } {{f}}\\,\\mathrm{d}s",
+      "parameters": [
+        {
+          "id": "path",
+          "name": "曲线",
+          "description": "曲线",
+          "defaultValue": "L"
+        },
+        {
+          "id": "f",
+          "name": "被积函数",
+          "description": "被积函数",
+          "defaultValue": "f(x,y)"
+        }
+      ],
+      "wrapTarget": "f"
+    },
+    {
+      "id": "workint",
+      "command": "workint",
+      "aliases": [
+        "dierleiquxianjifen"
+      ],
+      "name": "第二类曲线积分",
+      "description": "第二类曲线积分",
+      "latex": "\\int_{ {{path}} } {{u}}\\cdot\\mathrm{d}{{v}}",
+      "parameters": [
+        {
+          "id": "path",
+          "name": "曲线",
+          "description": "曲线",
+          "defaultValue": "L"
+        },
+        {
+          "id": "u",
+          "name": "向量场",
+          "description": "向量场",
+          "defaultValue": "\\mathbf{F}"
+        },
+        {
+          "id": "v",
+          "name": "位置向量",
+          "description": "位置向量",
+          "defaultValue": "\\mathbf{r}"
+        }
+      ],
+      "wrapTarget": "u"
+    },
+    {
+      "id": "closedint",
+      "command": "closedint",
+      "aliases": [
+        "oint",
+        "bihequxianjifen"
+      ],
+      "name": "闭合路径积分",
+      "description": "闭合路径积分",
+      "latex": "\\oint_{ {{path}} } {{u}}\\cdot\\mathrm{d}{{v}}",
+      "parameters": [
+        {
+          "id": "path",
+          "name": "曲线",
+          "description": "曲线",
+          "defaultValue": "L"
+        },
+        {
+          "id": "u",
+          "name": "向量场",
+          "description": "向量场",
+          "defaultValue": "\\mathbf{F}"
+        },
+        {
+          "id": "v",
+          "name": "位置向量",
+          "description": "位置向量",
+          "defaultValue": "\\mathbf{r}"
+        }
+      ],
+      "wrapTarget": "u"
+    },
+    {
+      "id": "lineintxy",
+      "command": "lineintxy",
+      "aliases": [
+        "quxianjifenxy"
+      ],
+      "name": "平面第二类曲线积分",
+      "description": "平面第二类曲线积分",
+      "latex": "\\int_{ {{path}} }\\left( {{lhs}}\\mathrm{d}x+{{rhs}}\\mathrm{d}y \\right)",
+      "parameters": [
+        {
+          "id": "path",
+          "name": "曲线",
+          "description": "曲线",
+          "defaultValue": "L"
+        },
+        {
+          "id": "lhs",
+          "name": "x 分量",
+          "description": "x 分量",
+          "defaultValue": "P"
+        },
+        {
+          "id": "rhs",
+          "name": "y 分量",
+          "description": "y 分量",
+          "defaultValue": "Q"
+        }
+      ]
+    },
+    {
+      "id": "surfaceint",
+      "command": "surfaceint",
+      "aliases": [
+        "qumianjifen"
+      ],
+      "name": "第一类曲面积分",
+      "description": "第一类曲面积分",
+      "latex": "\\iint_{ {{surface}} } {{f}}\\,\\mathrm{d}S",
+      "parameters": [
+        {
+          "id": "surface",
+          "name": "曲面",
+          "description": "曲面",
+          "defaultValue": "S"
+        },
+        {
+          "id": "f",
+          "name": "被积函数",
+          "description": "被积函数",
+          "defaultValue": "f(x,y,z)"
+        }
+      ],
+      "wrapTarget": "f"
+    },
+    {
+      "id": "fluxint",
+      "command": "fluxint",
+      "aliases": [
+        "tongliang",
+        "dierleiqumianjifen"
+      ],
+      "name": "通量积分",
+      "description": "通量积分",
+      "latex": "\\iint_{ {{surface}} } {{vec}}\\cdot{{u}}\\,\\mathrm{d}S",
+      "parameters": [
+        {
+          "id": "surface",
+          "name": "曲面",
+          "description": "曲面",
+          "defaultValue": "S"
+        },
+        {
+          "id": "vec",
+          "name": "向量场",
+          "description": "向量场",
+          "defaultValue": "\\mathbf{F}"
+        },
+        {
+          "id": "u",
+          "name": "单位法向量",
+          "description": "单位法向量",
+          "defaultValue": "\\mathbf{n}"
+        }
+      ],
+      "wrapTarget": "vec"
+    },
+    {
+      "id": "closedflux",
+      "command": "closedflux",
+      "aliases": [
+        "bihequmianjifen",
+        "oiint"
+      ],
+      "name": "闭曲面通量积分",
+      "description": "闭曲面通量积分",
+      "latex": "\\oiint_{ {{surface}} } {{vec}}\\cdot\\mathrm{d}\\mathbf{S}",
+      "parameters": [
+        {
+          "id": "surface",
+          "name": "曲面",
+          "description": "曲面",
+          "defaultValue": "S"
+        },
+        {
+          "id": "vec",
+          "name": "向量场",
+          "description": "向量场",
+          "defaultValue": "\\mathbf{F}"
+        }
+      ],
+      "wrapTarget": "vec"
+    },
+    {
+      "id": "greentheorem",
+      "command": "greentheorem",
+      "aliases": [
+        "gelingongshi"
+      ],
+      "name": "格林公式",
+      "description": "格林公式",
+      "latex": "\\oint_{ {{path}} }{{lhs}}=\\iint_{ {{domain}} }{{rhs}}\\,\\mathrm{d}x\\,\\mathrm{d}y",
+      "parameters": [
+        {
+          "id": "path",
+          "name": "曲线",
+          "description": "曲线",
+          "defaultValue": "L"
+        },
+        {
+          "id": "lhs",
+          "name": "沿边界的被积式",
+          "description": "沿边界的被积式",
+          "defaultValue": "P\\,\\mathrm{d}x+Q\\,\\mathrm{d}y"
+        },
+        {
+          "id": "domain",
+          "name": "积分区域或定义域",
+          "description": "积分区域或定义域",
+          "defaultValue": "D"
+        },
+        {
+          "id": "rhs",
+          "name": "区域上的被积式",
+          "description": "区域上的被积式",
+          "defaultValue": "\\left(\\frac{\\partial Q}{\\partial x}-\\frac{\\partial P}{\\partial y}\\right)"
+        }
+      ]
+    },
+    {
+      "id": "gausstheorem",
+      "command": "gausstheorem",
+      "aliases": [
+        "gaosigongshi"
+      ],
+      "name": "高斯散度定理",
+      "description": "高斯散度定理",
+      "latex": "\\oiint_{ {{surface}} }{{lhs}}=\\iiint_{ {{region}} }{{rhs}}\\,\\mathrm{d}V",
+      "parameters": [
+        {
+          "id": "surface",
+          "name": "有向边界",
+          "description": "有向边界",
+          "defaultValue": "\\partial\\Omega"
+        },
+        {
+          "id": "lhs",
+          "name": "通量积分的被积式",
+          "description": "通量积分的被积式",
+          "defaultValue": "\\mathbf{F}\\cdot\\mathrm{d}\\mathbf{S}"
+        },
+        {
+          "id": "region",
+          "name": "空间区域",
+          "description": "空间区域",
+          "defaultValue": "\\Omega"
+        },
+        {
+          "id": "rhs",
+          "name": "散度",
+          "description": "散度",
+          "defaultValue": "\\nabla\\cdot\\mathbf{F}"
+        }
+      ]
+    },
+    {
+      "id": "stokestheorem",
+      "command": "stokestheorem",
+      "aliases": [
+        "situokesigongshi"
+      ],
+      "name": "斯托克斯公式",
+      "description": "斯托克斯公式",
+      "latex": "\\oint_{ {{path}} }{{lhs}}=\\iint_{ {{surface}} }{{rhs}}",
+      "parameters": [
+        {
+          "id": "path",
+          "name": "有向边界",
+          "description": "有向边界",
+          "defaultValue": "\\partial S"
+        },
+        {
+          "id": "lhs",
+          "name": "边界线积分的被积式",
+          "description": "边界线积分的被积式",
+          "defaultValue": "\\mathbf{F}\\cdot\\mathrm{d}\\mathbf{r}"
+        },
+        {
+          "id": "surface",
+          "name": "曲面",
+          "description": "曲面",
+          "defaultValue": "S"
+        },
+        {
+          "id": "rhs",
+          "name": "旋度通量的被积式",
+          "description": "旋度通量的被积式",
+          "defaultValue": "(\\nabla\\times\\mathbf{F})\\cdot\\mathrm{d}\\mathbf{S}"
+        }
+      ]
+    },
+    {
+      "id": "polararea",
+      "command": "polararea",
+      "aliases": [
+        "jizuobiaomianjiyuan"
+      ],
+      "name": "极坐标面积元",
+      "description": "极坐标面积元",
+      "latex": "\\mathrm{d}A={{body}}",
+      "parameters": [
+        {
+          "id": "body",
+          "name": "极坐标面积元",
+          "description": "极坐标面积元",
+          "defaultValue": "r\\,\\mathrm{d}r\\,\\mathrm{d}\\theta"
+        }
+      ]
+    },
+    {
+      "id": "cylvol",
+      "command": "cylvol",
+      "aliases": [
+        "zhuzuobiaotijiyuan"
+      ],
+      "name": "柱坐标体积元",
+      "description": "柱坐标体积元",
+      "latex": "\\mathrm{d}V={{body}}",
+      "parameters": [
+        {
+          "id": "body",
+          "name": "柱坐标体积元",
+          "description": "柱坐标体积元",
+          "defaultValue": "r\\,\\mathrm{d}r\\,\\mathrm{d}\\theta\\,\\mathrm{d}z"
+        }
+      ]
+    },
+    {
+      "id": "sphvol",
+      "command": "sphvol",
+      "aliases": [
+        "qiuzuobiaotijiyuan"
+      ],
+      "name": "球坐标体积元（φ 从正 z 轴量起）",
+      "description": "球坐标体积元（φ 从正 z 轴量起）",
+      "latex": "\\mathrm{d}V={{body}}",
+      "parameters": [
+        {
+          "id": "body",
+          "name": "球坐标体积元（φ 从正 z 轴量起）",
+          "description": "球坐标体积元（φ 从正 z 轴量起）",
+          "defaultValue": "\\rho^2\\sin\\phi\\,\\mathrm{d}\\rho\\,\\mathrm{d}\\phi\\,\\mathrm{d}\\theta"
+        }
+      ]
+    },
+    {
+      "id": "arclength",
+      "command": "arclength",
+      "aliases": [
+        "huchang"
+      ],
+      "name": "弧长微分",
+      "description": "弧长微分",
+      "latex": "\\mathrm{d}s=\\left\\lVert {{body}} \\right\\rVert\\,\\mathrm{d} {{t}}",
+      "parameters": [
+        {
+          "id": "body",
+          "name": "速度向量",
+          "description": "速度向量",
+          "defaultValue": "\\mathbf{r}^\\prime(t)"
+        },
+        {
+          "id": "t",
+          "name": "参数",
+          "description": "参数",
+          "defaultValue": "t"
+        }
+      ]
+    },
+    {
+      "id": "riemannsum",
+      "command": "riemannsum",
+      "aliases": [
+        "limanhe"
+      ],
+      "name": "黎曼和",
+      "description": "黎曼和",
+      "latex": "\\sum_{ {{lower}} }^{ {{upper}} }{{f}}\\,{{body}}",
+      "parameters": [
+        {
+          "id": "lower",
+          "name": "起始指标",
+          "description": "起始指标",
+          "defaultValue": "i=1"
+        },
+        {
+          "id": "upper",
+          "name": "末指标",
+          "description": "末指标",
+          "defaultValue": "n"
+        },
+        {
+          "id": "f",
+          "name": "采样点函数值",
+          "description": "采样点函数值",
+          "defaultValue": "f(\\xi_i)"
+        },
+        {
+          "id": "body",
+          "name": "小区间长度",
+          "description": "小区间长度",
+          "defaultValue": "\\Delta x_i"
+        }
+      ],
+      "wrapTarget": "f"
+    },
+    {
+      "id": "intparts",
+      "command": "intparts",
+      "aliases": [
+        "fenbujifen"
+      ],
+      "name": "分部积分公式",
+      "description": "分部积分公式",
+      "latex": "\\int {{lhs}}={{body}}-\\int {{rhs}}",
+      "parameters": [
+        {
+          "id": "lhs",
+          "name": "原被积式",
+          "description": "原被积式",
+          "defaultValue": "u\\,\\mathrm{d}v"
+        },
+        {
+          "id": "body",
+          "name": "乘积项",
+          "description": "乘积项",
+          "defaultValue": "uv"
+        },
+        {
+          "id": "rhs",
+          "name": "变换后的被积式",
+          "description": "变换后的被积式",
+          "defaultValue": "v\\,\\mathrm{d}u"
+        }
+      ]
+    },
+    {
+      "id": "series",
+      "command": "series",
+      "aliases": [
+        "jishu",
+        "wuqiongjishu"
+      ],
+      "name": "无穷级数",
+      "description": "无穷级数",
+      "latex": "\\sum_{ {{lower}} }^{\\infty} {{body}}",
+      "parameters": [
+        {
+          "id": "lower",
+          "name": "起始指标",
+          "description": "起始指标",
+          "defaultValue": "n=1"
+        },
+        {
+          "id": "body",
+          "name": "级数通项",
+          "description": "级数通项",
+          "defaultValue": "a_n"
+        }
+      ],
+      "wrapTarget": "body"
+    },
+    {
+      "id": "powerseries",
+      "command": "powerseries",
+      "aliases": [
+        "mijishu"
+      ],
+      "name": "幂级数",
+      "description": "幂级数",
+      "latex": "\\sum_{ {{lower}} }^{\\infty}{{f}}\\left( {{x}}-{{a}} \\right)^{ {{n}} }",
+      "parameters": [
+        {
+          "id": "lower",
+          "name": "起始指标",
+          "description": "起始指标",
+          "defaultValue": "n=0"
+        },
+        {
+          "id": "f",
+          "name": "系数",
+          "description": "系数",
+          "defaultValue": "c_n"
+        },
+        {
+          "id": "x",
+          "name": "变量",
+          "description": "变量",
+          "defaultValue": "x"
+        },
+        {
+          "id": "a",
+          "name": "常数或左端点",
+          "description": "常数或左端点",
+          "defaultValue": "a"
+        },
+        {
+          "id": "n",
+          "name": "阶数或指标",
+          "description": "阶数或指标",
+          "defaultValue": "n"
+        }
+      ]
+    },
+    {
+      "id": "geoseries",
+      "command": "geoseries",
+      "aliases": [
+        "jihejishu"
+      ],
+      "name": "几何级数",
+      "description": "几何级数",
+      "latex": "\\sum_{n=0}^{\\infty}{{a}}\\,{{body}}^n",
+      "parameters": [
+        {
+          "id": "a",
+          "name": "常数或左端点",
+          "description": "常数或左端点",
+          "defaultValue": "a"
+        },
+        {
+          "id": "body",
+          "name": "公比",
+          "description": "公比",
+          "defaultValue": "q"
+        }
+      ]
+    },
+    {
+      "id": "pseries",
+      "command": "pseries",
+      "aliases": [
+        "pjishu"
+      ],
+      "name": "p 级数",
+      "description": "p 级数",
+      "latex": "\\sum_{n=1}^{\\infty}\\frac{1}{n^{ {{body}} }}",
+      "parameters": [
+        {
+          "id": "body",
+          "name": "幂指数",
+          "description": "幂指数",
+          "defaultValue": "p"
+        }
+      ]
+    },
+    {
+      "id": "altseries",
+      "command": "altseries",
+      "aliases": [
+        "jiaocuojishu"
+      ],
+      "name": "交错级数",
+      "description": "交错级数",
+      "latex": "\\sum_{n=1}^{\\infty}(-1)^{n-1}{{body}}",
+      "parameters": [
+        {
+          "id": "body",
+          "name": "非负通项",
+          "description": "非负通项",
+          "defaultValue": "a_n"
+        }
+      ],
+      "wrapTarget": "body"
+    },
+    {
+      "id": "partialsum",
+      "command": "partialsum",
+      "aliases": [
+        "bufenhe"
+      ],
+      "name": "级数部分和",
+      "description": "级数部分和",
+      "latex": "{{lhs}}=\\sum_{ {{lower}} }^{ {{upper}} }{{body}}",
+      "parameters": [
+        {
+          "id": "lhs",
+          "name": "部分和",
+          "description": "部分和",
+          "defaultValue": "S_n"
+        },
+        {
+          "id": "lower",
+          "name": "起始指标",
+          "description": "起始指标",
+          "defaultValue": "k=1"
+        },
+        {
+          "id": "upper",
+          "name": "末指标",
+          "description": "末指标",
+          "defaultValue": "n"
+        },
+        {
+          "id": "body",
+          "name": "被加项",
+          "description": "被加项",
+          "defaultValue": "a_k"
+        }
+      ],
+      "wrapTarget": "body"
+    },
+    {
+      "id": "prodlimits",
+      "command": "prodlimits",
+      "aliases": [
+        "liancheng",
+        "prod"
+      ],
+      "name": "带上下限的连乘",
+      "description": "带上下限的连乘",
+      "latex": "\\prod_{ {{lower}} }^{ {{upper}} }{{body}}",
+      "parameters": [
+        {
+          "id": "lower",
+          "name": "起始指标",
+          "description": "起始指标",
+          "defaultValue": "k=1"
+        },
+        {
+          "id": "upper",
+          "name": "末指标",
+          "description": "末指标",
+          "defaultValue": "n"
+        },
+        {
+          "id": "body",
+          "name": "乘积项",
+          "description": "乘积项",
+          "defaultValue": "a_k"
+        }
+      ],
+      "wrapTarget": "body"
+    },
+    {
+      "id": "infiniteprod",
+      "command": "infiniteprod",
+      "aliases": [
+        "wuqiongchengji"
+      ],
+      "name": "无穷乘积",
+      "description": "无穷乘积",
+      "latex": "\\prod_{ {{lower}} }^{\\infty}{{body}}",
+      "parameters": [
+        {
+          "id": "lower",
+          "name": "起始指标",
+          "description": "起始指标",
+          "defaultValue": "k=1"
+        },
+        {
+          "id": "body",
+          "name": "乘积项",
+          "description": "乘积项",
+          "defaultValue": "a_k"
+        }
+      ],
+      "wrapTarget": "body"
+    },
+    {
+      "id": "radiusconv",
+      "command": "radiusconv",
+      "aliases": [
+        "shoulianbanjing"
+      ],
+      "name": "柯西–阿达马收敛半径",
+      "description": "柯西–阿达马收敛半径",
+      "latex": "\\frac{1}{R}=\\limsup_{n\\to\\infty}\\sqrt[n]{\\left| {{body}} \\right|}",
+      "parameters": [
+        {
+          "id": "body",
+          "name": "幂级数系数",
+          "description": "幂级数系数",
+          "defaultValue": "a_n"
+        }
+      ]
+    },
+    {
+      "id": "fourier",
+      "command": "fourier",
+      "aliases": [
+        "fuliye",
+        "fuliyejishu"
+      ],
+      "name": "三角傅里叶级数",
+      "description": "三角傅里叶级数",
+      "latex": "\\frac{ {{lhs}} }{2}+\\sum_{n=1}^{\\infty}\\left( {{body}} \\right)",
+      "parameters": [
+        {
+          "id": "lhs",
+          "name": "常数项系数",
+          "description": "常数项系数",
+          "defaultValue": "a_0"
+        },
+        {
+          "id": "body",
+          "name": "第 n 个谐波",
+          "description": "第 n 个谐波",
+          "defaultValue": "a_n\\cos(nx)+b_n\\sin(nx)"
+        }
+      ]
+    },
+    {
+      "id": "fouriercoef",
+      "command": "fouriercoef",
+      "aliases": [
+        "fuliyexishu"
+      ],
+      "name": "复指数傅里叶系数",
+      "description": "复指数傅里叶系数",
+      "latex": "c_n=\\frac{1}{2\\pi}\\int_{-\\pi}^{\\pi}{{f}}\\,\\mathrm{e}^{ {{body}} }\\,\\mathrm{d}x",
+      "parameters": [
+        {
+          "id": "f",
+          "name": "函数",
+          "description": "函数",
+          "defaultValue": "f(x)"
+        },
+        {
+          "id": "body",
+          "name": "复指数",
+          "description": "复指数",
+          "defaultValue": "-\\mathrm{i} nx"
+        }
+      ],
+      "wrapTarget": "f"
+    },
+    {
+      "id": "odefirst",
+      "command": "odefirst",
+      "aliases": [
+        "weifenfangcheng",
+        "ode"
+      ],
+      "name": "一阶常微分方程",
+      "description": "一阶常微分方程",
+      "latex": "\\frac{\\mathrm{d} {{y}}}{\\mathrm{d} {{x}}}={{f}}",
+      "parameters": [
+        {
+          "id": "y",
+          "name": "第二变量",
+          "description": "第二变量",
+          "defaultValue": "y"
+        },
+        {
+          "id": "x",
+          "name": "变量",
+          "description": "变量",
+          "defaultValue": "x"
+        },
+        {
+          "id": "f",
+          "name": "方程右端",
+          "description": "方程右端",
+          "defaultValue": "f(x,y)"
+        }
+      ]
+    },
+    {
+      "id": "odelinear",
+      "command": "odelinear",
+      "aliases": [
+        "yijiexianxingweifenfangcheng"
+      ],
+      "name": "一阶线性微分方程",
+      "description": "一阶线性微分方程",
+      "latex": "y^\\prime+{{lhs}}y={{rhs}}",
+      "parameters": [
+        {
+          "id": "lhs",
+          "name": "系数",
+          "description": "系数",
+          "defaultValue": "P(x)"
+        },
+        {
+          "id": "rhs",
+          "name": "非齐次项",
+          "description": "非齐次项",
+          "defaultValue": "Q(x)"
+        }
+      ]
+    },
+    {
+      "id": "odesecond",
+      "command": "odesecond",
+      "aliases": [
+        "erjieweifenfangcheng"
+      ],
+      "name": "二阶线性微分方程",
+      "description": "二阶线性微分方程",
+      "latex": "y^{\\prime\\prime}+{{a}}y^\\prime+{{b}}y={{f}}",
+      "parameters": [
+        {
+          "id": "a",
+          "name": "常数或左端点",
+          "description": "常数或左端点",
+          "defaultValue": "a"
+        },
+        {
+          "id": "b",
+          "name": "常数或右端点",
+          "description": "常数或右端点",
+          "defaultValue": "b"
+        },
+        {
+          "id": "f",
+          "name": "函数",
+          "description": "函数",
+          "defaultValue": "f(x)"
+        }
+      ]
+    },
+    {
+      "id": "odesep",
+      "command": "odesep",
+      "aliases": [
+        "fenlibianliang"
+      ],
+      "name": "分离变量形式",
+      "description": "分离变量形式",
+      "latex": "{{lhs}}\\,\\mathrm{d}y={{rhs}}\\,\\mathrm{d}x",
+      "parameters": [
+        {
+          "id": "lhs",
+          "name": "y 的函数",
+          "description": "y 的函数",
+          "defaultValue": "g(y)"
+        },
+        {
+          "id": "rhs",
+          "name": "x 的函数",
+          "description": "x 的函数",
+          "defaultValue": "f(x)"
+        }
+      ]
+    },
+    {
+      "id": "initvalue",
+      "command": "initvalue",
+      "aliases": [
+        "chuzhiwenti"
+      ],
+      "name": "一阶初值问题",
+      "description": "一阶初值问题",
+      "latex": "\\begin{cases}{{lhs}}\\\\{{rhs}}\\end{cases}",
+      "parameters": [
+        {
+          "id": "lhs",
+          "name": "微分方程",
+          "description": "微分方程",
+          "defaultValue": "y^\\prime=f(x,y)"
+        },
+        {
+          "id": "rhs",
+          "name": "初始条件",
+          "description": "初始条件",
+          "defaultValue": "y(x_0)=y_0"
+        }
+      ]
+    },
+    {
+      "id": "odechar",
+      "command": "odechar",
+      "aliases": [
+        "weifenfangchengtezheng"
+      ],
+      "name": "二阶常系数方程的特征方程",
+      "description": "二阶常系数方程的特征方程",
+      "latex": "r^2+{{a}}r+{{b}}=0",
+      "parameters": [
+        {
+          "id": "a",
+          "name": "常数或左端点",
+          "description": "常数或左端点",
+          "defaultValue": "a"
+        },
+        {
+          "id": "b",
+          "name": "常数或右端点",
+          "description": "常数或右端点",
+          "defaultValue": "b"
+        }
+      ]
+    },
+    {
+      "id": "integratingfactor",
+      "command": "integratingfactor",
+      "aliases": [
+        "jifenyinzi"
+      ],
+      "name": "一阶线性方程的积分因子",
+      "description": "一阶线性方程的积分因子",
+      "latex": "\\mu(x)=\\mathrm{e}^{\\int {{f}}\\,\\mathrm{d}x}",
+      "parameters": [
+        {
+          "id": "f",
+          "name": "线性项系数",
+          "description": "线性项系数",
+          "defaultValue": "P(x)"
+        }
+      ]
+    },
+    {
+      "id": "dotderiv",
+      "command": "dotderiv",
+      "aliases": [
+        "shijiandaoshu"
+      ],
+      "name": "时间导数",
+      "description": "时间导数",
+      "latex": "\\dot{ {{x}} }",
+      "parameters": [
+        {
+          "id": "x",
+          "name": "变量",
+          "description": "变量",
+          "defaultValue": "x"
+        }
+      ],
+      "wrapTarget": "x"
+    },
+    {
+      "id": "ddotderiv",
+      "command": "ddotderiv",
+      "aliases": [
+        "erjieshijiandaoshu"
+      ],
+      "name": "二阶时间导数",
+      "description": "二阶时间导数",
+      "latex": "\\ddot{ {{x}} }",
+      "parameters": [
+        {
+          "id": "x",
+          "name": "变量",
+          "description": "变量",
+          "defaultValue": "x"
+        }
+      ],
+      "wrapTarget": "x"
+    },
+    {
+      "id": "wronskian",
+      "command": "wronskian",
+      "aliases": [
+        "langsiji"
+      ],
+      "name": "朗斯基行列式记号",
+      "description": "朗斯基行列式记号",
+      "latex": "W\\left( {{lhs}} \\right)({{x}})",
+      "parameters": [
+        {
+          "id": "lhs",
+          "name": "函数组",
+          "description": "函数组",
+          "defaultValue": "y_1,\\ldots,y_n"
+        },
+        {
+          "id": "x",
+          "name": "变量",
+          "description": "变量",
+          "defaultValue": "x"
+        }
+      ],
+      "wrapTarget": "lhs"
+    },
+    {
+      "id": "paramcurve",
+      "command": "paramcurve",
+      "aliases": [
+        "canshuquxian"
+      ],
+      "name": "参数曲线",
+      "description": "参数曲线",
+      "latex": "\\mathbf{r}({{t}})=\\left( {{x}},{{y}},{{z}} \\right)",
+      "parameters": [
+        {
+          "id": "t",
+          "name": "参数",
+          "description": "参数",
+          "defaultValue": "t"
+        },
+        {
+          "id": "x",
+          "name": "x 坐标",
+          "description": "x 坐标",
+          "defaultValue": "x(t)"
+        },
+        {
+          "id": "y",
+          "name": "y 坐标",
+          "description": "y 坐标",
+          "defaultValue": "y(t)"
+        },
+        {
+          "id": "z",
+          "name": "z 坐标",
+          "description": "z 坐标",
+          "defaultValue": "z(t)"
+        }
+      ]
+    },
+    {
+      "id": "paramsurface",
+      "command": "paramsurface",
+      "aliases": [
+        "canshuqumian"
+      ],
+      "name": "参数曲面",
+      "description": "参数曲面",
+      "latex": "\\mathbf{r}({{u}},{{v}})=\\left( {{x}},{{y}},{{z}} \\right)",
+      "parameters": [
+        {
+          "id": "u",
+          "name": "第一个向量或参数",
+          "description": "第一个向量或参数",
+          "defaultValue": "u"
+        },
+        {
+          "id": "v",
+          "name": "第二个向量或参数",
+          "description": "第二个向量或参数",
+          "defaultValue": "v"
+        },
+        {
+          "id": "x",
+          "name": "x 坐标",
+          "description": "x 坐标",
+          "defaultValue": "x(u,v)"
+        },
+        {
+          "id": "y",
+          "name": "y 坐标",
+          "description": "y 坐标",
+          "defaultValue": "y(u,v)"
+        },
+        {
+          "id": "z",
+          "name": "z 坐标",
+          "description": "z 坐标",
+          "defaultValue": "z(u,v)"
+        }
+      ]
+    },
+    {
+      "id": "tangentline",
+      "command": "tangentline",
+      "aliases": [
+        "zhixianfangcheng",
+        "qiexian"
+      ],
+      "name": "空间直线或曲线切线",
+      "description": "空间直线或曲线切线",
+      "latex": "{{lhs}}={{rhs}}+{{t}}{{vec}}",
+      "parameters": [
+        {
+          "id": "lhs",
+          "name": "线上的点",
+          "description": "线上的点",
+          "defaultValue": "\\mathbf{r}"
+        },
+        {
+          "id": "rhs",
+          "name": "基点",
+          "description": "基点",
+          "defaultValue": "\\mathbf{r}_0"
+        },
+        {
+          "id": "t",
+          "name": "参数",
+          "description": "参数",
+          "defaultValue": "t"
+        },
+        {
+          "id": "vec",
+          "name": "方向向量",
+          "description": "方向向量",
+          "defaultValue": "\\mathbf{v}"
+        }
+      ]
+    },
+    {
+      "id": "plane",
+      "command": "plane",
+      "aliases": [
+        "pingmianfangcheng"
+      ],
+      "name": "平面点法式",
+      "description": "平面点法式",
+      "latex": "{{vec}}\\cdot\\left( {{lhs}}-{{rhs}} \\right)=0",
+      "parameters": [
+        {
+          "id": "vec",
+          "name": "平面法向量",
+          "description": "平面法向量",
+          "defaultValue": "\\mathbf{n}"
+        },
+        {
+          "id": "lhs",
+          "name": "平面上的点",
+          "description": "平面上的点",
+          "defaultValue": "\\mathbf{r}"
+        },
+        {
+          "id": "rhs",
+          "name": "基点",
+          "description": "基点",
+          "defaultValue": "\\mathbf{r}_0"
+        }
+      ]
+    },
+    {
+      "id": "tangentplane",
+      "command": "tangentplane",
+      "aliases": [
+        "qiepingmian"
+      ],
+      "name": "显函数曲面的切平面",
+      "description": "显函数曲面的切平面",
+      "latex": "z-{{z}}={{lhs}}+{{rhs}}",
+      "parameters": [
+        {
+          "id": "z",
+          "name": "切点 z 坐标",
+          "description": "切点 z 坐标",
+          "defaultValue": "z_0"
+        },
+        {
+          "id": "lhs",
+          "name": "x 方向线性项",
+          "description": "x 方向线性项",
+          "defaultValue": "f_x(x_0,y_0)(x-x_0)"
+        },
+        {
+          "id": "rhs",
+          "name": "y 方向线性项",
+          "description": "y 方向线性项",
+          "defaultValue": "f_y(x_0,y_0)(y-y_0)"
+        }
+      ]
+    },
+    {
+      "id": "sphere",
+      "command": "sphere",
+      "aliases": [
+        "qiumian"
+      ],
+      "name": "球面方程",
+      "description": "球面方程",
+      "latex": "\\left\\lVert {{lhs}}-{{rhs}} \\right\\rVert^2={{body}}^2",
+      "parameters": [
+        {
+          "id": "lhs",
+          "name": "球面上的点",
+          "description": "球面上的点",
+          "defaultValue": "\\mathbf{r}"
+        },
+        {
+          "id": "rhs",
+          "name": "球心",
+          "description": "球心",
+          "defaultValue": "\\mathbf{r}_0"
+        },
+        {
+          "id": "body",
+          "name": "半径",
+          "description": "半径",
+          "defaultValue": "R"
+        }
+      ]
+    },
+    {
+      "id": "ellipsoid",
+      "command": "ellipsoid",
+      "aliases": [
+        "tuoqiumian"
+      ],
+      "name": "椭球面方程",
+      "description": "椭球面方程",
+      "latex": "{{lhs}}+{{rhs}}+{{body}}=1",
+      "parameters": [
+        {
+          "id": "lhs",
+          "name": "x 方向项",
+          "description": "x 方向项",
+          "defaultValue": "\\frac{x^2}{a^2}"
+        },
+        {
+          "id": "rhs",
+          "name": "y 方向项",
+          "description": "y 方向项",
+          "defaultValue": "\\frac{y^2}{b^2}"
+        },
+        {
+          "id": "body",
+          "name": "z 方向项",
+          "description": "z 方向项",
+          "defaultValue": "\\frac{z^2}{c^2}"
+        }
+      ]
+    },
+    {
+      "id": "pointplane",
+      "command": "pointplane",
+      "aliases": [
+        "diandaopingmian"
+      ],
+      "name": "点到平面距离",
+      "description": "点到平面距离",
+      "latex": "\\frac{\\left| {{lhs}} \\right|}{\\left\\lVert {{vec}} \\right\\rVert}",
+      "parameters": [
+        {
+          "id": "lhs",
+          "name": "法向投影的分子",
+          "description": "法向投影的分子",
+          "defaultValue": "\\mathbf{n}\\cdot(\\mathbf{r}-\\mathbf{r}_0)"
+        },
+        {
+          "id": "vec",
+          "name": "法向量",
+          "description": "法向量",
+          "defaultValue": "\\mathbf{n}"
+        }
+      ]
+    },
+    {
+      "id": "polarcoords",
+      "command": "polarcoords",
+      "aliases": [
+        "jizuobiao"
+      ],
+      "name": "平面极坐标变换",
+      "description": "平面极坐标变换",
+      "latex": "\\begin{cases}x={{lhs}}\\\\y={{rhs}}\\end{cases}",
+      "parameters": [
+        {
+          "id": "lhs",
+          "name": "x 坐标",
+          "description": "x 坐标",
+          "defaultValue": "r\\cos\\theta"
+        },
+        {
+          "id": "rhs",
+          "name": "y 坐标",
+          "description": "y 坐标",
+          "defaultValue": "r\\sin\\theta"
+        }
+      ]
+    }
+  ]
+}

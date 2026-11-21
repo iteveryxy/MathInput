@@ -15,4 +15,8 @@ export interface Snippet {
   latex: string;
   parameters: SnippetParameter[];
   wrapTarget?: string;
+  preferSelection?: boolean;
+  /** Runtime source metadata; never serialized into a Formula Pack. */
+  packId?: string;
+  packName?: string;
 }

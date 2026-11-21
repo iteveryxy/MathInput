@@ -13,7 +13,7 @@ export class PlaceholderManager {
   insert(snippet: Snippet, wrapped?: string): void {
     this.record();
     const id = `mi${++this.serial}`;
-    const values: Record<string, string> = {};
+    const values: Record<string, string> = Object.create(null);
     const promptIds = snippet.parameters.map((parameter) => {
       const prompt = `${id}-${parameter.id}`;
       const value = parameter.id === snippet.wrapTarget && wrapped !== undefined ? wrapped : parameter.defaultValue;
@@ -34,8 +34,10 @@ export class PlaceholderManager {
     const current = this.stack.current;
     if (!current) return;
     const range = this.field.getPromptRange(current.promptIds[current.index]);
-    if (range) this.field.selection = { ranges: [range] };
-    else this.finish();
+    if (range) {
+      this.field.selection = { ranges: [range] };
+      this.field.executeCommand('scrollIntoView');
+    } else this.finish();
   }
 
   tab(backward = false): void {

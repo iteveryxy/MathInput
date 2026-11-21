@@ -3,7 +3,7 @@ import { parseSettings } from '../platform/Settings';
 
 export class SettingsPanel {
   readonly element = document.createElement('section');
-  constructor(private readonly save: (settings: Settings) => Promise<void>, private readonly ids: string[], private readonly preview?: (settings: Pick<Settings, 'uiScale' | 'compact'>) => void) {
+  constructor(private readonly save: (settings: Settings) => Promise<void>, private readonly ids: string[]|(()=>string[]), private readonly preview?: (settings: Pick<Settings, 'uiScale' | 'compact'>) => void) {
     this.element.id = 'settings-panel';
     this.element.className = 'settings-panel';
     this.element.hidden = true;
@@ -12,7 +12,7 @@ export class SettingsPanel {
     this.element.hidden = !this.element.hidden;
     if (this.element.hidden) return;
     this.element.innerHTML = `
-      <div class="panel-title">偏好设置 <span>仅保存在本机</span></div>
+      <div class="panel-title">偏好设置 <span>仅保存在本机</span><button type="button" id="open-formula-packs">公式包</button></div>
       <form id="settings-form">
         <div class="settings-grid">
           <label>全局快捷键<input name="shortcut" aria-label="全局快捷键" autocomplete="off" spellcheck="false"></label>
@@ -26,6 +26,7 @@ export class SettingsPanel {
         <div class="settings-actions"><span id="settings-error" role="alert"></span><button type="button" id="settings-cancel">取消</button><button class="primary" type="submit">保存设置</button></div>
       </form>`;
     const form = this.element.querySelector<HTMLFormElement>('form')!;
+    this.element.querySelector('#open-formula-packs')!.addEventListener('click',()=>{this.preview?.(settings);this.element.hidden=true;this.element.dispatchEvent(new Event('open-formula-packs'));});
     const shortcut = form.elements.namedItem('shortcut') as HTMLInputElement;
     const mode = form.elements.namedItem('mode') as HTMLSelectElement;
     const paste = form.elements.namedItem('paste') as HTMLInputElement;
@@ -42,7 +43,7 @@ export class SettingsPanel {
     form.addEventListener('submit', async (event) => {
       event.preventDefault();
       const error = this.element.querySelector('#settings-error')!;
-      try { await this.save(parseSettings(shortcut.value, mode.value, paste.checked, aliases.value, this.ids, Number(scale.value), compact.checked)); this.element.hidden = true; this.element.dispatchEvent(new Event('settings-saved')); }
+      try { await this.save(parseSettings(shortcut.value, mode.value, paste.checked, aliases.value, typeof this.ids==='function'?this.ids():this.ids, Number(scale.value), compact.checked)); this.element.hidden = true; this.element.dispatchEvent(new Event('settings-saved')); }
       catch (reason) { error.textContent = reason instanceof Error ? reason.message : String(reason); }
     });
   }
