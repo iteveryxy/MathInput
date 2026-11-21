@@ -184,6 +184,8 @@ body.compact .parameter-tooltip > span:not(.parameter-path):not(.parameter-progr
 .candidate-name { display: none; }
 .candidate-preview { font-size: 1.4rem; max-height: 3.4rem; overflow: auto; white-space: nowrap; }
 .candidate-description { display: block; font-size: .75rem; text-align: right; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.candidate-description > span { display: block; overflow: hidden; text-overflow: ellipsis; }
+.candidate-description .candidate-source { display: block; width: fit-content; max-width: 100%; margin: .2rem 0 0 auto; }
 .candidate-parameters { font-size: .7rem; line-height: 1.45; overflow-wrap: anywhere; }
 .candidate:not(.active) .candidate-parameters, .candidate-parameters:empty { display: none; }
 .help-panel, .settings-panel { padding: 1rem; max-height: 30rem; overflow: auto; }

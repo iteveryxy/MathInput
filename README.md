@@ -6,7 +6,7 @@ Math Input is an offline formula editor for Windows. Press **Ctrl + Alt + M** in
 
 ## Download
 
-Get the Windows x64 installer or portable ZIP from [GitHub Releases](https://github.com/iteveryxy/MathInput/releases). To use the portable build, extract the ZIP and run `MathInput.exe`. Both builds require the Microsoft Edge WebView2 Runtime. The interface is in Simplified Chinese.
+Get the Windows x64 installer or portable ZIP from [GitHub Releases](https://github.com/iteveryxy/MathInput/releases). To use the portable build, extract the ZIP and run `MathInput.exe`. Both builds require the Microsoft Edge WebView2 Runtime.
 
 ## Quick start
 
@@ -16,9 +16,13 @@ Get the Windows x64 installer or portable ZIP from [GitHub Releases](https://git
 
 Use **Ctrl + Space** to browse templates. Commands such as `sqrt`, `sum`, and `lim` also support Pinyin and custom aliases. Use **Alt + M** to insert a matrix by entering its rows and columns. You can edit up to 400 cells in a single matrix.
 
+**Settings → Interface language** switches between Simplified Chinese and English. When a formula has several matches, choose a candidate by its pack label with the arrow keys or the mouse.
+
 ## Formula packs
 
 Enable the packs you want under **Settings → Formula packs**. You can import and export JSON packs or save the current formula as a template. If you are upgrading an existing library, use **Add bundled university packs** to add the new packs before enabling them.
+
+Select several JSON files at once or drop them onto the window or `MathInput.exe`. Review the selected packs before importing.
 
 | Pack | Contents | JSON |
 | --- | --- | --- |

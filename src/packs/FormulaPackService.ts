@@ -1,7 +1,8 @@
-import { initialPackState, registeredSnippets, replacePack, UNIVERSITY_PACKS } from './FormulaPacks';
+import { initialPackState, registeredSnippets, replacePack, replacePacks, UNIVERSITY_PACKS } from './FormulaPacks';
 import { createPackStorage } from './PackStorage';
 import { validatePack, validateState } from './Validation';
 import { BASE_PACK_ID, type FormulaPack, type PackState, type PackStorage } from './types';
+import { t, tr } from '../platform/Language';
 export class FormulaPackService {
     state = initialPackState();
     error = '';
@@ -28,7 +29,7 @@ export class FormulaPackService {
             this.ready = true;
         }
         catch (error) {
-            this.error = `公式库未能读取，已保留原数据，暂不可修改：${String(error)}`;
+            this.error = tr(`公式库未能读取，已保留原数据，暂不可修改：${String(error)}`, `Could not read the formula library. The original data is kept: ${String(error)}`);
         }
         this.emit();
     }
@@ -36,7 +37,7 @@ export class FormulaPackService {
     mutate(change: (state: PackState) => PackState): Promise<void> {
         const run = async () => {
             if (!this.ready)
-                throw new Error(this.error || '公式库仍在载入');
+                throw new Error(this.error || t('公式库仍在载入'));
             const next = validateState(change(structuredClone(this.state)));
             const persisted = await this.storage.save(next, this.state.revision);
             this.state = persisted;
@@ -48,6 +49,16 @@ export class FormulaPackService {
         return result;
     }
     install(pack: FormulaPack, replace = false): Promise<void> { const checked = validatePack(pack); this.validateMath?.(checked); return this.mutate(state => replacePack(state, checked, replace)); }
+    installBatch(items: { pack: FormulaPack; replace: boolean }[]): Promise<void> {
+        return this.mutate(state => {
+            const checkedItems = items.map(({ pack, replace }) => {
+                const checked = validatePack(pack);
+                this.validateMath?.(checked);
+                return { pack: checked, replace };
+            });
+            return replacePacks(state, checkedItems);
+        });
+    }
     addUniversityPacks(): Promise<void> {
         return this.mutate(state => {
             for (const pack of UNIVERSITY_PACKS) {
@@ -63,15 +74,15 @@ export class FormulaPackService {
     else {
         const entry = state.packs.find(entry => entry.pack.id === id);
         if (!entry)
-            throw new Error('公式包不存在');
+            throw new Error(t('公式包不存在'));
         entry.enabled = enabled;
     } return state; }); }
     remove(id: string): Promise<void> { if (id === BASE_PACK_ID)
-        return Promise.reject(new Error('内置包不可删除')); return this.mutate(state => ({ ...state, packs: state.packs.filter(entry => entry.pack.id !== id) })); }
+        return Promise.reject(new Error(t('内置包不可删除'))); return this.mutate(state => ({ ...state, packs: state.packs.filter(entry => entry.pack.id !== id) })); }
     snippets(includeDisabled = false) { return registeredSnippets(this.state, includeDisabled).filter(snippet => includeDisabled || !this.invalidPacks.has(snippet.packId!)); }
     async recover(): Promise<void> {
         if (!this.storage.recover)
-            throw new Error('此存储没有恢复接口');
+            throw new Error(t('此存储没有恢复接口'));
         const restored = await this.storage.recover();
         this.state = restored;
         this.error = '';

@@ -2,8 +2,9 @@ import type { Snippet } from '../snippets/types';
 import type { FormulaPack, PackState } from './types';
 import { BASE_PACK_ID, PACK_LIMITS } from './types';
 import { renderSnippet } from '../snippets/SnippetRegistry';
+import { t, tr } from '../platform/Language';
 export class PackValidationError extends Error {
-    constructor(readonly path: string, message: string) { super(`${path}: ${message}`); }
+    constructor(readonly path: string, message: string) { super(`${path}: ${t(message)}`); }
 }
 const fail = (path: string, message: string): never => { throw new PackValidationError(path, message); };
 const idPattern = /^[a-z][a-z0-9-]{0,63}$/;
@@ -20,12 +21,12 @@ function object(value: unknown, path: string, allowed: string[]): Record<string,
 }
 function text(value: unknown, path: string, max: number, empty = false): string {
     if (typeof value !== 'string' || (!empty && !value.trim()) || value.length > max || /[\x00-\x08\x0b\x0c\x0e-\x1f]/.test(value))
-        return fail(path, `需要${empty ? '' : '非空'}文本，最多 ${max} 字符`);
+        return fail(path, tr(`需要${empty ? '' : '非空'}文本，最多 ${max} 字符`, `Expected ${empty ? 'text' : 'nonempty text'} of at most ${max} characters.`));
     return value;
 }
 function array(value: unknown, path: string, max: number): unknown[] {
     if (!Array.isArray(value) || value.length > max)
-        return fail(path, `需要数组，最多 ${max} 项`);
+        return fail(path, tr(`需要数组，最多 ${max} 项`, `Expected an array of at most ${max} items.`));
     return value;
 }
 export function validateLatexData(value: string, path: string, slots = false): void {
@@ -34,7 +35,7 @@ export function validateLatexData(value: string, path: string, slots = false): v
         fail(path, '不允许 HTML 标签');
     for (const match of value.matchAll(/\\([a-zA-Z]+)/g))
         if (forbidden.has(match[1].toLowerCase()))
-            fail(path, `不允许命令 \\${match[1]}`);
+            fail(path, tr(`不允许命令 \\${match[1]}`, `Command \\${match[1]} is not allowed.`));
     let depth = 0;
     for (let i = 0; i < value.length; i++) {
         if (value[i] === '\\' && ['{', '}', '\\'].includes(value[i + 1])) {
@@ -107,10 +108,10 @@ export function validatePack(value: unknown, path = '$'): FormulaPack {
         const matches = [...latex.matchAll(/\{\{([a-z][a-z0-9_]*)\}\}/g)];
         for (const match of matches)
             if (!parameterIds.has(match[1]))
-                fail(`${p}.latex`, `槽位 ${match[1]} 缺少参数声明`);
+                fail(`${p}.latex`, tr(`槽位 ${match[1]} 缺少参数声明`, `Slot ${match[1]} has no parameter declaration.`));
         for (const parameter of parameterIds)
             if (matches.filter(match => match[1] === parameter).length !== 1)
-                fail(`${p}.parameters`, `参数 ${parameter} 必须恰好对应一个槽位`);
+                fail(`${p}.parameters`, tr(`参数 ${parameter} 必须恰好对应一个槽位`, `Parameter ${parameter} must match exactly one slot.`));
         if (/\{\{\s*[a-zA-Z_][^{}]*\}\}/.test(latex.replace(/\{\{([a-z][a-z0-9_]*)\}\}/g, '')))
             fail(`${p}.latex`, '非法槽位；使用 {{parameter_id}}');
         if (snippet.wrapTarget !== undefined && !parameterIds.has(text(snippet.wrapTarget, `${p}.wrapTarget`, 32)))
@@ -125,7 +126,7 @@ export function validatePack(value: unknown, path = '$'): FormulaPack {
 }
 export function parsePack(raw: string): FormulaPack {
     if (new TextEncoder().encode(raw).length > PACK_LIMITS.fileBytes)
-        fail('$', `文件不得超过 ${PACK_LIMITS.fileBytes} 字节`);
+        fail('$', tr(`文件不得超过 ${PACK_LIMITS.fileBytes} 字节`, `The file must not exceed ${PACK_LIMITS.fileBytes} bytes.`));
     let depth = 0, quoted = false, escaped = false;
     for (const ch of raw) {
         if (quoted) {

@@ -6,6 +6,8 @@ import { caretAnchor } from '../editor/CaretAnchor';
 import { placeFloating } from './FloatingPosition';
 import { candidateId, snippetKey } from '../packs/types';
 import { renderMathPreview } from '../packs/MathPreview';
+import { t, tr } from '../platform/Language';
+import { packDisplayName, snippetDisplayName } from '../packs/FormulaPacks';
 
 export class CompletionPopup {
   readonly element = document.createElement('section');
@@ -18,7 +20,6 @@ export class CompletionPopup {
     this.element.id = popupId;
     this.element.className = 'completion';
     this.element.setAttribute('role', 'listbox');
-    this.element.setAttribute('aria-label', '数学命令候选');
     this.element.addEventListener('pointerdown', (event) => event.preventDefault());
     this.element.hidden = true;
     document.body.append(this.element); // Portal: no contribution to shell/window height.
@@ -61,14 +62,25 @@ export class CompletionPopup {
   }
 
   render(state: CompletionState): void {
+    this.element.setAttribute('aria-label', t('数学命令候选'));
     this.element.hidden = !state.open;
     if (!state.open) return;
     this.revealActive=true;
     this.element.style.visibility = 'hidden';
     const heading = document.createElement('div');
     heading.className = 'completion-heading';
-    heading.textContent = `命令${state.query ? ` / ${state.query}` : ''} · ${state.candidates.length} 项`;
+    const count = state.candidates.length;
+    const title = state.index < 0 ? tr('选择公式来源', 'Choose a formula source') : t('命令');
+    heading.textContent = `${title}${state.query ? ` / ${state.query}` : ''} · ${count}`;
     this.element.replaceChildren(heading);
+    const sources = new Map<string, Set<string>>();
+    for (const snippet of state.candidates) {
+      const packId = snippet.packId ?? 'basic-math';
+      const source = packDisplayName(packId, snippet.packName ?? '基础数学');
+      const ids = sources.get(source) ?? new Set<string>();
+      ids.add(packId);
+      sources.set(source, ids);
+    }
     state.candidates.forEach((snippet, index) => {
       const row = document.createElement('div');
       row.className = `candidate${index === state.index ? ' active' : ''}`;
@@ -81,18 +93,27 @@ export class CompletionPopup {
       const name = document.createElement('strong');
       name.textContent = snippet.command;
       const label = document.createElement('span');
-      label.className = 'candidate-name'; label.textContent = snippet.name;
+      const displayName = snippetDisplayName(snippet);
+      label.className = 'candidate-name'; label.textContent = displayName;
       command.append(name, label);
-      if(snippet.packName){const source=document.createElement('small');source.className='candidate-source';source.textContent=snippet.packName;command.append(source);}
+      const sourceName = packDisplayName(row.dataset.packId, snippet.packName ?? '基础数学');
+      const sourceLabel = sources.get(sourceName)!.size > 1 ? `${sourceName} · ${row.dataset.packId}` : sourceName;
+      row.setAttribute('aria-label', `${snippet.command} · ${displayName} · ${sourceLabel}`);
       const preview = document.createElement('div');
       preview.className = 'candidate-preview';
       const rendered=renderSnippet(snippet),cacheKey=snippetKey(snippet)+'\0'+rendered;
       try {if(!this.previews.has(cacheKey)){renderMathPreview(preview,rendered);if(this.previews.size>=256)this.previews.delete(this.previews.keys().next().value!);this.previews.set(cacheKey,preview.innerHTML);}else preview.innerHTML=this.previews.get(cacheKey)!;}
-      catch {preview.textContent='预览不可用';}
+      catch {preview.textContent=t('预览不可用');}
       const description = document.createElement('div');
       description.className = 'candidate-description';
-      description.textContent = snippet.name;
-      row.title = snippet.description;
+      const formula = document.createElement('span');
+      formula.textContent = displayName;
+      const source = document.createElement('small');
+      source.className = 'candidate-source';
+      source.textContent = sourceLabel;
+      source.title = sourceLabel;
+      description.append(formula, source);
+      row.title = `${snippet.description} · ${sourceLabel}`;
       const parameters = document.createElement('div');
       parameters.className = 'candidate-parameters';
       parameters.textContent = snippet.parameters.map((parameter) => `${parameter.defaultValue} · ${parameter.name}`).join('   ');

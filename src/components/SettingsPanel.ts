@@ -1,5 +1,6 @@
 import type { Settings } from '../platform/Settings';
 import { parseSettings } from '../platform/Settings';
+import { localizeUi, translatedError } from '../platform/Language';
 
 export class SettingsPanel {
   readonly element = document.createElement('section');
@@ -18,6 +19,7 @@ export class SettingsPanel {
           <label>全局快捷键<input name="shortcut" aria-label="全局快捷键" autocomplete="off" spellcheck="false"></label>
           <label>默认输出<select name="mode" aria-label="默认输出"><option value="inline">行内 Markdown · $…$</option><option value="block">块级 Markdown · $$…$$</option><option value="latex">纯 LaTeX</option></select></label>
         </div>
+        <label>界面语言<select name="language" aria-label="界面语言"><option value="zh-CN">简体中文</option><option value="en">English</option></select></label>
         <label class="scale-setting">界面缩放 <output id="scale-value"></output><input name="scale" type="range" min="65" max="125" step="1" aria-label="界面缩放"></label>
         <label class="checkbox"><input name="compact" type="checkbox" aria-label="紧凑模式">紧凑模式</label>
         <label class="checkbox"><input name="paste" type="checkbox">提交时尝试粘贴到原输入框</label>
@@ -25,6 +27,7 @@ export class SettingsPanel {
         <p class="settings-note">“仅复制”会用公式替换剪贴板。自动粘贴仅临时使用可安全恢复的纯文本剪贴板；图片、文件和其他格式会保留，并提示手动复制。</p>
         <div class="settings-actions"><span id="settings-error" role="alert"></span><button type="button" id="settings-cancel">取消</button><button class="primary" type="submit">保存设置</button></div>
       </form>`;
+    localizeUi(this.element);
     const form = this.element.querySelector<HTMLFormElement>('form')!;
     this.element.querySelector('#open-formula-packs')!.addEventListener('click',()=>{this.preview?.(settings);this.element.hidden=true;this.element.dispatchEvent(new Event('open-formula-packs'));});
     const shortcut = form.elements.namedItem('shortcut') as HTMLInputElement;
@@ -33,6 +36,8 @@ export class SettingsPanel {
     const aliases = form.elements.namedItem('aliases') as HTMLTextAreaElement;
     const scale = form.elements.namedItem('scale') as HTMLInputElement;
     const compact = form.elements.namedItem('compact') as HTMLInputElement;
+    const language = form.elements.namedItem('language') as HTMLSelectElement;
+    language.value = settings.language;
     shortcut.value = settings.shortcut; mode.value = settings.outputMode; paste.checked = settings.autoPaste;
     scale.value = String(settings.uiScale); compact.checked = settings.compact;
     const showScale = () => { this.element.querySelector('output')!.textContent = `${scale.value}%`; };
@@ -43,8 +48,8 @@ export class SettingsPanel {
     form.addEventListener('submit', async (event) => {
       event.preventDefault();
       const error = this.element.querySelector('#settings-error')!;
-      try { await this.save(parseSettings(shortcut.value, mode.value, paste.checked, aliases.value, typeof this.ids==='function'?this.ids():this.ids, Number(scale.value), compact.checked)); this.element.hidden = true; this.element.dispatchEvent(new Event('settings-saved')); }
-      catch (reason) { error.textContent = reason instanceof Error ? reason.message : String(reason); }
+      try { await this.save(parseSettings(shortcut.value, mode.value, paste.checked, aliases.value, typeof this.ids==='function'?this.ids():this.ids, Number(scale.value), compact.checked, language.value)); this.element.hidden = true; this.element.dispatchEvent(new Event('settings-saved')); }
+      catch (reason) { error.textContent = translatedError(reason instanceof Error ? reason.message : String(reason)); }
     });
   }
 }

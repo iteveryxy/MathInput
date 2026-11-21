@@ -130,6 +130,23 @@ fn show_without_target(app: &AppHandle) {
     if let Some(window) = app.get_webview_window("main") { focus_editor(&window); }
 }
 
+fn tray_menu(app: &AppHandle, english: bool) -> tauri::Result<Menu<tauri::Wry>> {
+    let show = MenuItem::with_id(app, "show", if english { "Open Math Input" } else { "打开 Math Input" }, true, None::<&str>)?;
+    let quit = MenuItem::with_id(app, "quit", if english { "Exit Math Input" } else { "退出 Math Input" }, true, None::<&str>)?;
+    Menu::with_items(app, &[&show, &quit])
+}
+
+#[tauri::command]
+async fn set_ui_language(app: AppHandle, language: String) -> Result<(), String> {
+    let english = language == "en";
+    let menu = tray_menu(&app, english).map_err(|error| error.to_string())?;
+    if let Some(tray) = app.tray_by_id("editor-tray") {
+        tray.set_menu(Some(menu)).map_err(|error| error.to_string())?;
+        tray.set_tooltip(Some(if english { "Math Input · Formula editor" } else { "Math Input · 结构化数学输入" })).map_err(|error| error.to_string())?;
+    }
+    Ok(())
+}
+
 fn focus_editor(window: &tauri::WebviewWindow) {
     let _ = window.show();
     let _ = window.set_focus();
@@ -164,27 +181,37 @@ fn global_shortcut(app: &AppHandle) {
 pub fn run() {
     tauri::Builder::default()
         .on_page_load(|webview, _| { let _ = webview.set_focus(); })
-        .plugin(tauri_plugin_single_instance::init(|app, _, _| show_without_target(app)))
+        .manage(formula_packs::ImportQueue::default())
+        .plugin(tauri_plugin_single_instance::init(|app, args, cwd| {
+            show_without_target(app);
+            formula_packs::queue_import_paths(app, formula_packs::launch_import_paths(
+                args.into_iter().skip(1).map(std::path::PathBuf::from), std::path::Path::new(&cwd)));
+        }))
         .plugin(tauri_plugin_dialog::init())
         .plugin(tauri_plugin_global_shortcut::Builder::new().with_handler(|app, _, event| {
             if event.state() == ShortcutState::Released { global_shortcut(app); }
         }).build())
-        .invoke_handler(tauri::generate_handler![desktop_status, configure_shortcut, copy_text, submit_text, cancel_input, formula_packs::load_formula_packs, formula_packs::save_formula_packs, formula_packs::restore_formula_pack_backup, formula_packs::pick_formula_pack_file, formula_packs::export_formula_pack_file])
+        .invoke_handler(tauri::generate_handler![desktop_status, configure_shortcut, copy_text, submit_text, cancel_input, set_ui_language, formula_packs::load_formula_packs, formula_packs::save_formula_packs, formula_packs::restore_formula_pack_backup, formula_packs::pick_formula_pack_files, formula_packs::take_pending_formula_pack_files, formula_packs::export_formula_pack_file])
         .setup(|app| {
             app.manage(formula_packs::PackFile::new(app.path().app_config_dir()?));
             let shortcut = config_path(app.handle()).ok().and_then(|path| fs::read_to_string(path).ok()).and_then(|text| serde_json::from_str::<String>(&text).ok()).filter(|text| text.len() < 64 && text.parse::<Shortcut>().is_ok()).unwrap_or_else(|| DEFAULT_SHORTCUT.into());
             let parsed: Shortcut = shortcut.parse().unwrap();
             let registration = app.global_shortcut().register(parsed);
             app.manage(AppState { native: NativeBridge::new(), shortcut: Mutex::new(shortcut), registered: Mutex::new(registration.as_ref().ok().map(|_| parsed)), error: Mutex::new(registration.err().map(|error| format!("全局快捷键注册失败：{error}。可在设置中更换；托盘仍可打开窗口"))), target_ready: AtomicBool::new(false), opening: AtomicBool::new(false), last_result: Mutex::new(None) });
-            let show = MenuItem::with_id(app, "show", "打开 Math Input", true, None::<&str>)?;
-            let quit = MenuItem::with_id(app, "quit", "退出 Math Input", true, None::<&str>)?;
-            let menu = Menu::with_items(app, &[&show, &quit])?;
-            let mut tray = TrayIconBuilder::new().tooltip("Math Input · 结构化数学输入").menu(&menu).on_menu_event(|app, event| match event.id().as_ref() { "show" => show_without_target(app), "quit" => app.exit(0), _ => {} });
+            let menu = tray_menu(app.handle(), false)?;
+            let mut tray = TrayIconBuilder::with_id("editor-tray").tooltip("Math Input · 结构化数学输入").menu(&menu).on_menu_event(|app, event| match event.id().as_ref() { "show" => show_without_target(app), "quit" => app.exit(0), _ => {} });
             if let Some(icon) = app.default_window_icon() { tray = tray.icon(icon.clone()); }
             tray.build(app)?;
+            if let Ok(cwd) = std::env::current_dir() {
+                formula_packs::queue_import_paths(app.handle(), formula_packs::launch_import_paths(
+                    std::env::args_os().skip(1).map(std::path::PathBuf::from), &cwd));
+            }
             Ok(())
         })
         .on_window_event(|window, event| {
+            if let tauri::WindowEvent::DragDrop(tauri::DragDropEvent::Drop { paths, .. }) = event {
+                formula_packs::queue_import_paths(window.app_handle(), paths.clone());
+            }
             if let tauri::WindowEvent::CloseRequested { api, .. } = event {
                 api.prevent_close(); let _ = window.hide();
                 let state = window.state::<AppState>(); state.target_ready.store(false, Ordering::SeqCst);

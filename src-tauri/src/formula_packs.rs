@@ -1,3 +1,4 @@
+use serde::Serialize;
 use serde_json::{json, Map, Value};
 use std::{
     collections::HashSet,
@@ -10,11 +11,12 @@ use std::{
     },
     time::{SystemTime, UNIX_EPOCH},
 };
-use tauri::{AppHandle, State};
+use tauri::{AppHandle, Emitter, Manager, State};
 use tauri_plugin_dialog::DialogExt;
 
 const FILE_LIMIT: usize = 262_144;
 const STATE_LIMIT: usize = 8_388_608;
+const IMPORT_LIMIT: usize = 32;
 static SERIAL: AtomicU64 = AtomicU64::new(0);
 fn err(path: &str, message: &str) -> String {
     format!("{path}: {message}")
@@ -487,28 +489,132 @@ pub fn save_formula_packs(
 pub fn restore_formula_pack_backup(packs: State<'_, PackFile>) -> Result<Value, String> {
     packs.restore()
 }
+#[derive(Serialize)]
+pub struct ImportFile {
+    name: String,
+    contents: Option<String>,
+    error: Option<&'static str>,
+}
+
+#[derive(Serialize)]
+pub struct ImportBatch {
+    files: Vec<ImportFile>,
+    skipped: usize,
+}
+
+#[derive(Default)]
+pub struct ImportQueue(Mutex<(Vec<PathBuf>, usize)>);
+
+fn is_json(path: &Path) -> bool {
+    path.extension()
+        .and_then(|ext| ext.to_str())
+        .is_some_and(|ext| ext.eq_ignore_ascii_case("json"))
+}
+
+pub fn launch_import_paths(args: impl IntoIterator<Item = PathBuf>, cwd: &Path) -> Vec<PathBuf> {
+    args.into_iter()
+        .filter(|path| is_json(path))
+        .map(|path| {
+            if path.is_absolute() {
+                path
+            } else {
+                cwd.join(path)
+            }
+        })
+        .collect()
+}
+
+pub fn queue_import_paths(app: &AppHandle, paths: Vec<PathBuf>) {
+    if paths.is_empty() {
+        return;
+    }
+    {
+        let queue = app.state::<ImportQueue>();
+        let mut pending = queue.0.lock().unwrap();
+        for path in paths {
+            if pending.0.len() < IMPORT_LIMIT {
+                pending.0.push(path);
+            } else {
+                pending.1 += 1;
+            }
+        }
+    }
+    let _ = app.emit_to("main", "formula-packs-pending", ());
+}
+
+fn read_import_file(path: PathBuf) -> ImportFile {
+    let name = path
+        .file_name()
+        .unwrap_or_default()
+        .to_string_lossy()
+        .into_owned();
+    let read = || -> Result<String, &'static str> {
+        if !is_json(&path) {
+            return Err("extension");
+        }
+        let metadata = path.metadata().map_err(|_| "read")?;
+        if !metadata.is_file() {
+            return Err("read");
+        }
+        if metadata.len() > FILE_LIMIT as u64 {
+            return Err("size");
+        }
+        let bytes = bounded_read(&path, FILE_LIMIT).map_err(|_| "read")?;
+        String::from_utf8(bytes).map_err(|_| "encoding")
+    };
+    match read() {
+        Ok(contents) => ImportFile {
+            name,
+            contents: Some(contents),
+            error: None,
+        },
+        Err(error) => ImportFile {
+            name,
+            contents: None,
+            error: Some(error),
+        },
+    }
+}
+
+fn read_import_batch(paths: Vec<PathBuf>, skipped: usize) -> ImportBatch {
+    ImportBatch {
+        skipped: skipped + paths.len().saturating_sub(IMPORT_LIMIT),
+        files: paths
+            .into_iter()
+            .take(IMPORT_LIMIT)
+            .map(read_import_file)
+            .collect(),
+    }
+}
+
 #[tauri::command]
-pub async fn pick_formula_pack_file(
+pub async fn take_pending_formula_pack_files(
+    queue: State<'_, ImportQueue>,
+) -> Result<ImportBatch, String> {
+    let (paths, skipped) = std::mem::take(&mut *queue.0.lock().unwrap());
+    tauri::async_runtime::spawn_blocking(move || read_import_batch(paths, skipped))
+        .await
+        .map_err(|e| e.to_string())
+}
+
+#[tauri::command]
+pub async fn pick_formula_pack_files(
     app: AppHandle,
     window: tauri::WebviewWindow,
-) -> Result<Option<String>, String> {
+) -> Result<ImportBatch, String> {
     tauri::async_runtime::spawn_blocking(move || {
-        let Some(file) = app
+        let files = app
             .dialog()
             .file()
             .set_parent(&window)
             .add_filter("Formula Pack JSON", &["json"])
-            .blocking_pick_file()
-        else {
-            return Ok(None);
-        };
-        let path = file.into_path().map_err(|e| e.to_string())?;
-        if fs::metadata(&path).map_err(|e| e.to_string())?.len() > FILE_LIMIT as u64 {
-            return Err("文件超过 256 KiB，未导入".into());
-        }
-        String::from_utf8(bounded_read(&path, FILE_LIMIT)?)
-            .map(Some)
-            .map_err(|e| format!("文件须为 UTF-8 JSON：{e}"))
+            .blocking_pick_files()
+            .unwrap_or_default();
+        let paths = files
+            .into_iter()
+            .map(|file| file.into_path().map_err(|e| e.to_string()))
+            .collect::<Result<Vec<_>, _>>()?;
+        Ok(read_import_batch(paths, 0))
     })
     .await
     .map_err(|e| e.to_string())?
@@ -708,6 +814,39 @@ mod tests {
         let mut p = sample();
         p["snippets"][0]["latex"] = json!("{".repeat(33) + "x" + &"}".repeat(33));
         assert!(validate_pack(&p, "$").is_err());
+        cleanup(&dir);
+    }
+
+    #[test]
+    fn launch_and_batch_import_handle_relative_paths_and_per_file_errors() {
+        let dir = test_dir();
+        fs::create_dir_all(&dir).unwrap();
+        let valid = dir.join("空间 Pack.JSON");
+        let invalid = dir.join("invalid.json");
+        let large = dir.join("large.json");
+        fs::write(&valid, b"{}").unwrap();
+        fs::write(&invalid, [0xff]).unwrap();
+        fs::write(&large, vec![b' '; FILE_LIMIT + 1]).unwrap();
+        let args = launch_import_paths(
+            [
+                PathBuf::from("空间 Pack.JSON"),
+                invalid.clone(),
+                PathBuf::from("--flag"),
+            ],
+            &dir,
+        );
+        assert_eq!(args, vec![valid, invalid]);
+        let paths = args
+            .into_iter()
+            .chain([large, dir.join("not-json.txt")])
+            .collect();
+        let batch = read_import_batch(paths, 2);
+        assert_eq!(batch.files[0].contents.as_deref(), Some("{}"));
+        assert_eq!(batch.files[0].name, "空间 Pack.JSON");
+        assert_eq!(batch.files[1].error, Some("encoding"));
+        assert_eq!(batch.files[2].error, Some("size"));
+        assert_eq!(batch.files[3].error, Some("extension"));
+        assert_eq!(batch.skipped, 2);
         cleanup(&dir);
     }
 }

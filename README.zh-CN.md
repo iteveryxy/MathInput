@@ -6,7 +6,7 @@ Math Input 是一个离线 Windows 数学公式输入器。在支持 Markdown �
 
 ## 下载
 
-在 [GitHub Releases](https://github.com/iteveryxy/MathInput/releases) 下载 Windows x64 安装包或便携 ZIP。使用便携版时，先解压再运行 `MathInput.exe`。两种版本都需要 WebView2 Runtime，界面为简体中文。
+在 [GitHub Releases](https://github.com/iteveryxy/MathInput/releases) 下载 Windows x64 安装包或便携 ZIP。使用便携版时，先解压再运行 `MathInput.exe`。两种版本都需要 WebView2 Runtime。
 
 ## 快速开始
 
@@ -19,6 +19,8 @@ Math Input 是一个离线 Windows 数学公式输入器。在支持 Markdown �
 - **模板补全**支持命令、拼音和自定义别名。输入 `sqrt`、`sum`、`lim` 等命令，或按 **Ctrl + Space** 打开命令列表。
 - **矩阵**可通过工具栏或 **Alt + M** 插入。分别填写行数和列数，支持矩形矩阵、向量和方阵行列式，最多逐格编辑 400 个单元格。
 - **公式包**可以从「设置 → 公式包」启用、导入和导出，也可以把当前公式保存为模板。随附 366 条本科公式和记号。
+
+在「设置 → 界面语言」可切换简体中文和 English。公式重名时，按方向键或点选候选上的公式包来源。导入时可一次选择多个 JSON 文件，也可把文件拖到窗口或 `MathInput.exe` 上。
 
 | 公式包 | 内容 | 文件 |
 | --- | --- | --- |

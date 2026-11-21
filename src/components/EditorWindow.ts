@@ -11,6 +11,9 @@ import { FormulaPackManager } from './FormulaPackManager';
 import { candidateId, snippetKey } from '../packs/types';
 import { checkPackMath } from '../packs/MathPreview';
 import { MatrixDialog } from './MatrixDialog';
+import { localizeUi, setUiLanguage, t, translatedError } from '../platform/Language';
+import { updateMathfieldLanguage } from '../editor/MathLiveSetup';
+import { onPackFiles } from '../packs/PackFiles';
 
 export class EditorWindow {
   readonly editor: MathEditor;
@@ -26,6 +29,7 @@ export class EditorWindow {
   private readonly packManager:FormulaPackManager;
 
   constructor(private readonly root: HTMLDivElement) {
+    setUiLanguage(this.settings.language);
     document.body.classList.toggle('desktop', this.bridge.desktop);
     this.applyAppearance(this.settings);
     this.root.className = 'shell';
@@ -61,15 +65,22 @@ export class EditorWindow {
     this.root.append(this.packManager.element);
     this.settingsPanel.element.addEventListener('open-formula-packs',()=>{this.editor.closeCompletion();void this.packManager.open();});
     this.packs.changed.add(()=>{this.editor.registry.replace(this.packs.snippets());this.editor.registryChanged();if(this.packs.error)this.status(this.packs.error,true);});
-    void this.packs.initialize();
+    const packsReady = this.packs.initialize();
     this.editor.completion.aliases = this.settings.aliases;
     this.bind();
+    this.applyLanguage();
+    void onPackFiles(batch => {
+      void packsReady.then(() => {
+        this.editor.closeCompletion();
+        this.packManager.receiveFiles(batch);
+      });
+    }, error => this.status(String(error), true)).catch(error => this.status(String(error), true));
     try {
       const draft = localStorage.getItem(DRAFT_KEY);
       if (draft) this.editor.setLatex(draft);
       const lastResult = localStorage.getItem(RESULT_KEY);
       if (lastResult) this.lastResult(lastResult);
-    } catch { this.status('本机存储不可用，请及时复制编辑结果', true); }
+    } catch { this.status(t('本机存储不可用，请及时复制编辑结果'), true); }
     this.render();
     void this.initialize();
   }
@@ -93,7 +104,7 @@ export class EditorWindow {
     unwrap.addEventListener('pointerdown', event => event.preventDefault());
     unwrap.addEventListener('click', () => this.editor.unwrap());
     this.root.querySelector('.editor-label')!.append(unwrap);
-    const saveTemplate=document.createElement('button');saveTemplate.id='save-template-button';saveTemplate.className='text-button';saveTemplate.textContent='保存为模板';saveTemplate.addEventListener('click',()=>{if(this.editor.latex){this.editor.closeCompletion();void this.packManager.open(this.editor.latex);}else this.status('请先输入需要保存的公式',true);});this.root.querySelector('.editor-label')!.append(saveTemplate);
+    const saveTemplate=document.createElement('button');saveTemplate.id='save-template-button';saveTemplate.className='text-button';saveTemplate.textContent='保存为模板';saveTemplate.addEventListener('click',()=>{if(this.editor.latex){this.editor.closeCompletion();void this.packManager.open(this.editor.latex);}else this.status(t('请先输入需要保存的公式'),true);});this.root.querySelector('.editor-label')!.append(saveTemplate);
     document.addEventListener('keydown', event => {
       // Prevent WebView history navigation even when a settings input has focus.
       if (event.altKey && !event.ctrlKey && ['ArrowLeft', 'ArrowRight'].includes(event.key)) event.preventDefault();
@@ -101,7 +112,7 @@ export class EditorWindow {
     on('#help-button', () => { const panel = this.root.querySelector<HTMLElement>('#help-panel')!; panel.hidden = !panel.hidden; });
     this.root.querySelector('#output-mode')!.addEventListener('change', (event) => {
       this.settings.outputMode = (event.target as HTMLSelectElement).value as OutputMode;
-      try { saveSettings(this.settings); } catch { this.status('输出格式未能保存到本机', true); }
+      try { saveSettings(this.settings); } catch { this.status(t('输出格式未能保存到本机'), true); }
       this.render();
     });
     this.root.querySelector('.titlebar')!.addEventListener('pointerdown', (event) => {
@@ -126,6 +137,7 @@ export class EditorWindow {
         if (status.error) this.status(status.error, true);
       }
       this.render();
+      await this.bridge.setLanguage(this.settings.language);
     } catch (error) { this.status(String(error), true); }
     requestAnimationFrame(() => this.editor.focus());
   }
@@ -142,24 +154,41 @@ export class EditorWindow {
     else this.editor.field.removeAttribute('aria-activedescendant');
     const latex = this.editor.latex;
     this.root.querySelector<HTMLElement>('#empty-hint')!.hidden = !!latex;
-    this.root.querySelector('#output-preview')!.textContent = latex ? formatMath(latex, this.settings.outputMode) : '公式将在这里生成';
+    this.root.querySelector('#output-preview')!.textContent = latex ? formatMath(latex, this.settings.outputMode) : t('公式将在这里生成');
     (this.root.querySelector('#output-mode') as HTMLSelectElement).value = this.settings.outputMode;
     this.root.querySelector('#shortcut-badge')!.textContent = this.settings.shortcut.replaceAll('+', ' ');
-    this.root.querySelector('#key-hint')!.textContent = completion.open ? '↑ ↓ 选择 · Enter 插入 · Shift Enter 包裹' : this.editor.placeholders.stack.depth ? 'Tab 下一个参数 · Enter 完成当前模板' : 'Enter 提交 · Esc 取消';
+    this.root.querySelector('#key-hint')!.textContent = completion.open
+      ? t(completion.index < 0 ? '↑ ↓ 或点击选择公式来源' : '↑ ↓ 选择 · Enter 插入 · Shift Enter 包裹')
+      : t(this.editor.placeholders.stack.depth ? 'Tab 下一个参数 · Enter 完成当前模板' : 'Enter 提交 · Esc 取消');
     for (const id of ['#submit-button', '#copy-button']) (this.root.querySelector(id) as HTMLButtonElement).disabled = !latex || this.busy || this.editor.composing;
     try { localStorage.setItem(DRAFT_KEY, latex); } catch { /* A failed draft save must not discard the live document. */ }
   }
 
   private async save(settings: Settings): Promise<void> {
     // A shortcut conflict is resolved before committing the new settings.
-    await this.bridge.configureShortcut(settings.shortcut);
+    if (settings.shortcut !== this.settings.shortcut) await this.bridge.configureShortcut(settings.shortcut);
     saveSettings(settings);
+    const languageChanged = this.settings.language !== settings.language;
     this.settings = settings;
+    if (languageChanged) {
+      this.applyLanguage();
+      void this.bridge.setLanguage(settings.language).catch(error => this.status(String(error), true));
+    }
     this.applyAppearance(settings);
     this.editor.completion.aliases = settings.aliases;
-    this.status('设置已保存在本机');
+    this.status(t('设置已保存在本机'));
     this.render();
     this.editor.focus();
+  }
+
+  private applyLanguage(): void {
+    setUiLanguage(this.settings.language);
+    document.documentElement.lang = this.settings.language;
+    for (const element of this.root.querySelectorAll('.titlebar, .editor-label, #empty-hint, .output-line, .submit-actions, #help-panel, #last-result')) {
+      localizeUi(element);
+    }
+    updateMathfieldLanguage(this.editor.field);
+    this.matrixDialog.updateLanguage();
   }
 
   private applyAppearance(settings: Pick<Settings, 'uiScale' | 'compact'>): void {
@@ -170,7 +199,7 @@ export class EditorWindow {
 
   private status(message: string, error = false): void {
     const element = this.root.querySelector<HTMLElement>('#status')!;
-    element.textContent = message;
+    element.textContent = translatedError(message);
     element.classList.toggle('error', error);
   }
   private lastResult(text: string): void {
@@ -187,7 +216,7 @@ export class EditorWindow {
       this.lastResult(result);
       // Persist before any window lifecycle or clipboard operation.
       try { localStorage.setItem(RESULT_KEY, result); }
-      catch { this.status('结果暂未能持久保存，请使用“仅复制”', true); }
+      catch { this.status(t('结果暂未能持久保存，请使用“仅复制”'), true); }
       const outcome = copyOnly ? await this.bridge.copy(result) : await this.bridge.submit(result, this.settings.autoPaste);
       this.editor.closeCompletion();
       this.status(outcome.message, outcome.status === 'manual');
@@ -197,7 +226,7 @@ export class EditorWindow {
 
   private async cancel(): Promise<void> {
     this.editor.closeCompletion();
-    try { await this.bridge.cancel(); this.status('已取消，草稿保留'); }
+    try { await this.bridge.cancel(); this.status(t('已取消，草稿保留')); }
     catch (error) { this.status(String(error), true); }
   }
 }

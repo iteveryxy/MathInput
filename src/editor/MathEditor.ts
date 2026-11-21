@@ -13,6 +13,7 @@ import { SelectionManager } from './SelectionManager';
 import type { Snippet } from '../snippets/types';
 import { SemanticEditing } from '../math/SemanticEditing';
 import { EditHistoryBoundary } from './EditHistoryBoundary';
+import { t } from '../platform/Language';
 
 export interface EditorCallbacks { change(): void; submit(): void; cancel(): void; error(message: string): void }
 
@@ -103,10 +104,14 @@ export class MathEditor {
   }
 
   private refreshCompletion(): void {
-    const { query: previousQuery, index } = this.completion.state;
+    const previousQuery = this.completion.state.query;
+    const selected = this.completion.selected;
     const query = completionQuery(this.field, this.completion);
     this.queryRange = query?.range;
-    if (query?.query === previousQuery) this.completion.state.index = Math.min(index, this.completion.state.candidates.length - 1);
+    if (query?.query === previousQuery && selected) {
+      const index = this.completion.state.candidates.findIndex(candidate => candidate === selected);
+      if (index >= 0) this.completion.state.index = index;
+    }
     if (!query) { this.completion.close(); this.selectedBeforeQuery = undefined; }
   }
 
@@ -146,7 +151,7 @@ export class MathEditor {
 
   unwrap(): void {
     const plan = new SemanticEditing(MathStructureAdapter.from(this.field)).unwrap(this.field.selection.ranges[0]);
-    if (!plan) { this.callbacks.error('此处没有可安全解除的函数、根式或成对括号；分式和带指数的函数不会被改写'); return; }
+    if (!plan) { this.callbacks.error(t('此处没有可安全解除的函数、根式或成对括号；分式和带指数的函数不会被改写')); return; }
     const content = this.field.getValue(plan.content, 'latex');
     this.transaction(() => {
       this.selections.reset(); this.closeCompletion();

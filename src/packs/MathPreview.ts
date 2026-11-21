@@ -3,6 +3,7 @@ import { createMathfield } from '../editor/MathLiveSetup';
 import { renderSnippet } from '../snippets/SnippetRegistry';
 import type { FormulaPack } from './types';
 import { validateLatexData } from './Validation';
+import { tr } from '../platform/Language';
 export function checkPackMath(pack: FormulaPack): void {
     const probe = createMathfield();
     probe.readOnly = true;
@@ -13,8 +14,10 @@ export function checkPackMath(pack: FormulaPack): void {
         pack.snippets.forEach((snippet, i) => {
             probe.value = renderSnippet(snippet);
             const errors = probe.errors;
-            if (errors.length)
-                throw new Error(`$.snippets[${i}].latex: MathLive 无法解析：${errors.map(error => error.code + (error.arg ? ` (${error.arg})` : '')).join('；')}`);
+            if (errors.length) {
+                const detail = errors.map(error => error.code + (error.arg ? ` (${error.arg})` : '')).join(', ');
+                throw new Error(`$.snippets[${i}].latex: ${tr('MathLive 无法解析：', 'MathLive could not parse: ')}${detail}`);
+            }
         });
     }
     finally {

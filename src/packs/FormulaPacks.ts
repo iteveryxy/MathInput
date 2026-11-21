@@ -7,8 +7,17 @@ import calculus from './university/advanced-math.mathpack.json';
 import linearAlgebra from './university/university-linear-algebra.mathpack.json';
 import notation from './university/math-notation.mathpack.json';
 import { validatePack, validateState } from './Validation';
+import { t, tr } from '../platform/Language';
 export const BASE_PACK: FormulaPack = { schemaVersion: 1, id: BASE_PACK_ID, name: '基础数学', version: '0.3.0', author: 'Math Input', description: '内置基础模板；沿用 v0.1/v0.2 编辑与参数机制', snippets: BUILTIN_SNIPPETS };
 export const UNIVERSITY_PACKS = [calculus, linearAlgebra, notation].map(pack => validatePack(pack));
+const bundledNames = new Map([BASE_PACK, sample, ...UNIVERSITY_PACKS].map(pack => [pack.id, pack.name]));
+bundledNames.set(MY_PACK_ID, '我的公式');
+export function packDisplayName(id: string, name: string): string {
+    return bundledNames.get(id) === name ? t(name) : name;
+}
+export function snippetDisplayName(snippet: Snippet): string {
+    return !snippet.packId || snippet.packId === BASE_PACK_ID ? t(snippet.name) : snippet.name;
+}
 export function initialPackState(): PackState {
     const bundled = [validatePack(sample), ...structuredClone(UNIVERSITY_PACKS)];
     return { schemaVersion: 1, revision: 0, baseEnabled: true, packs: [{ enabled: true, pack: { schemaVersion: 1, id: MY_PACK_ID, name: '我的公式', version: '1.0.0', author: '', description: '保存在本机的自定义公式', snippets: [] } }, ...bundled.map(pack => ({ enabled: false, pack }))] };
@@ -43,15 +52,23 @@ export function commandConflicts(state: PackState, aliases: CustomAliases = {}):
     return [...names].filter(([, sources]) => sources.length > 1).map(([name, sources]) => ({ name, sources })).sort((a, b) => a.name.localeCompare(b.name, 'en-US'));
 }
 export function replacePack(state: PackState, pack: FormulaPack, replace = false): PackState {
+    return replacePacks(state, [{ pack, replace }]);
+}
+export function replacePacks(state: PackState, items: { pack: FormulaPack; replace: boolean }[]): PackState {
     const next = structuredClone(state);
-    const index = next.packs.findIndex(entry => entry.pack.id === pack.id);
-    if (pack.id === BASE_PACK_ID)
-        throw new Error('基础数学包不可替换；请更换导入包的 ID');
-    if (index >= 0 && !replace)
-        throw new Error(`公式包 ID ${pack.id} 已存在，请明确选择替换或修改 ID`);
-    if (index >= 0)
-        next.packs[index].pack = pack;
-    else
-        next.packs.push({ pack, enabled: true });
+    const ids = new Set<string>();
+    for (const { pack, replace } of items) {
+        if (ids.has(pack.id)) throw new Error(tr(`本批次包含重复的公式包 ID ${pack.id}`, `Duplicate pack ID in this batch: ${pack.id}`));
+        ids.add(pack.id);
+        const index = next.packs.findIndex(entry => entry.pack.id === pack.id);
+        if (pack.id === BASE_PACK_ID)
+            throw new Error(t('基础数学包不可替换；请更换导入包的 ID'));
+        if (index >= 0 && !replace)
+            throw new Error(tr(`公式包 ID ${pack.id} 已存在，请明确选择替换或修改 ID`, `Pack ID ${pack.id} already exists. Choose Replace or enter a different ID.`));
+        if (index >= 0)
+            next.packs[index].pack = pack;
+        else
+            next.packs.push({ pack, enabled: true });
+    }
     return validateState(next);
 }
